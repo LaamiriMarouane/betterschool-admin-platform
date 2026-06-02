@@ -1,4 +1,34 @@
 {
+  "dashboard": {
+    "title": "Tableau de bord",
+    "subtitle": "Vue d'ensemble de la plateforme",
+    "retry": "Réessayer",
+    "kpi": {
+      "totalSchools": "Total des écoles",
+      "activeSubscriptions": "Abonnements actifs",
+      "onTrial": "En essai",
+      "pastDue": "En souffrance"
+    },
+    "mrr": {
+      "label": "Revenu mensuel récurrent estimé",
+      "exclCustom": "hors contrats sur mesure"
+    },
+    "enrollments": {
+      "label": "Total des inscriptions",
+      "hint": "sur {{count}} écoles"
+    },
+    "storage": {
+      "label": "Stockage utilisé",
+      "hint": "sur toute la plateforme"
+    },
+    "newSchools": {
+      "title": "Nouvelles écoles · 6 mois",
+      "tooltip": "{{count}} écoles"
+    },
+    "planDistribution": {
+      "title": "Répartition des forfaits"
+    }
+  },
   "nav": {
     "dashboard": "Tableau de bord",
     "schools": "Écoles",
@@ -45,7 +75,9 @@
     "no": "Non",
     "cancel": "Annuler",
     "save": "Enregistrer",
-    "unexpectedError": "Une erreur est survenue. Veuillez réessayer."
+    "unexpectedError": "Une erreur est survenue. Veuillez réessayer.",
+    "copied": "Copié dans le presse-papiers",
+    "copyFailed": "Échec de la copie"
   },
   "team": {
     "title": "Équipe",
@@ -58,6 +90,7 @@
     "emailHint": "Les identifiants sont envoyés ici ; un nouveau mot de passe est défini à la première connexion.",
     "create": "Créer et envoyer l'invitation",
     "editPermissions": "Modifier les permissions",
+    "saveChanges": "Enregistrer les modifications",
     "member": "Membre",
     "access": "Accès",
     "createdAt": "Ajouté",
@@ -76,7 +109,19 @@
     "deleteDesc": "Ceci supprime définitivement son compte plateforme et son accès. Cette action est irréversible.",
     "userEnabled": "Compte activé",
     "userDisabled": "Compte désactivé",
-    "userDeleted": "Membre supprimé"
+    "userDeleted": "Membre supprimé",
+    "resetPassword": "Réinitialiser le mot de passe",
+    "resetTitle": "Réinitialiser le mot de passe ?",
+    "resetDesc": "Génère un nouveau mot de passe temporaire (l'ancien cesse de fonctionner).",
+    "passwordReset": "Mot de passe réinitialisé",
+    "credentials": {
+      "createdTitle": "Compte créé",
+      "resetTitle": "Mot de passe réinitialisé",
+      "desc": "Partagez-les en toute sécurité — le mot de passe n'est affiché qu'une seule fois.",
+      "username": "Identifiant (e-mail)",
+      "password": "Mot de passe temporaire",
+      "note": "Ils ont aussi été envoyés par e-mail. L'utilisateur définira un nouveau mot de passe à la première connexion."
+    }
   },
   "contact": {
     "title": "Contactez-nous",
@@ -107,6 +152,20 @@
       "SUPPORT": "Support",
       "OPS": "Opérations",
       "BILLING": "Facturation"
+    },
+    "resource": "Ressource",
+    "view": "Voir",
+    "manage": "Gérer",
+    "lockNote": "Gérer inclut Voir — accorder Gérer verrouille Voir.",
+    "viewLockedByManage": "Inclus avec Gérer.",
+    "grantedCount": "sur {{total}} permissions accordées",
+    "groupDesc": {
+      "schools": "Dossiers scolaires et inscriptions",
+      "billing": "Abonnements, forfaits et Paddle",
+      "contact": "Messages du formulaire de contact",
+      "support": "Tickets et contact propriétaire",
+      "team": "Personnel et rôles de la plateforme",
+      "platform": "Tableau de bord, fonctionnalités et config"
     },
     "groups": {
       "schools": "Écoles",
@@ -154,7 +213,20 @@
   },
   "password": {
     "show": "Afficher le mot de passe",
-    "hide": "Masquer le mot de passe"
+    "hide": "Masquer le mot de passe",
+    "strength": {
+      "weak": "Faible",
+      "fair": "Moyen",
+      "good": "Bon",
+      "strong": "Fort"
+    },
+    "req": {
+      "minLength": "Au moins 8 caractères",
+      "uppercase": "Une lettre majuscule",
+      "lowercase": "Une lettre minuscule",
+      "number": "Un chiffre",
+      "specialChar": "Un caractère spécial"
+    }
   },
   "form": {
     "validationError": "Erreur de validation"
@@ -311,6 +383,43 @@
       "inactive": "Inactif",
       "legacy": "Hérité",
       "hidden": "Masqué"
+    }
+  },
+  "account": {
+    "email": "E-mail",
+    "newPassword": "Nouveau mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "currentPassword": "Mot de passe actuel",
+    "passwordHint": "Au moins 8 caractères.",
+    "mismatch": "Les mots de passe ne correspondent pas.",
+    "backToLogin": "Retour à la connexion",
+    "forgot": {
+      "link": "Mot de passe oublié ?",
+      "title": "Mot de passe oublié",
+      "subtitle": "Saisissez votre e-mail et nous vous enverrons un lien de réinitialisation.",
+      "submit": "Envoyer le lien",
+      "sentTitle": "Vérifiez vos e-mails",
+      "sentDesc": "Si un compte existe pour cet e-mail, un lien de réinitialisation est en route."
+    },
+    "reset": {
+      "title": "Définir un nouveau mot de passe",
+      "subtitle": "Choisissez un nouveau mot de passe pour votre compte.",
+      "submit": "Réinitialiser le mot de passe",
+      "success": "Mot de passe réinitialisé. Vous pouvez vous connecter.",
+      "invalidTitle": "Lien invalide ou manquant",
+      "invalidDesc": "Ce lien de réinitialisation est invalide ou a expiré.",
+      "requestNew": "Demander un nouveau lien"
+    },
+    "change": {
+      "menuItem": "Changer le mot de passe",
+      "title": "Changer le mot de passe",
+      "subtitle": "Modifiez le mot de passe que vous utilisez pour vous connecter.",
+      "submit": "Mettre à jour le mot de passe",
+      "success": "Mot de passe changé. Veuillez vous reconnecter."
+    },
+    "profile": {
+      "title": "Profil",
+      "subtitle": "Vos paramètres de compte et de sécurité."
     }
   }
 }

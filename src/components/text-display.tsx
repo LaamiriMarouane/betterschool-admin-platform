@@ -4,6 +4,7 @@ import { Copy } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { useCopy } from "@/hooks/use-copy";
 
 const textDisplayShellVariants = cva("relative flex items-center group gap-2", {
   variants: {
@@ -60,10 +61,12 @@ export function TextDisplay({
   className,
   innerClassName,
 }: TextDisplayProps) {
+  const { copy } = useCopy();
+
   const handleCopy = (e: React.MouseEvent) => {
     e.stopPropagation();
     e.preventDefault();
-    if (value) void navigator.clipboard?.writeText(value);
+    void copy(value);
   };
 
   const valueClassName = cn(

@@ -8,6 +8,12 @@ import type { AuthUser, LoginRequest } from "@/types/auth.types";
 interface AuthState {
   user: AuthUser | null;
   permissions: string[];
+  /**
+   * Whether the effective permission set is known yet. On a hard refresh it starts
+   * false and flips true once `loadPermissions` resolves — so permission gates wait
+   * instead of bouncing the user before their permissions have loaded.
+   */
+  permissionsLoaded: boolean;
   isAuthenticated: boolean;
   loading: boolean;
   error: string | null;
@@ -27,6 +33,7 @@ interface AuthState {
 export const useAuthStore = create<AuthState>((set, get) => ({
   user: tokenStorage.getUser(),
   permissions: [],
+  permissionsLoaded: false,
   isAuthenticated: Boolean(tokenStorage.getAccessToken()),
   loading: false,
   error: null,
@@ -42,6 +49,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       set({
         user: res.user,
         permissions: res.permissions,
+        permissionsLoaded: true,
         isAuthenticated: true,
         loading: false,
       });
@@ -59,7 +67,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       // Ignore — we clear local state regardless of the server response.
     }
     tokenStorage.clear();
-    set({ user: null, permissions: [], isAuthenticated: false });
+    set({ user: null, permissions: [], permissionsLoaded: false, isAuthenticated: false });
     resetAllStores();
   },
 
@@ -72,6 +80,10 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       // A 401 is handled by the unauthorized handler below; anything else
       // (e.g. endpoint missing) leaves permissions empty — the app still works
       // with auth-only gating.
+    } finally {
+      // Mark resolved either way so permission gates stop waiting (a failed load
+      // falls back to redirecting gated routes rather than hanging on a spinner).
+      set({ permissionsLoaded: true });
     }
   },
 
@@ -82,7 +94,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 // bounce to the login page (overrides the client's default token-only clear).
 setUnauthorizedHandler(() => {
   tokenStorage.clear();
-  useAuthStore.setState({ user: null, permissions: [], isAuthenticated: false });
+  useAuthStore.setState({ user: null, permissions: [], permissionsLoaded: false, isAuthenticated: false });
   resetAllStores();
   if (typeof window !== "undefined" && window.location.pathname !== LOGIN_PATH) {
     window.location.replace(LOGIN_PATH);

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Plus, Power, Settings2, Trash2, Users } from "lucide-react";
+import { KeyRound, Plus, Power, Settings2, Trash2, Users } from "lucide-react";
 
 import { DateDisplay } from "@/components/date-display";
 import {
@@ -24,30 +24,52 @@ import {
 import { matchPreset } from "@/constants/permissions.constants";
 import { useAuthStore } from "@/store/auth/auth.store";
 import { useTeamActions, useTeamLoading, useTeamUsers } from "@/store/team/team.store";
-import type { PlatformUserDTO } from "@/types/platform-user.types";
+import type {
+  PlatformUserCredentialsDTO,
+  PlatformUserDTO,
+} from "@/types/platform-user.types";
 
+import { CredentialsDialog } from "./components/credentials-dialog";
 import { StaffDialog } from "./components/staff-dialog";
 
 export function TeamPage() {
   const { t } = useTranslation();
   const users = useTeamUsers();
   const loading = useTeamLoading();
-  const { fetchUsers, fetchPermissionCatalog, setUserEnabled, deleteUser } = useTeamActions();
+  const { fetchUsers, fetchPermissionCatalog, setUserEnabled, deleteUser, resetPassword } =
+    useTeamActions();
   const currentUserId = useAuthStore((state) => state.user?.id);
 
   const [createOpen, setCreateOpen] = useState(false);
   const [editing, setEditing] = useState<PlatformUserDTO | null>(null);
   const [deleting, setDeleting] = useState<PlatformUserDTO | null>(null);
+  const [resetting, setResetting] = useState<PlatformUserDTO | null>(null);
+  const [credentials, setCredentials] = useState<PlatformUserCredentialsDTO | null>(null);
+  const [credentialsMode, setCredentialsMode] = useState<"create" | "reset">("create");
 
   useEffect(() => {
     void fetchUsers();
     void fetchPermissionCatalog();
   }, [fetchUsers, fetchPermissionCatalog]);
 
+  const reveal = (result: PlatformUserCredentialsDTO, mode: "create" | "reset") => {
+    setCredentialsMode(mode);
+    setCredentials(result);
+  };
+
   const confirmDelete = async () => {
     if (!deleting) return;
     const ok = await deleteUser(deleting.id);
     if (ok) setDeleting(null);
+  };
+
+  const confirmReset = async () => {
+    if (!resetting) return;
+    const result = await resetPassword(resetting.id);
+    if (result) {
+      setResetting(null);
+      reveal(result, "reset");
+    }
   };
 
   return (
@@ -130,6 +152,15 @@ export function TeamPage() {
                             <Button
                               variant="ghost"
                               size="icon"
+                              title={t("team.resetPassword")}
+                              disabled={loading.save}
+                              onClick={() => setResetting(user)}
+                            >
+                              <KeyRound className="h-4 w-4" />
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="icon"
                               title={user.enabled ? t("team.disable") : t("team.enable")}
                               disabled={loading.save}
                               onClick={() => void setUserEnabled(user.id, !user.enabled)}
@@ -158,7 +189,12 @@ export function TeamPage() {
         </CardContent>
       </Card>
 
-      <StaffDialog open={createOpen} onOpenChange={setCreateOpen} mode="create" />
+      <StaffDialog
+        open={createOpen}
+        onOpenChange={setCreateOpen}
+        mode="create"
+        onCredentials={(result) => reveal(result, "create")}
+      />
       <StaffDialog
         open={editing !== null}
         onOpenChange={(open) => {
@@ -198,6 +234,46 @@ export function TeamPage() {
             </AlertDialogAction>
           </>
         }
+      />
+
+      <ConfirmAlertDialog
+        open={resetting !== null}
+        onOpenChange={(open) => {
+          if (!open) setResetting(null);
+        }}
+        title={t("team.resetTitle")}
+        description={
+          <>
+            <span className="font-medium text-foreground">
+              {resetting?.fullName || resetting?.email}
+            </span>
+            {" — "}
+            {t("team.resetDesc")}
+          </>
+        }
+        actions={
+          <>
+            <AlertDialogCancel disabled={loading.save}>{t("common.cancel")}</AlertDialogCancel>
+            <AlertDialogAction
+              disabled={loading.save}
+              onClick={(event) => {
+                event.preventDefault();
+                void confirmReset();
+              }}
+            >
+              {t("team.resetPassword")}
+            </AlertDialogAction>
+          </>
+        }
+      />
+
+      <CredentialsDialog
+        open={credentials !== null}
+        onOpenChange={(open) => {
+          if (!open) setCredentials(null);
+        }}
+        credentials={credentials}
+        mode={credentialsMode}
       />
     </div>
   );

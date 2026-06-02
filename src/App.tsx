@@ -3,7 +3,12 @@ import { useTranslation } from "react-i18next";
 
 import { AppLayout } from "@/components/layout/app-layout";
 import { ProtectedRoute } from "@/components/auth/protected-route";
+import { RequirePermission } from "@/components/auth/require-permission";
 import { LoginPage } from "@/pages/auth/login.page";
+import { ForgotPasswordPage } from "@/pages/auth/forgot-password.page";
+import { ResetPasswordPage } from "@/pages/auth/reset-password.page";
+import { DashboardPage } from "@/pages/dashboard/dashboard.page";
+import { ProfilePage } from "@/pages/profile/profile.page";
 import { SchoolsPage } from "@/pages/schools/schools.page";
 import { SchoolDetailPage } from "@/pages/schools/school-detail.page";
 import { PlansPage } from "@/pages/plans/plans.page";
@@ -24,15 +29,60 @@ function App() {
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+      <Route path="/reset-password" element={<ResetPasswordPage />} />
       <Route element={<ProtectedRoute />}>
         <Route element={<AppLayout />}>
-          <Route index element={<Placeholder titleKey="nav.dashboard" />} />
-          <Route path="schools" element={<SchoolsPage />} />
-          <Route path="schools/:schoolId" element={<SchoolDetailPage />} />
-          <Route path="plans" element={<PlansPage />} />
-          <Route path="subscriptions" element={<Placeholder titleKey="nav.subscriptions" />} />
-          <Route path="team" element={<TeamPage />} />
-          <Route path="contact-messages" element={<ContactPage />} />
+          <Route index element={<DashboardPage />} />
+          <Route path="profile" element={<ProfilePage />} />
+          <Route
+            path="schools"
+            element={
+              <RequirePermission permission="platform.schools.read">
+                <SchoolsPage />
+              </RequirePermission>
+            }
+          />
+          <Route
+            path="schools/:schoolId"
+            element={
+              <RequirePermission permission="platform.schools.read">
+                <SchoolDetailPage />
+              </RequirePermission>
+            }
+          />
+          <Route
+            path="plans"
+            element={
+              <RequirePermission permission="platform.billing.read">
+                <PlansPage />
+              </RequirePermission>
+            }
+          />
+          <Route
+            path="subscriptions"
+            element={
+              <RequirePermission permission="platform.billing.read">
+                <Placeholder titleKey="nav.subscriptions" />
+              </RequirePermission>
+            }
+          />
+          <Route
+            path="team"
+            element={
+              <RequirePermission permission="platform.users.read">
+                <TeamPage />
+              </RequirePermission>
+            }
+          />
+          <Route
+            path="contact-messages"
+            element={
+              <RequirePermission permission="platform.contact.read">
+                <ContactPage />
+              </RequirePermission>
+            }
+          />
         </Route>
       </Route>
     </Routes>

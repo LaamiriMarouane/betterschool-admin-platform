@@ -8,6 +8,7 @@ import { getErrorMessage, type StoreError } from "@/lib/api-error";
 import { notifyApiError } from "@/lib/notify";
 import type {
   CreatePlatformUserRequest,
+  PlatformUserCredentialsDTO,
   PlatformUserDTO,
 } from "@/types/platform-user.types";
 
@@ -31,8 +32,10 @@ interface TeamState {
 interface TeamActions {
   fetchUsers: () => Promise<void>;
   fetchPermissionCatalog: () => Promise<void>;
-  /** Resolves true on success so the dialog can close. */
-  createUser: (request: CreatePlatformUserRequest) => Promise<boolean>;
+  /** Resolves the one-time credentials on success (null on failure) so the caller can reveal them. */
+  createUser: (request: CreatePlatformUserRequest) => Promise<PlatformUserCredentialsDTO | null>;
+  /** Admin-reset a staffer's password; resolves the one-time credentials (null on failure). */
+  resetPassword: (userId: string) => Promise<PlatformUserCredentialsDTO | null>;
   updatePermissions: (userId: string, permissionKeys: string[]) => Promise<boolean>;
   setUserEnabled: (userId: string, enabled: boolean) => Promise<boolean>;
   deleteUser: (userId: string) => Promise<boolean>;
@@ -90,17 +93,34 @@ export const useTeamStore = create<TeamStore>()(
         createUser: async (request) => {
           set((state) => ({ loading: { ...state.loading, save: true } }));
           try {
-            const user = await teamService.createUser(request);
+            const credentials = await teamService.createUser(request);
             set((state) => ({
-              users: [user, ...state.users],
+              users: [credentials.user, ...state.users],
               loading: { ...state.loading, save: false },
             }));
             toast({ title: i18n.t("team.created"), description: i18n.t("team.createdDesc") });
-            return true;
+            return credentials;
           } catch (error) {
             set((state) => ({ loading: { ...state.loading, save: false } }));
             notifyApiError(error);
-            return false;
+            return null;
+          }
+        },
+
+        resetPassword: async (userId) => {
+          set((state) => ({ loading: { ...state.loading, save: true } }));
+          try {
+            const credentials = await teamService.resetPassword(userId);
+            set((state) => ({
+              users: state.users.map((u) => (u.id === credentials.user.id ? credentials.user : u)),
+              loading: { ...state.loading, save: false },
+            }));
+            toast({ title: i18n.t("team.passwordReset") });
+            return credentials;
+          } catch (error) {
+            set((state) => ({ loading: { ...state.loading, save: false } }));
+            notifyApiError(error);
+            return null;
           }
         },
 

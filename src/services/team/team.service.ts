@@ -1,6 +1,7 @@
 import { http } from "@/lib/http";
 import type {
   CreatePlatformUserRequest,
+  PlatformUserCredentialsDTO,
   PlatformUserDTO,
 } from "@/types/platform-user.types";
 
@@ -16,8 +17,12 @@ export const teamService = {
   /** The assignable platform permission catalog (source of truth = backend). */
   listPermissions: (): Promise<string[]> => http.get<string[]>(`${BASE}/permissions`),
 
-  createUser: (body: CreatePlatformUserRequest): Promise<PlatformUserDTO> =>
-    http.post<PlatformUserDTO>(BASE, body),
+  createUser: (body: CreatePlatformUserRequest): Promise<PlatformUserCredentialsDTO> =>
+    http.post<PlatformUserCredentialsDTO>(BASE, body),
+
+  /** Admin-reset a staffer's password; returns the new one-time temp password. */
+  resetPassword: (userId: string): Promise<PlatformUserCredentialsDTO> =>
+    http.post<PlatformUserCredentialsDTO>(`${BASE}/${userId}/reset-password`),
 
   updatePermissions: (userId: string, permissionKeys: string[]): Promise<PlatformUserDTO> =>
     http.put<PlatformUserDTO>(`${BASE}/${userId}/permissions`, { permissionKeys }),

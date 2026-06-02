@@ -1,5 +1,5 @@
 import { useEffect, useState, type FormEvent } from "react";
-import { useLocation, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 
 import { Button } from "@/components/ui/button";
@@ -65,7 +65,15 @@ export function LoginPage() {
               />
             </div>
             <div className="space-y-1.5">
-              <Label htmlFor="password">{t("auth.password")}</Label>
+              <div className="flex items-center justify-between">
+                <Label htmlFor="password">{t("auth.password")}</Label>
+                <Link
+                  to="/forgot-password"
+                  className="text-xs font-medium text-muted-foreground hover:text-foreground"
+                >
+                  {t("account.forgot.link")}
+                </Link>
+              </div>
               <PasswordInput
                 id="password"
                 value={password}

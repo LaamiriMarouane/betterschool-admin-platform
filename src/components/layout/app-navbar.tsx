@@ -1,4 +1,6 @@
-import { LogOut, Menu, PanelLeft } from "lucide-react";
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import { KeyRound, LogOut, Menu, PanelLeft } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import { Button } from "@/components/ui/button";
@@ -21,8 +23,10 @@ interface AppNavbarProps {
 
 export function AppNavbar({ onMenuClick, onToggleSidebar }: AppNavbarProps) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const user = useAuthStore((s) => s.user);
   const logout = useAuthStore((s) => s.logout);
+  const [menuOpen, setMenuOpen] = useState(false);
   const fullName = [user?.firstName, user?.lastName].filter(Boolean).join(" ");
   const displayName = fullName || user?.username || t("common.guest");
 
@@ -49,7 +53,7 @@ export function AppNavbar({ onMenuClick, onToggleSidebar }: AppNavbarProps) {
       <div className="flex-1" />
       <LanguageSelect />
       <ThemeToggle />
-      <Popover>
+      <Popover open={menuOpen} onOpenChange={setMenuOpen}>
         <PopoverTrigger asChild>
           <button
             type="button"
@@ -77,7 +81,22 @@ export function AppNavbar({ onMenuClick, onToggleSidebar }: AppNavbarProps) {
             variant="ghost"
             size="sm"
             className="w-full justify-start"
-            onClick={() => void logout()}
+            onClick={() => {
+              setMenuOpen(false);
+              navigate("/profile");
+            }}
+            icon={<KeyRound />}
+          >
+            {t("account.change.menuItem")}
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="w-full justify-start"
+            onClick={() => {
+              setMenuOpen(false);
+              void logout();
+            }}
             icon={<LogOut />}
           >
             {t("common.logout")}

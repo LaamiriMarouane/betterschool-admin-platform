@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { useAuthStore } from "@/store/auth/auth.store";
 import { useContactActions, useContactUnreadCount } from "@/store/contact/contact.store";
 
 interface NavItem {
@@ -48,10 +49,18 @@ export function AppSidebar({ collapsed = false, onNavigate }: AppSidebarProps) {
   const { t } = useTranslation();
   const unreadCount = useContactUnreadCount();
   const { fetchUnreadCount } = useContactActions();
+  const permissions = useAuthStore((state) => state.permissions);
+  const permissionsLoaded = useAuthStore((state) => state.permissionsLoaded);
 
   useEffect(() => {
     void fetchUnreadCount();
   }, [fetchUnreadCount]);
+
+  // Hide items the user can't access. Until permissions resolve (hard refresh),
+  // show everything optimistically rather than flashing an empty rail.
+  const visibleItems = NAV_ITEMS.filter(
+    (item) => !item.permission || !permissionsLoaded || permissions.includes(item.permission),
+  );
 
   return (
     <div className="flex h-full w-64 flex-col">
@@ -69,8 +78,7 @@ export function AppSidebar({ collapsed = false, onNavigate }: AppSidebarProps) {
         </span>
       </div>
       <nav className="flex-1 space-y-1 overflow-y-auto p-2">
-        {/* TODO: gate each item with useHasPermission(item.permission) once login is wired. */}
-        {NAV_ITEMS.map((item) => {
+        {visibleItems.map((item) => {
           const label = t(item.labelKey);
           const badge =
             item.to === "/contact-messages" && unreadCount > 0 ? unreadCount : null;

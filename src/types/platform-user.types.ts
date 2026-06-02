@@ -16,3 +16,13 @@ export interface CreatePlatformUserRequest {
   email: string;
   permissionKeys: string[];
 }
+
+/**
+ * One-time credentials returned when a staffer is created or their password is
+ * admin-reset. The {@link temporaryPassword} is shown once (also emailed) and is
+ * never re-fetchable. Mirrors backend PlatformUserCredentialsDTO.
+ */
+export interface PlatformUserCredentialsDTO {
+  user: PlatformUserDTO;
+  temporaryPassword: string;
+}

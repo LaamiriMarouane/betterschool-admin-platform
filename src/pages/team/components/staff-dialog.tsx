@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Check } from "lucide-react";
 
 import { ResponsiveDialog } from "@/components/responsive-dialog";
 import { Button } from "@/components/ui/button";
@@ -11,7 +12,10 @@ import {
   useTeamLoading,
   useTeamPermissionCatalog,
 } from "@/store/team/team.store";
-import type { PlatformUserDTO } from "@/types/platform-user.types";
+import type {
+  PlatformUserCredentialsDTO,
+  PlatformUserDTO,
+} from "@/types/platform-user.types";
 
 import { PermissionPicker } from "./permission-picker";
 
@@ -23,11 +27,14 @@ export function StaffDialog({
   onOpenChange,
   mode,
   user,
+  onCredentials,
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   mode: Mode;
   user?: PlatformUserDTO | null;
+  /** Called with the one-time credentials after a successful create, to reveal them. */
+  onCredentials?: (credentials: PlatformUserCredentialsDTO) => void;
 }) {
   const { t } = useTranslation();
   const { createUser, updatePermissions } = useTeamActions();
@@ -56,19 +63,27 @@ export function StaffDialog({
       ? true
       : Boolean(firstName.trim() && lastName.trim() && email.trim());
 
+  const grantedCount = useMemo(
+    () => permissionKeys.filter((key) => catalog.includes(key)).length,
+    [permissionKeys, catalog],
+  );
+
   const submit = async () => {
-    let ok = false;
     if (mode === "create") {
-      ok = await createUser({
+      const credentials = await createUser({
         firstName: firstName.trim(),
         lastName: lastName.trim(),
         email: email.trim(),
         permissionKeys,
       });
+      if (credentials) {
+        onCredentials?.(credentials);
+        onOpenChange(false);
+      }
     } else if (user) {
-      ok = await updatePermissions(user.id, permissionKeys);
+      const ok = await updatePermissions(user.id, permissionKeys);
+      if (ok) onOpenChange(false);
     }
-    if (ok) onOpenChange(false);
   };
 
   return (
@@ -82,22 +97,39 @@ export function StaffDialog({
           : user?.fullName || user?.email || undefined
       }
       footer={
-        <div className="flex justify-end gap-2">
-          <Button variant="outline" onClick={() => onOpenChange(false)} disabled={loading.save}>
-            {t("common.cancel")}
-          </Button>
-          <Button onClick={submit} disabled={!canSubmit || loading.save}>
-            {mode === "create" ? t("team.create") : t("common.save")}
-          </Button>
+        <div className="flex items-center justify-between gap-3">
+          {catalog.length > 0 ? (
+            <span className="text-xs text-muted-foreground">
+              <span className="font-semibold text-foreground">{grantedCount}</span>{" "}
+              {t("permissions.grantedCount", { total: catalog.length })}
+            </span>
+          ) : (
+            <span />
+          )}
+          <div className="flex gap-2">
+            <Button variant="outline" onClick={() => onOpenChange(false)} disabled={loading.save}>
+              {t("common.cancel")}
+            </Button>
+            <Button
+              onClick={submit}
+              disabled={!canSubmit || loading.save}
+              className="bg-violet-600 text-white hover:bg-violet-700"
+            >
+              <Check className="size-4" />
+              {mode === "create" ? t("team.create") : t("team.saveChanges")}
+            </Button>
+          </div>
         </div>
       }
     >
-      <div className="space-y-4 px-4 pb-2 sm:w-[30rem] sm:px-0">
+      <div className="space-y-4 px-4 pb-2 sm:w-[34rem] sm:px-0">
         {mode === "create" && (
           <>
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1.5">
-                <Label htmlFor="staff-first">{t("team.firstName")}</Label>
+                <Label htmlFor="staff-first" required>
+                  {t("team.firstName")}
+                </Label>
                 <Input
                   id="staff-first"
                   value={firstName}
@@ -105,7 +137,9 @@ export function StaffDialog({
                 />
               </div>
               <div className="space-y-1.5">
-                <Label htmlFor="staff-last">{t("team.lastName")}</Label>
+                <Label htmlFor="staff-last" required>
+                  {t("team.lastName")}
+                </Label>
                 <Input
                   id="staff-last"
                   value={lastName}
@@ -114,7 +148,9 @@ export function StaffDialog({
               </div>
             </div>
             <div className="space-y-1.5">
-              <Label htmlFor="staff-email">{t("team.email")}</Label>
+              <Label htmlFor="staff-email" required>
+                {t("team.email")}
+              </Label>
               <Input
                 id="staff-email"
                 type="email"

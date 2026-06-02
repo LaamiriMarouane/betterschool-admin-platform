@@ -139,7 +139,7 @@ export function ResponsiveDialog({
           )}
 
           {/* Scrollable body */}
-          <div className="flex-1 overflow-y-auto px-6 pt-1 scrollbar-thumb-on-hover min-h-0">
+          <div className="flex-1 overflow-y-auto px-6 pt-1 tiny-scroll scrollbar-thumb-on-hover min-h-0">
             {children}
           </div>
 
@@ -163,7 +163,7 @@ export function ResponsiveDialog({
           </DrawerHeader>
         )}
 
-        <div className="overflow-y-auto max-h-[80vh] scrollbar-thumb-on-hover">
+        <div className="overflow-y-auto max-h-[80vh] tiny-scroll scrollbar-thumb-on-hover">
           {children}
         </div>
 

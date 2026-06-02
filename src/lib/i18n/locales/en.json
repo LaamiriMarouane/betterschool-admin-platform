@@ -1,4 +1,34 @@
 {
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Platform overview",
+    "retry": "Try again",
+    "kpi": {
+      "totalSchools": "Total schools",
+      "activeSubscriptions": "Active subscriptions",
+      "onTrial": "On trial",
+      "pastDue": "Past due"
+    },
+    "mrr": {
+      "label": "Est. monthly recurring revenue",
+      "exclCustom": "excl. custom"
+    },
+    "enrollments": {
+      "label": "Total enrollments",
+      "hint": "across {{count}} schools"
+    },
+    "storage": {
+      "label": "Storage used",
+      "hint": "platform-wide"
+    },
+    "newSchools": {
+      "title": "New schools · 6 months",
+      "tooltip": "{{count}} schools"
+    },
+    "planDistribution": {
+      "title": "Plan distribution"
+    }
+  },
   "nav": {
     "dashboard": "Dashboard",
     "schools": "Schools",
@@ -45,7 +75,9 @@
     "no": "No",
     "cancel": "Cancel",
     "save": "Save",
-    "unexpectedError": "Something went wrong. Please try again."
+    "unexpectedError": "Something went wrong. Please try again.",
+    "copied": "Copied to clipboard",
+    "copyFailed": "Couldn't copy"
   },
   "team": {
     "title": "Team",
@@ -58,6 +90,7 @@
     "emailHint": "Login credentials are emailed here; they set a new password on first sign-in.",
     "create": "Create & send invite",
     "editPermissions": "Edit permissions",
+    "saveChanges": "Save changes",
     "member": "Member",
     "access": "Access",
     "createdAt": "Added",
@@ -76,7 +109,19 @@
     "deleteDesc": "This permanently removes their platform account and access. This can't be undone.",
     "userEnabled": "Account enabled",
     "userDisabled": "Account disabled",
-    "userDeleted": "Staff member deleted"
+    "userDeleted": "Staff member deleted",
+    "resetPassword": "Reset password",
+    "resetTitle": "Reset password?",
+    "resetDesc": "Generate a new temporary password (the old one stops working).",
+    "passwordReset": "Password reset",
+    "credentials": {
+      "createdTitle": "Staff account created",
+      "resetTitle": "Password reset",
+      "desc": "Share these securely — the password is shown only once.",
+      "username": "Username (email)",
+      "password": "Temporary password",
+      "note": "These were also emailed to the staff member. They set a new password on first sign-in."
+    }
   },
   "contact": {
     "title": "Contact us",
@@ -107,6 +152,20 @@
       "SUPPORT": "Support",
       "OPS": "Ops",
       "BILLING": "Billing"
+    },
+    "resource": "Resource",
+    "view": "View",
+    "manage": "Manage",
+    "lockNote": "Manage includes View — granting Manage locks View on.",
+    "viewLockedByManage": "Included with Manage.",
+    "grantedCount": "of {{total}} permissions granted",
+    "groupDesc": {
+      "schools": "School records & enrollment",
+      "billing": "Subscriptions, plans & Paddle",
+      "contact": "Public contact-form messages",
+      "support": "Tickets & owner contact",
+      "team": "Platform staff & roles",
+      "platform": "Dashboard, features & config"
     },
     "groups": {
       "schools": "Schools",
@@ -154,7 +213,20 @@
   },
   "password": {
     "show": "Show password",
-    "hide": "Hide password"
+    "hide": "Hide password",
+    "strength": {
+      "weak": "Weak",
+      "fair": "Fair",
+      "good": "Good",
+      "strong": "Strong"
+    },
+    "req": {
+      "minLength": "At least 8 characters",
+      "uppercase": "An uppercase letter",
+      "lowercase": "A lowercase letter",
+      "number": "A number",
+      "specialChar": "A special character"
+    }
   },
   "form": {
     "validationError": "Validation error"
@@ -311,6 +383,43 @@
       "inactive": "Inactive",
       "legacy": "Legacy",
       "hidden": "Hidden"
+    }
+  },
+  "account": {
+    "email": "Email",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm password",
+    "currentPassword": "Current password",
+    "passwordHint": "At least 8 characters.",
+    "mismatch": "Passwords don't match.",
+    "backToLogin": "Back to sign in",
+    "forgot": {
+      "link": "Forgot password?",
+      "title": "Forgot password",
+      "subtitle": "Enter your email and we'll send a reset link.",
+      "submit": "Send reset link",
+      "sentTitle": "Check your email",
+      "sentDesc": "If an account exists for that email, a reset link is on its way."
+    },
+    "reset": {
+      "title": "Set a new password",
+      "subtitle": "Choose a new password for your account.",
+      "submit": "Reset password",
+      "success": "Password reset. You can sign in now.",
+      "invalidTitle": "Invalid or missing link",
+      "invalidDesc": "This reset link is invalid or has expired.",
+      "requestNew": "Request a new link"
+    },
+    "change": {
+      "menuItem": "Change password",
+      "title": "Change password",
+      "subtitle": "Update the password you use to sign in.",
+      "submit": "Update password",
+      "success": "Password changed. Please sign in again."
+    },
+    "profile": {
+      "title": "Profile",
+      "subtitle": "Your account and security settings."
     }
   }
 }
