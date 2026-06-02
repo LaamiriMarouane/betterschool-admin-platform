@@ -1,0 +1,316 @@
+{
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "schools": "Écoles",
+    "plans": "Forfaits",
+    "subscriptions": "Abonnements",
+    "team": "Équipe",
+    "contact": "Contact",
+    "openNavigation": "Ouvrir la navigation",
+    "toggleSidebar": "Basculer la barre latérale",
+    "accountMenu": "Menu du compte",
+    "language": "Langue"
+  },
+  "auth": {
+    "signInTitle": "Connexion",
+    "signInSubtitle": "Console de la plateforme",
+    "username": "Nom d'utilisateur",
+    "password": "Mot de passe",
+    "signIn": "Se connecter"
+  },
+  "errors": {
+    "accessDenied": "Accès refusé",
+    "accessDeniedDescription": "Vous n'avez pas la permission d'effectuer cette action.",
+    "rateLimited": "Trop de requêtes",
+    "rateLimitedDescription": "Veuillez ralentir et réessayer dans un instant."
+  },
+  "common": {
+    "platform": "Plateforme",
+    "comingSoon": "Bientôt disponible.",
+    "logout": "Déconnexion",
+    "search": "Rechercher",
+    "searchPlaceholder": "Rechercher...",
+    "noResults": "Aucun résultat",
+    "loading": "Chargement",
+    "close": "Fermer",
+    "copy": "Copier",
+    "dismiss": "Fermer",
+    "optional": "Facultatif",
+    "guest": "Invité",
+    "error": "Erreur",
+    "warning": "Avertissement",
+    "success": "Succès",
+    "info": "Information",
+    "yes": "Oui",
+    "no": "Non",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "unexpectedError": "Une erreur est survenue. Veuillez réessayer."
+  },
+  "team": {
+    "title": "Équipe",
+    "subtitle": "Personnel de la plateforme et leurs accès.",
+    "addStaff": "Ajouter un membre",
+    "addStaffDesc": "Créez un compte plateforme. Les identifiants lui sont envoyés par e-mail.",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "E-mail",
+    "emailHint": "Les identifiants sont envoyés ici ; un nouveau mot de passe est défini à la première connexion.",
+    "create": "Créer et envoyer l'invitation",
+    "editPermissions": "Modifier les permissions",
+    "member": "Membre",
+    "access": "Accès",
+    "createdAt": "Ajouté",
+    "actions": "Actions",
+    "you": "Vous",
+    "empty": "Aucun membre pour l'instant.",
+    "permissionCount": "{{count}} permissions",
+    "created": "Compte créé",
+    "createdDesc": "Les identifiants ont été envoyés par e-mail.",
+    "permissionsUpdated": "Permissions mises à jour",
+    "disable": "Désactiver",
+    "enable": "Activer",
+    "delete": "Supprimer",
+    "disabled": "Désactivé",
+    "deleteTitle": "Supprimer ce membre ?",
+    "deleteDesc": "Ceci supprime définitivement son compte plateforme et son accès. Cette action est irréversible.",
+    "userEnabled": "Compte activé",
+    "userDisabled": "Compte désactivé",
+    "userDeleted": "Membre supprimé"
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Messages du formulaire de contact public.",
+    "searchPlaceholder": "Rechercher nom, e-mail, message…",
+    "allStatuses": "Tous les statuts",
+    "sender": "Expéditeur",
+    "school": "École",
+    "message": "Message",
+    "statusLabel": "Statut",
+    "received": "Reçu",
+    "empty": "Aucun message.",
+    "pageInfo": "Page {{page}} sur {{pages}}",
+    "reply": "Répondre",
+    "replySubject": "Re : votre message à BetterSchool",
+    "archive": "Archiver",
+    "delete": "Supprimer",
+    "deleteTitle": "Supprimer ce message ?",
+    "deleteDesc": "Ceci supprime définitivement le message de contact. Cette action est irréversible.",
+    "deleted": "Message supprimé"
+  },
+  "permissions": {
+    "presetLabel": "Préréglage",
+    "custom": "Personnalisé",
+    "lockedHint": "Toujours accordé pour permettre l'accès à la console.",
+    "presets": {
+      "SUPER_ADMIN": "Super admin",
+      "SUPPORT": "Support",
+      "OPS": "Opérations",
+      "BILLING": "Facturation"
+    },
+    "groups": {
+      "schools": "Écoles",
+      "billing": "Facturation et offres",
+      "contact": "Contact",
+      "support": "Support",
+      "team": "Équipe",
+      "platform": "Plateforme"
+    },
+    "labels": {
+      "schoolsRead": "Voir les écoles",
+      "schoolsManage": "Gérer les écoles",
+      "statsRead": "Voir le tableau de bord",
+      "supportRead": "Voir le support",
+      "supportManage": "Gérer le support",
+      "billingRead": "Voir la facturation",
+      "billingManage": "Gérer la facturation",
+      "featuresManage": "Gérer les fonctionnalités",
+      "usersRead": "Voir l'équipe",
+      "usersManage": "Gérer l'équipe",
+      "contactRead": "Voir les messages de contact",
+      "contactManage": "Gérer les messages de contact"
+    }
+  },
+  "dataTable": {
+    "clearSelection": "Effacer la sélection",
+    "rowCount": "Lignes : {{value}}",
+    "selected": "{{value}} sélectionné(s)",
+    "goToPage": "Aller à la page :",
+    "pageSize": "Taille de page",
+    "show": "Afficher {{value}}",
+    "firstPage": "Première page",
+    "previousPage": "Page précédente",
+    "nextPage": "Page suivante",
+    "lastPage": "Dernière page"
+  },
+  "datePicker": {
+    "pickDate": "Choisir une date",
+    "pickWeek": "Choisir une semaine",
+    "pickMonth": "Choisir un mois",
+    "pickDateRange": "Choisir une plage de dates"
+  },
+  "dateDisplay": {
+    "invalid": "Date invalide"
+  },
+  "password": {
+    "show": "Afficher le mot de passe",
+    "hide": "Masquer le mot de passe"
+  },
+  "form": {
+    "validationError": "Erreur de validation"
+  },
+  "theme": {
+    "switchToLight": "Passer au thème clair",
+    "switchToDark": "Passer au thème sombre",
+    "light": "Mode clair",
+    "dark": "Mode sombre"
+  },
+  "enums": {
+    "subscriptionStatus": {
+      "TRIALING": "Essai",
+      "ACTIVE": "Actif",
+      "PAST_DUE": "En retard",
+      "PAUSED": "En pause",
+      "CANCELLED": "Annulé"
+    },
+    "planTier": {
+      "STARTER": "Starter",
+      "GROWTH": "Growth",
+      "STANDARD": "Standard",
+      "ENTERPRISE": "Entreprise"
+    },
+    "billingCycle": {
+      "MONTHLY": "Mensuel",
+      "YEARLY": "Annuel"
+    },
+    "enrollmentStatus": {
+      "OK": "OK",
+      "WARNING": "Proche limite",
+      "EXCEEDED": "Dépassé"
+    },
+    "contactStatus": {
+      "NEW": "Nouveau",
+      "READ": "Lu",
+      "REPLIED": "Répondu",
+      "ARCHIVED": "Archivé"
+    }
+  },
+  "schools": {
+    "subtitle": "Parcourez et inspectez chaque école de la plateforme.",
+    "searchPlaceholder": "Rechercher nom, code, propriétaire…",
+    "noPlan": "Aucun forfait",
+    "noSubscription": "Aucun abonnement",
+    "columns": {
+      "school": "École",
+      "owner": "Propriétaire",
+      "location": "Localisation",
+      "plan": "Forfait",
+      "status": "Statut",
+      "enrollment": "Inscriptions",
+      "storage": "Stockage",
+      "created": "Créé"
+    },
+    "filters": {
+      "status": "Statut",
+      "tier": "Niveau",
+      "allStatuses": "Tous les statuts",
+      "allTiers": "Tous les niveaux"
+    }
+  },
+  "schoolDetail": {
+    "backToSchools": "Retour aux écoles",
+    "tabs": {
+      "overview": "Aperçu",
+      "subscription": "Abonnement",
+      "storage": "Stockage"
+    },
+    "profile": "Profil",
+    "email": "E-mail",
+    "phone": "Téléphone",
+    "country": "Pays",
+    "city": "Ville",
+    "address": "Adresse",
+    "website": "Site web",
+    "createdAt": "Créé",
+    "lastModified": "Modifié le",
+    "owner": "Propriétaire",
+    "ownerName": "Nom",
+    "enrollment": "Inscriptions",
+    "contact": "Contact",
+    "social": "Réseaux sociaux",
+    "metadata": "Métadonnées",
+    "coordinates": "Coordonnées",
+    "accountOwner": "Propriétaire du compte",
+    "createdBy": "Créé par",
+    "modifiedBy": "Modifié par",
+    "schoolId": "ID de l'école",
+    "period": "Période de facturation",
+    "paddle": "Paddle",
+    "customContractBilling": "Facturé hors Paddle dans le cadre d'un contrat personnalisé — aucune référence Paddle.",
+    "capacityOk": "Dans la capacité du forfait.",
+    "capacityWarning": "Proche de la limite du forfait.",
+    "capacityExceeded": "Capacité dépassée — mise à niveau requise.",
+    "locked": "Verrouillé",
+    "subscription": {
+      "plan": "Forfait",
+      "planName": "Nom du forfait",
+      "tier": "Niveau",
+      "statusLabel": "Statut",
+      "billingCycle": "Cycle de facturation",
+      "customContract": "Contrat personnalisé",
+      "limitExceeded": "Limite dépassée",
+      "billing": "Facturation",
+      "periodStart": "Début de période",
+      "periodEnd": "Fin de période",
+      "trialEnds": "Fin d'essai",
+      "cancelledAt": "Annulé le",
+      "graceDeadline": "Délai de grâce",
+      "price": "Prix",
+      "maxEnrollments": "Inscriptions max",
+      "renews": "Renouvellement",
+      "scheduledChange": "Changement planifié",
+      "paddleSubscriptionId": "ID abonnement",
+      "paddleCustomerId": "ID client",
+      "paddleProductId": "ID produit"
+    },
+    "storage": {
+      "total": "Stockage total",
+      "files": "{{value}} fichiers",
+      "breakdown": "Répartition",
+      "used": "Utilisé",
+      "computed": "Calculé",
+      "lastComputed": "Dernier calcul",
+      "unlimited": "Illimité",
+      "ofQuota": "sur {{value}} de quota",
+      "totalFiles": "{{value}} fichiers au total"
+    },
+    "alert": {
+      "enrollmentExceeded": "Limite d'inscriptions dépassée.",
+      "enrollmentExceededDesc": "{{count}} élèves pour un plafond de {{limit}}. Les nouvelles inscriptions sont bloquées jusqu'à la mise à niveau du forfait.",
+      "pastDue": "Paiement en retard.",
+      "pastDueDesc": "L'abonnement sera suspendu à la fin de la période de grâce."
+    }
+  },
+  "storage": {
+    "category": {
+      "DOCUMENTS": "Documents",
+      "IMAGES": "Images",
+      "ACADEMIC": "Scolaire",
+      "ADMINISTRATIVE": "Administratif",
+      "MEDIA": "Médias",
+      "OTHER": "Autre"
+    }
+  },
+  "plans": {
+    "subtitle": "Catalogue des forfaits d'abonnement.",
+    "perMonth": "/ mois",
+    "yearly": "Annuel",
+    "maxEnrollments": "Inscriptions max",
+    "schoolsOnPlan": "Écoles sur le forfait",
+    "flags": {
+      "inactive": "Inactif",
+      "legacy": "Hérité",
+      "hidden": "Masqué"
+    }
+  }
+}

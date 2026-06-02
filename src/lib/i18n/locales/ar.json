@@ -1,0 +1,316 @@
+{
+  "nav": {
+    "dashboard": "لوحة التحكم",
+    "schools": "المدارس",
+    "plans": "الباقات",
+    "subscriptions": "الاشتراكات",
+    "team": "الفريق",
+    "contact": "التواصل",
+    "openNavigation": "فتح التنقل",
+    "toggleSidebar": "تبديل الشريط الجانبي",
+    "accountMenu": "قائمة الحساب",
+    "language": "اللغة"
+  },
+  "auth": {
+    "signInTitle": "تسجيل الدخول",
+    "signInSubtitle": "وحدة تحكم المنصة",
+    "username": "اسم المستخدم",
+    "password": "كلمة المرور",
+    "signIn": "دخول"
+  },
+  "errors": {
+    "accessDenied": "تم رفض الوصول",
+    "accessDeniedDescription": "ليس لديك إذن لتنفيذ هذا الإجراء.",
+    "rateLimited": "طلبات كثيرة جداً",
+    "rateLimitedDescription": "يرجى التمهّل والمحاولة بعد لحظات."
+  },
+  "common": {
+    "platform": "المنصة",
+    "comingSoon": "قريباً.",
+    "logout": "تسجيل الخروج",
+    "search": "بحث",
+    "searchPlaceholder": "بحث...",
+    "noResults": "لا توجد نتائج",
+    "loading": "جارٍ التحميل",
+    "close": "إغلاق",
+    "copy": "نسخ",
+    "dismiss": "تجاهل",
+    "optional": "اختياري",
+    "guest": "زائر",
+    "error": "خطأ",
+    "warning": "تحذير",
+    "success": "نجاح",
+    "info": "معلومة",
+    "yes": "نعم",
+    "no": "لا",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "unexpectedError": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
+  },
+  "team": {
+    "title": "الفريق",
+    "subtitle": "موظفو المنصة وصلاحياتهم.",
+    "addStaff": "إضافة عضو",
+    "addStaffDesc": "أنشئ حساب منصة. تُرسل بيانات الدخول إليه عبر البريد الإلكتروني.",
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "email": "البريد الإلكتروني",
+    "emailHint": "تُرسل بيانات الدخول إلى هذا البريد؛ ويُعيّن كلمة مرور جديدة عند أول تسجيل دخول.",
+    "create": "إنشاء وإرسال الدعوة",
+    "editPermissions": "تعديل الصلاحيات",
+    "member": "العضو",
+    "access": "الوصول",
+    "createdAt": "أُضيف",
+    "actions": "إجراءات",
+    "you": "أنت",
+    "empty": "لا يوجد موظفون بعد.",
+    "permissionCount": "{{count}} صلاحيات",
+    "created": "تم إنشاء الحساب",
+    "createdDesc": "تم إرسال بيانات الدخول عبر البريد الإلكتروني.",
+    "permissionsUpdated": "تم تحديث الصلاحيات",
+    "disable": "تعطيل",
+    "enable": "تفعيل",
+    "delete": "حذف",
+    "disabled": "معطّل",
+    "deleteTitle": "حذف هذا العضو؟",
+    "deleteDesc": "سيؤدي هذا إلى حذف حساب المنصة وصلاحياته نهائيًا. لا يمكن التراجع عن هذا الإجراء.",
+    "userEnabled": "تم تفعيل الحساب",
+    "userDisabled": "تم تعطيل الحساب",
+    "userDeleted": "تم حذف العضو"
+  },
+  "contact": {
+    "title": "تواصل معنا",
+    "subtitle": "رسائل من نموذج التواصل العام.",
+    "searchPlaceholder": "ابحث بالاسم أو البريد أو الرسالة…",
+    "allStatuses": "كل الحالات",
+    "sender": "المُرسِل",
+    "school": "المدرسة",
+    "message": "الرسالة",
+    "statusLabel": "الحالة",
+    "received": "استُلمت",
+    "empty": "لا توجد رسائل.",
+    "pageInfo": "صفحة {{page}} من {{pages}}",
+    "reply": "رد",
+    "replySubject": "رد: رسالتك إلى BetterSchool",
+    "archive": "أرشفة",
+    "delete": "حذف",
+    "deleteTitle": "حذف هذه الرسالة؟",
+    "deleteDesc": "سيؤدي هذا إلى حذف رسالة التواصل نهائيًا. لا يمكن التراجع عن هذا الإجراء.",
+    "deleted": "تم حذف الرسالة"
+  },
+  "permissions": {
+    "presetLabel": "إعداد مسبق",
+    "custom": "مخصص",
+    "lockedHint": "ممنوحة دائمًا حتى يتمكن المستخدم من الوصول إلى لوحة التحكم.",
+    "presets": {
+      "SUPER_ADMIN": "مدير عام",
+      "SUPPORT": "الدعم",
+      "OPS": "العمليات",
+      "BILLING": "الفوترة"
+    },
+    "groups": {
+      "schools": "المدارس",
+      "billing": "الفوترة والخطط",
+      "contact": "التواصل",
+      "support": "الدعم",
+      "team": "الفريق",
+      "platform": "المنصة"
+    },
+    "labels": {
+      "schoolsRead": "عرض المدارس",
+      "schoolsManage": "إدارة المدارس",
+      "statsRead": "عرض لوحة التحكم",
+      "supportRead": "عرض الدعم",
+      "supportManage": "إدارة الدعم",
+      "billingRead": "عرض الفوترة",
+      "billingManage": "إدارة الفوترة",
+      "featuresManage": "إدارة الميزات",
+      "usersRead": "عرض الفريق",
+      "usersManage": "إدارة الفريق",
+      "contactRead": "عرض رسائل التواصل",
+      "contactManage": "إدارة رسائل التواصل"
+    }
+  },
+  "dataTable": {
+    "clearSelection": "مسح التحديد",
+    "rowCount": "الصفوف: {{value}}",
+    "selected": "{{value}} محدد",
+    "goToPage": "اذهب إلى الصفحة:",
+    "pageSize": "حجم الصفحة",
+    "show": "عرض {{value}}",
+    "firstPage": "الصفحة الأولى",
+    "previousPage": "الصفحة السابقة",
+    "nextPage": "الصفحة التالية",
+    "lastPage": "الصفحة الأخيرة"
+  },
+  "datePicker": {
+    "pickDate": "اختر تاريخاً",
+    "pickWeek": "اختر أسبوعاً",
+    "pickMonth": "اختر شهراً",
+    "pickDateRange": "اختر نطاقاً زمنياً"
+  },
+  "dateDisplay": {
+    "invalid": "تاريخ غير صالح"
+  },
+  "password": {
+    "show": "إظهار كلمة المرور",
+    "hide": "إخفاء كلمة المرور"
+  },
+  "form": {
+    "validationError": "خطأ في التحقق"
+  },
+  "theme": {
+    "switchToLight": "التبديل إلى الوضع الفاتح",
+    "switchToDark": "التبديل إلى الوضع الداكن",
+    "light": "الوضع الفاتح",
+    "dark": "الوضع الداكن"
+  },
+  "enums": {
+    "subscriptionStatus": {
+      "TRIALING": "تجريبي",
+      "ACTIVE": "نشط",
+      "PAST_DUE": "متأخر السداد",
+      "PAUSED": "موقوف",
+      "CANCELLED": "ملغى"
+    },
+    "planTier": {
+      "STARTER": "مبتدئ",
+      "GROWTH": "نمو",
+      "STANDARD": "قياسي",
+      "ENTERPRISE": "مؤسسات"
+    },
+    "billingCycle": {
+      "MONTHLY": "شهري",
+      "YEARLY": "سنوي"
+    },
+    "enrollmentStatus": {
+      "OK": "جيد",
+      "WARNING": "قرب الحد",
+      "EXCEEDED": "تجاوز"
+    },
+    "contactStatus": {
+      "NEW": "جديدة",
+      "READ": "مقروءة",
+      "REPLIED": "تم الرد",
+      "ARCHIVED": "مؤرشفة"
+    }
+  },
+  "schools": {
+    "subtitle": "تصفّح وافحص كل مدرسة على المنصة.",
+    "searchPlaceholder": "ابحث بالاسم أو الرمز أو المالك…",
+    "noPlan": "لا توجد باقة",
+    "noSubscription": "لا يوجد اشتراك",
+    "columns": {
+      "school": "المدرسة",
+      "owner": "المالك",
+      "location": "الموقع",
+      "plan": "الباقة",
+      "status": "الحالة",
+      "enrollment": "التسجيلات",
+      "storage": "التخزين",
+      "created": "تاريخ الإنشاء"
+    },
+    "filters": {
+      "status": "الحالة",
+      "tier": "المستوى",
+      "allStatuses": "كل الحالات",
+      "allTiers": "كل المستويات"
+    }
+  },
+  "schoolDetail": {
+    "backToSchools": "العودة إلى المدارس",
+    "tabs": {
+      "overview": "نظرة عامة",
+      "subscription": "الاشتراك",
+      "storage": "التخزين"
+    },
+    "profile": "الملف",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "country": "الدولة",
+    "city": "المدينة",
+    "address": "العنوان",
+    "website": "الموقع الإلكتروني",
+    "createdAt": "تاريخ الإنشاء",
+    "lastModified": "آخر تعديل",
+    "owner": "المالك",
+    "ownerName": "الاسم",
+    "enrollment": "التسجيلات",
+    "contact": "جهة الاتصال",
+    "social": "وسائل التواصل",
+    "metadata": "البيانات الوصفية",
+    "coordinates": "الإحداثيات",
+    "accountOwner": "مالك الحساب",
+    "createdBy": "أنشئ بواسطة",
+    "modifiedBy": "عُدّل بواسطة",
+    "schoolId": "معرّف المدرسة",
+    "period": "فترة الفوترة",
+    "paddle": "Paddle",
+    "customContractBilling": "تتم الفوترة خارج Paddle بموجب عقد مخصص — لا توجد مراجع Paddle.",
+    "capacityOk": "ضمن سعة الباقة.",
+    "capacityWarning": "يقترب من حد الباقة.",
+    "capacityExceeded": "تجاوز السعة — يلزم الترقية.",
+    "locked": "مقفل",
+    "subscription": {
+      "plan": "الباقة",
+      "planName": "اسم الباقة",
+      "tier": "المستوى",
+      "statusLabel": "الحالة",
+      "billingCycle": "دورة الفوترة",
+      "customContract": "عقد مخصص",
+      "limitExceeded": "تجاوز الحد",
+      "billing": "الفوترة",
+      "periodStart": "بداية الفترة",
+      "periodEnd": "نهاية الفترة",
+      "trialEnds": "نهاية التجربة",
+      "cancelledAt": "تاريخ الإلغاء",
+      "graceDeadline": "مهلة السماح",
+      "price": "السعر",
+      "maxEnrollments": "الحد الأقصى للتسجيلات",
+      "renews": "يتجدد",
+      "scheduledChange": "تغيير مجدول",
+      "paddleSubscriptionId": "معرّف الاشتراك",
+      "paddleCustomerId": "معرّف العميل",
+      "paddleProductId": "معرّف المنتج"
+    },
+    "storage": {
+      "total": "إجمالي التخزين",
+      "files": "{{value}} ملفات",
+      "breakdown": "التوزيع",
+      "used": "المستخدم",
+      "computed": "محسوب",
+      "lastComputed": "آخر حساب",
+      "unlimited": "غير محدود",
+      "ofQuota": "من {{value}} حصة",
+      "totalFiles": "{{value}} ملف إجمالاً"
+    },
+    "alert": {
+      "enrollmentExceeded": "تم تجاوز حد التسجيلات.",
+      "enrollmentExceededDesc": "{{count}} طالب على حد {{limit}}. التسجيلات الجديدة محظورة حتى ترقية الباقة.",
+      "pastDue": "الدفع متأخر.",
+      "pastDueDesc": "سيتم تعليق الاشتراك بعد انتهاء فترة السماح."
+    }
+  },
+  "storage": {
+    "category": {
+      "DOCUMENTS": "مستندات",
+      "IMAGES": "صور",
+      "ACADEMIC": "أكاديمي",
+      "ADMINISTRATIVE": "إداري",
+      "MEDIA": "وسائط",
+      "OTHER": "أخرى"
+    }
+  },
+  "plans": {
+    "subtitle": "كتالوج باقات الاشتراك.",
+    "perMonth": "/ شهرياً",
+    "yearly": "سنوي",
+    "maxEnrollments": "أقصى تسجيلات",
+    "schoolsOnPlan": "المدارس في الباقة",
+    "flags": {
+      "inactive": "غير نشط",
+      "legacy": "قديم",
+      "hidden": "مخفي"
+    }
+  }
+}

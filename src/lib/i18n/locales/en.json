@@ -1,0 +1,316 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "schools": "Schools",
+    "plans": "Plans",
+    "subscriptions": "Subscriptions",
+    "team": "Team",
+    "contact": "Contact",
+    "openNavigation": "Open navigation",
+    "toggleSidebar": "Toggle sidebar",
+    "accountMenu": "Account menu",
+    "language": "Language"
+  },
+  "auth": {
+    "signInTitle": "Sign in",
+    "signInSubtitle": "Platform console",
+    "username": "Username",
+    "password": "Password",
+    "signIn": "Sign in"
+  },
+  "errors": {
+    "accessDenied": "Access denied",
+    "accessDeniedDescription": "You don't have permission to perform this action.",
+    "rateLimited": "Too many requests",
+    "rateLimitedDescription": "Please slow down and try again in a moment."
+  },
+  "common": {
+    "platform": "Platform",
+    "comingSoon": "Coming soon.",
+    "logout": "Log out",
+    "search": "Search",
+    "searchPlaceholder": "Search...",
+    "noResults": "No results",
+    "loading": "Loading",
+    "close": "Close",
+    "copy": "Copy",
+    "dismiss": "Dismiss",
+    "optional": "Optional",
+    "guest": "Guest",
+    "error": "Error",
+    "warning": "Warning",
+    "success": "Success",
+    "info": "Information",
+    "yes": "Yes",
+    "no": "No",
+    "cancel": "Cancel",
+    "save": "Save",
+    "unexpectedError": "Something went wrong. Please try again."
+  },
+  "team": {
+    "title": "Team",
+    "subtitle": "Platform staff and their access.",
+    "addStaff": "Add staff",
+    "addStaffDesc": "Create a platform account. Credentials are emailed to them.",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "emailHint": "Login credentials are emailed here; they set a new password on first sign-in.",
+    "create": "Create & send invite",
+    "editPermissions": "Edit permissions",
+    "member": "Member",
+    "access": "Access",
+    "createdAt": "Added",
+    "actions": "Actions",
+    "you": "You",
+    "empty": "No platform staff yet.",
+    "permissionCount": "{{count}} permissions",
+    "created": "Staff account created",
+    "createdDesc": "Credentials were emailed to them.",
+    "permissionsUpdated": "Permissions updated",
+    "disable": "Disable",
+    "enable": "Enable",
+    "delete": "Delete",
+    "disabled": "Disabled",
+    "deleteTitle": "Delete staff member?",
+    "deleteDesc": "This permanently removes their platform account and access. This can't be undone.",
+    "userEnabled": "Account enabled",
+    "userDisabled": "Account disabled",
+    "userDeleted": "Staff member deleted"
+  },
+  "contact": {
+    "title": "Contact us",
+    "subtitle": "Messages from the public contact form.",
+    "searchPlaceholder": "Search name, email, message…",
+    "allStatuses": "All statuses",
+    "sender": "Sender",
+    "school": "School",
+    "message": "Message",
+    "statusLabel": "Status",
+    "received": "Received",
+    "empty": "No messages.",
+    "pageInfo": "Page {{page}} of {{pages}}",
+    "reply": "Reply",
+    "replySubject": "Re: your message to BetterSchool",
+    "archive": "Archive",
+    "delete": "Delete",
+    "deleteTitle": "Delete this message?",
+    "deleteDesc": "This permanently removes the contact message. This can't be undone.",
+    "deleted": "Message deleted"
+  },
+  "permissions": {
+    "presetLabel": "Preset",
+    "custom": "Custom",
+    "lockedHint": "Always granted so the user can access the console.",
+    "presets": {
+      "SUPER_ADMIN": "Super admin",
+      "SUPPORT": "Support",
+      "OPS": "Ops",
+      "BILLING": "Billing"
+    },
+    "groups": {
+      "schools": "Schools",
+      "billing": "Billing & plans",
+      "contact": "Contact us",
+      "support": "Support",
+      "team": "Team",
+      "platform": "Platform"
+    },
+    "labels": {
+      "schoolsRead": "View schools",
+      "schoolsManage": "Manage schools",
+      "statsRead": "View dashboard",
+      "supportRead": "View support",
+      "supportManage": "Manage support",
+      "billingRead": "View billing",
+      "billingManage": "Manage billing",
+      "featuresManage": "Manage features",
+      "usersRead": "View team",
+      "usersManage": "Manage team",
+      "contactRead": "View contact messages",
+      "contactManage": "Manage contact messages"
+    }
+  },
+  "dataTable": {
+    "clearSelection": "Clear selection",
+    "rowCount": "Rows: {{value}}",
+    "selected": "{{value}} selected",
+    "goToPage": "Go to page:",
+    "pageSize": "Page size",
+    "show": "Show {{value}}",
+    "firstPage": "First page",
+    "previousPage": "Previous page",
+    "nextPage": "Next page",
+    "lastPage": "Last page"
+  },
+  "datePicker": {
+    "pickDate": "Pick a date",
+    "pickWeek": "Pick a week",
+    "pickMonth": "Pick a month",
+    "pickDateRange": "Pick a date range"
+  },
+  "dateDisplay": {
+    "invalid": "Invalid date"
+  },
+  "password": {
+    "show": "Show password",
+    "hide": "Hide password"
+  },
+  "form": {
+    "validationError": "Validation error"
+  },
+  "theme": {
+    "switchToLight": "Switch to light theme",
+    "switchToDark": "Switch to dark theme",
+    "light": "Light mode",
+    "dark": "Dark mode"
+  },
+  "enums": {
+    "subscriptionStatus": {
+      "TRIALING": "Trialing",
+      "ACTIVE": "Active",
+      "PAST_DUE": "Past due",
+      "PAUSED": "Paused",
+      "CANCELLED": "Cancelled"
+    },
+    "planTier": {
+      "STARTER": "Starter",
+      "GROWTH": "Growth",
+      "STANDARD": "Standard",
+      "ENTERPRISE": "Enterprise"
+    },
+    "billingCycle": {
+      "MONTHLY": "Monthly",
+      "YEARLY": "Yearly"
+    },
+    "enrollmentStatus": {
+      "OK": "OK",
+      "WARNING": "Near limit",
+      "EXCEEDED": "Exceeded"
+    },
+    "contactStatus": {
+      "NEW": "New",
+      "READ": "Read",
+      "REPLIED": "Replied",
+      "ARCHIVED": "Archived"
+    }
+  },
+  "schools": {
+    "subtitle": "Browse and inspect every school on the platform.",
+    "searchPlaceholder": "Search name, code, owner…",
+    "noPlan": "No plan",
+    "noSubscription": "No subscription",
+    "columns": {
+      "school": "School",
+      "owner": "Owner",
+      "location": "Location",
+      "plan": "Plan",
+      "status": "Status",
+      "enrollment": "Enrollment",
+      "storage": "Storage",
+      "created": "Created"
+    },
+    "filters": {
+      "status": "Status",
+      "tier": "Tier",
+      "allStatuses": "All statuses",
+      "allTiers": "All tiers"
+    }
+  },
+  "schoolDetail": {
+    "backToSchools": "Back to schools",
+    "tabs": {
+      "overview": "Overview",
+      "subscription": "Subscription",
+      "storage": "Storage"
+    },
+    "profile": "Profile",
+    "email": "Email",
+    "phone": "Phone",
+    "country": "Country",
+    "city": "City",
+    "address": "Address",
+    "website": "Website",
+    "createdAt": "Created",
+    "lastModified": "Last modified",
+    "owner": "Owner",
+    "ownerName": "Name",
+    "enrollment": "Enrollment",
+    "contact": "Contact",
+    "social": "Social",
+    "metadata": "Metadata",
+    "coordinates": "Coordinates",
+    "accountOwner": "Account owner",
+    "createdBy": "Created by",
+    "modifiedBy": "Modified by",
+    "schoolId": "School ID",
+    "period": "Billing period",
+    "paddle": "Paddle",
+    "customContractBilling": "Billed off-Paddle under a custom contract — no Paddle references.",
+    "capacityOk": "Within plan capacity.",
+    "capacityWarning": "Approaching the plan limit.",
+    "capacityExceeded": "Over capacity — upgrade required.",
+    "locked": "Locked",
+    "subscription": {
+      "plan": "Plan",
+      "planName": "Plan name",
+      "tier": "Tier",
+      "statusLabel": "Status",
+      "billingCycle": "Billing cycle",
+      "customContract": "Custom contract",
+      "limitExceeded": "Limit exceeded",
+      "billing": "Billing",
+      "periodStart": "Period start",
+      "periodEnd": "Period end",
+      "trialEnds": "Trial ends",
+      "cancelledAt": "Cancelled at",
+      "graceDeadline": "Grace deadline",
+      "price": "Price",
+      "maxEnrollments": "Max enrollments",
+      "renews": "Renews",
+      "scheduledChange": "Scheduled change",
+      "paddleSubscriptionId": "Subscription ID",
+      "paddleCustomerId": "Customer ID",
+      "paddleProductId": "Product ID"
+    },
+    "storage": {
+      "total": "Total storage",
+      "files": "{{value}} files",
+      "breakdown": "Breakdown",
+      "used": "Used",
+      "computed": "Computed",
+      "lastComputed": "Last computed",
+      "unlimited": "Unlimited",
+      "ofQuota": "of {{value}} quota",
+      "totalFiles": "{{value}} files total"
+    },
+    "alert": {
+      "enrollmentExceeded": "Enrollment limit exceeded.",
+      "enrollmentExceededDesc": "{{count}} students on a {{limit}} cap. New enrollments are blocked until the plan is upgraded.",
+      "pastDue": "Payment past due.",
+      "pastDueDesc": "The subscription will be suspended after the grace period ends."
+    }
+  },
+  "storage": {
+    "category": {
+      "DOCUMENTS": "Documents",
+      "IMAGES": "Images",
+      "ACADEMIC": "Academic",
+      "ADMINISTRATIVE": "Administrative",
+      "MEDIA": "Media",
+      "OTHER": "Other"
+    }
+  },
+  "plans": {
+    "subtitle": "Subscription plan catalog.",
+    "perMonth": "/ month",
+    "yearly": "Yearly",
+    "maxEnrollments": "Max enrollments",
+    "schoolsOnPlan": "Schools on plan",
+    "flags": {
+      "inactive": "Inactive",
+      "legacy": "Legacy",
+      "hidden": "Hidden"
+    }
+  }
+}
