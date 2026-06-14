@@ -1,4 +1,7 @@
-import type { ContactMessageStatus } from "@/constants/contact.constants";
+import type {
+  ContactMessageSource,
+  ContactMessageStatus,
+} from "@/constants/contact.constants";
 import { http } from "@/lib/http";
 import type { PaginatedResponse } from "@/types/common.types";
 import type { ContactMessageDTO } from "@/types/contact.types";
@@ -8,6 +11,7 @@ export interface ContactMessagesQuery {
   size: number;
   search?: string | null;
   status?: ContactMessageStatus | null;
+  source?: ContactMessageSource | null;
 }
 
 const BASE = "/platform/contact-messages";
@@ -21,6 +25,7 @@ export const contactService = {
         size: query.size,
         search: query.search || undefined,
         status: query.status || undefined,
+        source: query.source || undefined,
       },
     }),
 

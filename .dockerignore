@@ -1,0 +1,29 @@
+# Git & IDE & AI tools
+.git/
+.gitignore
+.idea/
+.vscode/
+.cursor/
+.gemini/
+*.md
+
+# Dependencies (reinstalled via npm ci inside container)
+node_modules/
+
+# Build output (rebuilt inside container)
+dist/
+
+# Env
+.env
+.env.*
+
+# Docker
+Dockerfile
+Dockerfile.*
+docker-compose*.yml
+.dockerignore
+
+# CI & Vercel
+.github/
+.vercel/
+vercel.json

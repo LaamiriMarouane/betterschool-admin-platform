@@ -5,7 +5,11 @@ import type {
   PlatformSchoolRowDTO,
 } from "@/types/school.types";
 import type { PlatformStorageUsageDTO } from "@/types/storage.types";
-import type { PlanTier, SchoolSubscriptionStatus } from "@/types/subscription.types";
+import type {
+  PlanTier,
+  PlatformSubscriptionDTO,
+  SchoolSubscriptionStatus,
+} from "@/types/subscription.types";
 
 /** Query for the schools grid. Nullish fields are dropped from the query string. */
 export interface PlatformSchoolsQuery {
@@ -17,6 +21,19 @@ export interface PlatformSchoolsQuery {
   tier?: PlanTier | null;
   country?: string | null;
   customContract?: boolean | null;
+}
+
+/** Grant or edit a negotiated custom contract on a school's subscription. */
+export interface CustomContractRequest {
+  customContract: boolean;
+  customMaxEnrollments: number | null; // null = use plan, <= 0 = unlimited
+  customPriceMAD: number | null;
+  customPaddlePriceId: string | null;
+}
+
+/** Extend a school's trial by N days (clears the scheduled-purge / warning markers). */
+export interface TrialExtendRequest {
+  days: number;
 }
 
 const BASE = "/platform/schools";
@@ -45,4 +62,16 @@ export const schoolsService = {
 
   getSchoolStorage: (schoolId: string): Promise<PlatformStorageUsageDTO> =>
     http.get<PlatformStorageUsageDTO>(`${BASE}/${schoolId}/storage`),
+
+  setCustomContract: (
+    schoolId: string,
+    request: CustomContractRequest,
+  ): Promise<PlatformSubscriptionDTO> =>
+    http.patch<PlatformSubscriptionDTO>(`${BASE}/${schoolId}/subscription`, request),
+
+  extendTrial: (
+    schoolId: string,
+    request: TrialExtendRequest,
+  ): Promise<PlatformSubscriptionDTO> =>
+    http.post<PlatformSubscriptionDTO>(`${BASE}/${schoolId}/subscription/trial/extend`, request),
 };

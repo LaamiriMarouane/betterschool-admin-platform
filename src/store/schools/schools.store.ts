@@ -3,9 +3,12 @@ import { devtools } from "zustand/middleware";
 
 import {
   schoolsService,
+  type CustomContractRequest,
   type PlatformSchoolsQuery,
+  type TrialExtendRequest,
 } from "@/services/schools/schools.service";
 import { getErrorMessage, type StoreError } from "@/lib/api-error";
+import { notifyApiError } from "@/lib/notify";
 import type {
   PlatformSchoolDetailDTO,
   PlatformSchoolRowDTO,
@@ -25,6 +28,7 @@ interface SchoolsFilters {
 interface LoadingStates {
   list: boolean;
   detail: boolean;
+  save: boolean;
 }
 
 interface ErrorStates {
@@ -53,6 +57,8 @@ interface SchoolsActions {
   /** Apply page + size together (the DataTable / URL hook sends a full PaginationState). */
   setPagination: (page: number, size: number) => void;
   fetchSchool: (schoolId: string) => Promise<void>;
+  setCustomContract: (schoolId: string, request: CustomContractRequest) => Promise<boolean>;
+  extendTrial: (schoolId: string, request: TrialExtendRequest) => Promise<boolean>;
   clearDetail: () => void;
   clearErrors: () => void;
   resetStore: () => void;
@@ -69,9 +75,27 @@ const initialState: SchoolsState = {
   sort: "createdAt,desc",
   filters: { search: "", status: null, tier: null },
   detail: null,
-  loading: { list: false, detail: false },
+  loading: { list: false, detail: false, save: false },
   errors: { list: null, detail: null },
 };
+
+/**
+ * Re-derive the detail-level enrollment fields after a subscription change so the tab's
+ * usage bar reflects the new cap without a refetch. `effectiveMaxEnrollments` null = unlimited.
+ */
+function applySubscriptionToDetail(
+  detail: PlatformSchoolDetailDTO,
+  subscription: PlatformSchoolDetailDTO["subscription"],
+): PlatformSchoolDetailDTO {
+  const limit = subscription?.effectiveMaxEnrollments ?? null;
+  const count = detail.enrollmentCount;
+  let status: PlatformSchoolDetailDTO["enrollmentStatus"] = "OK";
+  if (limit != null && limit > 0) {
+    if (count >= limit) status = "EXCEEDED";
+    else if (count / limit >= 0.9) status = "WARNING";
+  }
+  return { ...detail, subscription, enrollmentLimit: limit, enrollmentStatus: status };
+}
 
 /**
  * Store-first: pages read state via the selector hooks below and dispatch the
@@ -150,6 +174,42 @@ export const useSchoolsStore = create<SchoolsStore>()(
               loading: { ...state.loading, detail: false },
               errors: { ...state.errors, detail: getErrorMessage(error) },
             }));
+          }
+        },
+
+        setCustomContract: async (schoolId, request) => {
+          set((state) => ({ loading: { ...state.loading, save: true } }));
+          try {
+            const subscription = await schoolsService.setCustomContract(schoolId, request);
+            set((state) => ({
+              detail: state.detail
+                ? applySubscriptionToDetail(state.detail, subscription)
+                : state.detail,
+              loading: { ...state.loading, save: false },
+            }));
+            return true;
+          } catch (error) {
+            set((state) => ({ loading: { ...state.loading, save: false } }));
+            notifyApiError(error);
+            return false;
+          }
+        },
+
+        extendTrial: async (schoolId, request) => {
+          set((state) => ({ loading: { ...state.loading, save: true } }));
+          try {
+            const subscription = await schoolsService.extendTrial(schoolId, request);
+            set((state) => ({
+              detail: state.detail
+                ? applySubscriptionToDetail(state.detail, subscription)
+                : state.detail,
+              loading: { ...state.loading, save: false },
+            }));
+            return true;
+          } catch (error) {
+            set((state) => ({ loading: { ...state.loading, save: false } }));
+            notifyApiError(error);
+            return false;
           }
         },
 

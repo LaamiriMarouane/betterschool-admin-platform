@@ -1,8 +1,10 @@
+import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 import { Archive, Reply, Trash2 } from "lucide-react";
 
 import { DateDisplay } from "@/components/date-display";
 import { ResponsiveDialog } from "@/components/responsive-dialog";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useContactActions, useContactLoading } from "@/store/contact/contact.store";
 import type { ContactMessageDTO } from "@/types/contact.types";
@@ -69,6 +71,9 @@ export function ContactDetailDialog({
       <div className="space-y-4 px-4 pb-2 sm:w-[34rem] sm:px-0">
         <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
           <ContactStatusBadge status={message.status} />
+          <Badge variant={message.source === "MARKETING" ? "neutral" : "info"}>
+            {t(`enums.contactSource.${message.source}`)}
+          </Badge>
           <span>·</span>
           <DateDisplay date={message.createdAt} showIcon={false} showTime />
         </div>
@@ -76,7 +81,16 @@ export function ContactDetailDialog({
         {message.school && (
           <div className="text-sm">
             <span className="text-muted-foreground">{t("contact.school")}: </span>
-            <span className="font-medium">{message.school}</span>
+            {message.schoolId ? (
+              <Link
+                to={`/schools/${message.schoolId}`}
+                className="font-medium text-violet-600 hover:underline dark:text-violet-400"
+              >
+                {message.school}
+              </Link>
+            ) : (
+              <span className="font-medium">{message.school}</span>
+            )}
           </div>
         )}
 

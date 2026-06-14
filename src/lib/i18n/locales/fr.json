@@ -128,10 +128,13 @@
     "subtitle": "Messages du formulaire de contact public.",
     "searchPlaceholder": "Rechercher nom, e-mail, message…",
     "allStatuses": "Tous les statuts",
+    "allSources": "Toutes les sources",
     "sender": "Expéditeur",
     "school": "École",
+    "viewSchool": "Voir l'école",
     "message": "Message",
     "statusLabel": "Statut",
+    "sourceLabel": "Source",
     "received": "Reçu",
     "empty": "Aucun message.",
     "pageInfo": "Page {{page}} sur {{pages}}",
@@ -142,6 +145,34 @@
     "deleteTitle": "Supprimer ce message ?",
     "deleteDesc": "Ceci supprime définitivement le message de contact. Cette action est irréversible.",
     "deleted": "Message supprimé"
+  },
+  "customContract": {
+    "action": "Modifier le contrat personnalisé",
+    "title": "Contrat personnalisé",
+    "description": "Remplacez le plafond d'inscriptions et le prix de cette école pour un accord négocié. La facturation reste dans Paddle via l'ID de prix personnalisé.",
+    "enabled": "Contrat personnalisé",
+    "enabledOption": "Activé",
+    "disabled": "Désactivé",
+    "enabledHint": "Une fois activé, les valeurs ci-dessous priment sur le palier du plan.",
+    "cap": "Plafond d'inscriptions",
+    "capPlan": "Utiliser la valeur du plan",
+    "capCustom": "Nombre précis",
+    "capUnlimited": "Illimité",
+    "capPlaceholder": "ex. 650",
+    "priceMad": "Prix personnalisé (MAD)",
+    "pricePlaceholder": "ex. 2400",
+    "priceHint": "Enregistré à titre indicatif. Paddle fait foi pour le montant facturé.",
+    "paddlePriceId": "ID de prix Paddle",
+    "paddleHint": "Prix Paddle ponctuel créé pour cet accord. L'école règle à ce prix."
+  },
+  "extendTrial": {
+    "action": "Prolonger l'essai",
+    "title": "Prolonger l'essai",
+    "description": "Reportez la fin de l'essai pour que cette école ne soit pas purgée pendant une discussion commerciale.",
+    "currentEnd": "Fin d'essai actuelle",
+    "days": "Prolonger de (jours)",
+    "daysHint": "Entre 1 et 365 jours. Annule la purge et l'avertissement programmés.",
+    "confirm": "Prolonger l'essai"
   },
   "permissions": {
     "presetLabel": "Préréglage",
@@ -238,8 +269,14 @@
     "dark": "Mode sombre"
   },
   "enums": {
+    "contactSource": {
+      "MARKETING": "Formulaire marketing",
+      "ENROLLMENT_LIMIT": "Limite d'inscriptions",
+      "CONTACT_SALES": "Contact commercial"
+    },
     "subscriptionStatus": {
       "TRIALING": "Essai",
+      "EXPIRED": "Expiré",
       "ACTIVE": "Actif",
       "PAST_DUE": "En retard",
       "PAUSED": "En pause",
@@ -339,6 +376,7 @@
       "graceDeadline": "Délai de grâce",
       "price": "Prix",
       "maxEnrollments": "Inscriptions max",
+      "planCap": "Plafond du plan",
       "renews": "Renouvellement",
       "scheduledChange": "Changement planifié",
       "paddleSubscriptionId": "ID abonnement",

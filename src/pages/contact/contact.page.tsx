@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 import { Inbox } from "lucide-react";
 import type { ColumnDef, PaginationState, Updater } from "@tanstack/react-table";
@@ -10,6 +11,7 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
 } from "@/components/ui/alert-dialog";
+import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { ConfirmAlertDialog } from "@/components/ui/confirm-alert-dialog";
 import {
@@ -19,7 +21,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { CONTACT_MESSAGE_STATUSES, type ContactMessageStatus } from "@/constants/contact.constants";
+import {
+  CONTACT_MESSAGE_SOURCES,
+  CONTACT_MESSAGE_STATUSES,
+  type ContactMessageSource,
+  type ContactMessageStatus,
+} from "@/constants/contact.constants";
 import { cn } from "@/lib/utils";
 import {
   useContactActions,
@@ -37,6 +44,16 @@ import { ContactStatusBadge } from "./components/contact-status-badge";
 
 const ALL = "ALL";
 
+/** In-product leads (ENROLLMENT_LIMIT/CONTACT_SALES) get an accent; the marketing form is neutral. */
+function ContactSourceBadge({ source }: { source: ContactMessageSource }) {
+  const { t } = useTranslation();
+  return (
+    <Badge variant={source === "MARKETING" ? "neutral" : "info"}>
+      {t(`enums.contactSource.${source}`)}
+    </Badge>
+  );
+}
+
 export function ContactPage() {
   const { t } = useTranslation();
   const rows = useContactRows();
@@ -50,6 +67,7 @@ export function ContactPage() {
     fetchUnreadCount,
     setSearch,
     setStatusFilter,
+    setSourceFilter,
     setPagination,
     updateStatus,
     deleteMessage,
@@ -86,12 +104,33 @@ export function ContactPage() {
         header: t("contact.school"),
         size: 160,
         meta: { hideOnMobile: true },
-        cell: ({ row }) => <TextDisplay value={row.original.school || null} truncate />,
+        cell: ({ row }) => {
+          const { school, schoolId } = row.original;
+          if (schoolId) {
+            return (
+              <Link
+                to={`/schools/${schoolId}`}
+                className="truncate text-sm font-medium text-violet-600 hover:underline dark:text-violet-400"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {school || t("contact.viewSchool")}
+              </Link>
+            );
+          }
+          return <TextDisplay value={school || null} truncate />;
+        },
+      },
+      {
+        id: "source",
+        header: t("contact.sourceLabel"),
+        size: 140,
+        meta: { hideOnMobile: true },
+        cell: ({ row }) => <ContactSourceBadge source={row.original.source} />,
       },
       {
         id: "message",
         header: t("contact.message"),
-        size: 320,
+        size: 280,
         meta: { hideOnMobile: true },
         cell: ({ row }) => (
           <span className="block truncate text-sm text-muted-foreground">
@@ -145,6 +184,27 @@ export function ContactPage() {
     </Select>
   );
 
+  const sourceFilter = (
+    <Select
+      value={filters.source ?? ALL}
+      onValueChange={(value) =>
+        setSourceFilter(value === ALL ? null : (value as ContactMessageSource))
+      }
+    >
+      <SelectTrigger className="h-9 w-[170px]">
+        <SelectValue placeholder={t("contact.sourceLabel")} />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value={ALL}>{t("contact.allSources")}</SelectItem>
+        {CONTACT_MESSAGE_SOURCES.map((source) => (
+          <SelectItem key={source} value={source}>
+            {t(`enums.contactSource.${source}`)}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  );
+
   const openMessage = (message: ContactMessageDTO) => {
     setSelectedId(message.id);
     if (message.status === "NEW") void updateStatus(message.id, "READ");
@@ -179,7 +239,7 @@ export function ContactPage() {
         searchText={t("contact.searchPlaceholder")}
         getRowId={(row) => row.id}
         onRowClick={openMessage}
-        actions={[statusFilter]}
+        actions={[sourceFilter, statusFilter]}
         emptyState={{ icon: <Inbox />, message: t("contact.empty") }}
       />
 

@@ -8,6 +8,7 @@
 export const PLAN_TIERS = ["STARTER", "GROWTH", "STANDARD", "ENTERPRISE"] as const;
 export const SUBSCRIPTION_STATUSES = [
   "TRIALING",
+  "EXPIRED",
   "ACTIVE",
   "PAST_DUE",
   "PAUSED",

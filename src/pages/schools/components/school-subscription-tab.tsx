@@ -1,11 +1,15 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { CalendarClock, Clock, CreditCard, GraduationCap } from "lucide-react";
+import { CalendarClock, CalendarPlus, Clock, CreditCard, GraduationCap, Pencil } from "lucide-react";
 
 import { DateDisplay } from "@/components/date-display";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { formatMoney, formatRelativeToNow } from "@/lib/format";
 import type { PlatformSchoolDetailDTO } from "@/types/school.types";
 
+import { CustomContractDialog } from "./custom-contract-dialog";
+import { ExtendTrialDialog } from "./extend-trial-dialog";
 import { SubscriptionStatusBadge } from "./school-badges";
 import { DetailAlert, DetailCard, EnrollmentUsage, Field } from "./detail-ui";
 
@@ -18,6 +22,8 @@ export function SchoolSubscriptionTab({
 }) {
   const { t } = useTranslation();
   const sub = detail.subscription;
+  const [customOpen, setCustomOpen] = useState(false);
+  const [trialOpen, setTrialOpen] = useState(false);
 
   if (!sub) {
     return (
@@ -38,12 +44,12 @@ export function SchoolSubscriptionTab({
   const priceMad = formatMoney(yearly ? sub.yearlyPriceMAD : sub.monthlyPriceMAD, "MAD");
   const renews = formatRelativeToNow(sub.currentPeriodEnd);
 
-  const maxEnrollmentsValue =
-    sub.maxEnrollments == null
-      ? null
-      : sub.maxEnrollments >= 999_999
-        ? "∞"
-        : sub.maxEnrollments.toLocaleString();
+  const formatCap = (value: number | null) =>
+    value == null ? null : value <= 0 || value >= 999_999 ? "∞" : value.toLocaleString();
+
+  const planCapValue = formatCap(sub.maxEnrollments);
+  const effectiveCapValue = formatCap(sub.effectiveMaxEnrollments);
+  const trialEligible = sub.status === "TRIALING" || sub.status === "EXPIRED";
 
   const capacityNote =
     detail.enrollmentStatus === "EXCEEDED"
@@ -53,7 +59,21 @@ export function SchoolSubscriptionTab({
         : t("schoolDetail.capacityOk");
 
   return (
-    <div className="grid items-start gap-5 lg:grid-cols-[1fr_320px]">
+    <div className="space-y-4">
+      <div className="flex flex-wrap items-center justify-end gap-2">
+        {trialEligible && (
+          <Button variant="outline" size="sm" onClick={() => setTrialOpen(true)}>
+            <CalendarPlus className="size-4" />
+            {t("extendTrial.action")}
+          </Button>
+        )}
+        <Button variant="outline" size="sm" onClick={() => setCustomOpen(true)}>
+          <Pencil className="size-4" />
+          {t("customContract.action")}
+        </Button>
+      </div>
+
+      <div className="grid items-start gap-5 lg:grid-cols-[1fr_320px]">
       <div className="flex flex-col gap-5">
         <DetailCard title={t("schoolDetail.subscription.plan")} icon={<CreditCard className="h-3.5 w-3.5" />}>
           <div className="flex items-start justify-between gap-4 border-b border-border pb-3.5 pt-2">
@@ -76,7 +96,14 @@ export function SchoolSubscriptionTab({
               label={t("schoolDetail.subscription.price")}
               value={
                 sub.customContract ? (
-                  <Badge variant="info">{t("schoolDetail.subscription.customContract")}</Badge>
+                  <span className="flex flex-wrap items-center gap-2">
+                    <Badge variant="info">{t("schoolDetail.subscription.customContract")}</Badge>
+                    {sub.customPriceMAD != null && (
+                      <span className="font-mono text-xs text-muted-foreground">
+                        {formatMoney(sub.customPriceMAD, "MAD")}
+                      </span>
+                    )}
+                  </span>
                 ) : priceUsd ? (
                   <span>
                     {priceUsd}
@@ -89,9 +116,21 @@ export function SchoolSubscriptionTab({
             />
             <Field
               label={t("schoolDetail.subscription.maxEnrollments")}
-              value={maxEnrollmentsValue}
+              value={sub.customContract ? effectiveCapValue : planCapValue}
               mono
             />
+            {sub.customContract && (
+              <>
+                <Field label={t("schoolDetail.subscription.planCap")} value={planCapValue} mono />
+                {sub.customPaddlePriceId && (
+                  <Field
+                    label={t("customContract.paddlePriceId")}
+                    value={sub.customPaddlePriceId}
+                    mono
+                  />
+                )}
+              </>
+            )}
           </div>
         </DetailCard>
 
@@ -171,6 +210,22 @@ export function SchoolSubscriptionTab({
           <p className="text-xs text-muted-foreground">{capacityNote}</p>
         </DetailCard>
       </div>
+      </div>
+
+      <CustomContractDialog
+        open={customOpen}
+        onOpenChange={setCustomOpen}
+        schoolId={detail.id}
+        subscription={sub}
+      />
+      {trialEligible && (
+        <ExtendTrialDialog
+          open={trialOpen}
+          onOpenChange={setTrialOpen}
+          schoolId={detail.id}
+          subscription={sub}
+        />
+      )}
     </div>
   );
 }

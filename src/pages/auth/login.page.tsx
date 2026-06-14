@@ -65,11 +65,13 @@ export function LoginPage() {
               />
             </div>
             <div className="space-y-1.5">
-              <div className="flex items-center justify-between">
-                <Label htmlFor="password">{t("auth.password")}</Label>
+              <div className="flex items-center justify-between gap-2">
+                <Label htmlFor="password" className="w-auto">
+                  {t("auth.password")}
+                </Label>
                 <Link
                   to="/forgot-password"
-                  className="text-xs font-medium text-muted-foreground hover:text-foreground"
+                  className="shrink-0 whitespace-nowrap text-xs font-medium text-muted-foreground hover:text-foreground"
                 >
                   {t("account.forgot.link")}
                 </Link>

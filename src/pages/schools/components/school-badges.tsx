@@ -9,6 +9,7 @@ import type {
 const STATUS_VARIANT: Record<SchoolSubscriptionStatus, BadgeProps["variant"]> = {
   ACTIVE: "success",
   TRIALING: "info",
+  EXPIRED: "danger",
   PAST_DUE: "danger",
   PAUSED: "warning",
   CANCELLED: "neutral",

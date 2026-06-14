@@ -128,10 +128,13 @@
     "subtitle": "رسائل من نموذج التواصل العام.",
     "searchPlaceholder": "ابحث بالاسم أو البريد أو الرسالة…",
     "allStatuses": "كل الحالات",
+    "allSources": "كل المصادر",
     "sender": "المُرسِل",
     "school": "المدرسة",
+    "viewSchool": "عرض المدرسة",
     "message": "الرسالة",
     "statusLabel": "الحالة",
+    "sourceLabel": "المصدر",
     "received": "استُلمت",
     "empty": "لا توجد رسائل.",
     "pageInfo": "صفحة {{page}} من {{pages}}",
@@ -142,6 +145,34 @@
     "deleteTitle": "حذف هذه الرسالة؟",
     "deleteDesc": "سيؤدي هذا إلى حذف رسالة التواصل نهائيًا. لا يمكن التراجع عن هذا الإجراء.",
     "deleted": "تم حذف الرسالة"
+  },
+  "customContract": {
+    "action": "تعديل العقد المخصص",
+    "title": "عقد مخصص",
+    "description": "تجاوز حد التسجيلات والسعر لهذه المدرسة لاتفاق متفاوض عليه. تبقى الفوترة في Paddle عبر معرّف السعر المخصص.",
+    "enabled": "عقد مخصص",
+    "enabledOption": "مُفعّل",
+    "disabled": "مُعطّل",
+    "enabledHint": "عند التفعيل، تكون للقيم أدناه الأولوية على باقة الخطة.",
+    "cap": "حد التسجيلات",
+    "capPlan": "استخدام قيمة الخطة",
+    "capCustom": "عدد محدد",
+    "capUnlimited": "غير محدود",
+    "capPlaceholder": "مثال: 650",
+    "priceMad": "السعر المخصص (درهم)",
+    "pricePlaceholder": "مثال: 2400",
+    "priceHint": "يُسجّل للمرجع. Paddle هو المصدر الموثوق للمبلغ المحصّل.",
+    "paddlePriceId": "معرّف سعر Paddle",
+    "paddleHint": "سعر Paddle لمرة واحدة أُنشئ لهذا الاتفاق. تدفع المدرسة وفقه."
+  },
+  "extendTrial": {
+    "action": "تمديد الفترة التجريبية",
+    "title": "تمديد الفترة التجريبية",
+    "description": "أجّل تاريخ انتهاء الفترة التجريبية حتى لا تُحذف هذه المدرسة أثناء محادثة مبيعات.",
+    "currentEnd": "نهاية الفترة التجريبية الحالية",
+    "days": "التمديد بـ (أيام)",
+    "daysHint": "بين 1 و365 يومًا. يلغي الحذف والتحذير المجدولين.",
+    "confirm": "تمديد الفترة التجريبية"
   },
   "permissions": {
     "presetLabel": "إعداد مسبق",
@@ -238,8 +269,14 @@
     "dark": "الوضع الداكن"
   },
   "enums": {
+    "contactSource": {
+      "MARKETING": "نموذج تسويقي",
+      "ENROLLMENT_LIMIT": "حد التسجيلات",
+      "CONTACT_SALES": "تواصل مع المبيعات"
+    },
     "subscriptionStatus": {
       "TRIALING": "تجريبي",
+      "EXPIRED": "منتهٍ",
       "ACTIVE": "نشط",
       "PAST_DUE": "متأخر السداد",
       "PAUSED": "موقوف",
@@ -339,6 +376,7 @@
       "graceDeadline": "مهلة السماح",
       "price": "السعر",
       "maxEnrollments": "الحد الأقصى للتسجيلات",
+      "planCap": "حد الخطة",
       "renews": "يتجدد",
       "scheduledChange": "تغيير مجدول",
       "paddleSubscriptionId": "معرّف الاشتراك",

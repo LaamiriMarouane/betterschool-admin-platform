@@ -2,7 +2,10 @@ import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import i18n from "i18next";
 
-import type { ContactMessageStatus } from "@/constants/contact.constants";
+import type {
+  ContactMessageSource,
+  ContactMessageStatus,
+} from "@/constants/contact.constants";
 import { toast } from "@/components/ui/use-toast";
 import { getErrorMessage, type StoreError } from "@/lib/api-error";
 import { notifyApiError } from "@/lib/notify";
@@ -14,6 +17,7 @@ const DEFAULT_PAGE_SIZE = 20;
 interface ContactFilters {
   search: string;
   status: ContactMessageStatus | null;
+  source: ContactMessageSource | null;
 }
 
 interface LoadingStates {
@@ -42,6 +46,7 @@ interface ContactActions {
   fetchUnreadCount: () => Promise<void>;
   setSearch: (search: string) => void;
   setStatusFilter: (status: ContactMessageStatus | null) => void;
+  setSourceFilter: (source: ContactMessageSource | null) => void;
   setPagination: (page: number, size: number) => void;
   updateStatus: (id: string, status: ContactMessageStatus) => Promise<boolean>;
   deleteMessage: (id: string) => Promise<boolean>;
@@ -57,7 +62,7 @@ const initialState: ContactState = {
   totalPages: 0,
   page: 0,
   size: DEFAULT_PAGE_SIZE,
-  filters: { search: "", status: null },
+  filters: { search: "", status: null, source: null },
   unreadCount: 0,
   loading: { list: false, save: false },
   errors: { list: null },
@@ -85,6 +90,7 @@ export const useContactStore = create<ContactStore>()(
               size,
               search: filters.search,
               status: filters.status,
+              source: filters.source,
             };
             const res = await contactService.list(query);
             set((state) => ({
@@ -118,6 +124,11 @@ export const useContactStore = create<ContactStore>()(
 
         setStatusFilter: (status) => {
           set((state) => ({ filters: { ...state.filters, status }, page: 0 }));
+          void get().actions.fetchMessages();
+        },
+
+        setSourceFilter: (source) => {
+          set((state) => ({ filters: { ...state.filters, source }, page: 0 }));
           void get().actions.fetchMessages();
         },
 

@@ -128,10 +128,13 @@
     "subtitle": "Messages from the public contact form.",
     "searchPlaceholder": "Search name, email, message…",
     "allStatuses": "All statuses",
+    "allSources": "All sources",
     "sender": "Sender",
     "school": "School",
+    "viewSchool": "View school",
     "message": "Message",
     "statusLabel": "Status",
+    "sourceLabel": "Source",
     "received": "Received",
     "empty": "No messages.",
     "pageInfo": "Page {{page}} of {{pages}}",
@@ -142,6 +145,34 @@
     "deleteTitle": "Delete this message?",
     "deleteDesc": "This permanently removes the contact message. This can't be undone.",
     "deleted": "Message deleted"
+  },
+  "customContract": {
+    "action": "Edit custom contract",
+    "title": "Custom contract",
+    "description": "Override this school's enrollment cap and price for a negotiated deal. Billing stays in Paddle via the custom price ID.",
+    "enabled": "Custom contract",
+    "enabledOption": "Enabled",
+    "disabled": "Disabled",
+    "enabledHint": "When enabled, the overrides below take precedence over the plan tier.",
+    "cap": "Enrollment cap",
+    "capPlan": "Use plan default",
+    "capCustom": "Specific number",
+    "capUnlimited": "Unlimited",
+    "capPlaceholder": "e.g. 650",
+    "priceMad": "Custom price (MAD)",
+    "pricePlaceholder": "e.g. 2400",
+    "priceHint": "Recorded for reference. Paddle is the source of truth for what is charged.",
+    "paddlePriceId": "Paddle price ID",
+    "paddleHint": "One-off Paddle price created for this deal. The school checks out against it."
+  },
+  "extendTrial": {
+    "action": "Extend trial",
+    "title": "Extend trial",
+    "description": "Push out the trial end date so this school isn't auto-purged during a sales conversation.",
+    "currentEnd": "Current trial end",
+    "days": "Extend by (days)",
+    "daysHint": "Between 1 and 365 days. Clears the scheduled purge and warning.",
+    "confirm": "Extend trial"
   },
   "permissions": {
     "presetLabel": "Preset",
@@ -238,8 +269,14 @@
     "dark": "Dark mode"
   },
   "enums": {
+    "contactSource": {
+      "MARKETING": "Marketing form",
+      "ENROLLMENT_LIMIT": "Enrollment limit",
+      "CONTACT_SALES": "Contact sales"
+    },
     "subscriptionStatus": {
       "TRIALING": "Trialing",
+      "EXPIRED": "Expired",
       "ACTIVE": "Active",
       "PAST_DUE": "Past due",
       "PAUSED": "Paused",
@@ -339,6 +376,7 @@
       "graceDeadline": "Grace deadline",
       "price": "Price",
       "maxEnrollments": "Max enrollments",
+      "planCap": "Plan cap",
       "renews": "Renews",
       "scheduledChange": "Scheduled change",
       "paddleSubscriptionId": "Subscription ID",

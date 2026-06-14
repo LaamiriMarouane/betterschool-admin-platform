@@ -1,6 +1,9 @@
-import type { ContactMessageStatus } from "@/constants/contact.constants";
+import type {
+  ContactMessageSource,
+  ContactMessageStatus,
+} from "@/constants/contact.constants";
 
-/** A public "Contact us" message. Mirrors backend dto/platform/PlatformContactMessageDTO. */
+/** A "Contact us" lead. Mirrors backend dto/platform/PlatformContactMessageDTO. */
 export interface ContactMessageDTO {
   id: string;
   name: string;
@@ -9,5 +12,9 @@ export interface ContactMessageDTO {
   school: string | null;
   message: string;
   status: ContactMessageStatus;
+  /** Where the lead originated (marketing form vs. in-product request). */
+  source: ContactMessageSource;
+  /** Set when the lead came from a logged-in school admin; links back to that school. */
+  schoolId: string | null;
   createdAt: string | null; // ISO datetime
 }
