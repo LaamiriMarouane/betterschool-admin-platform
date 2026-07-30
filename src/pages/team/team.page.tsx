@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { KeyRound, Plus, Power, Settings2, Trash2, Users } from "lucide-react";
 
 import { DateDisplay } from "@/components/date-display";
+import { PermissionGuard } from "@/components/permission-guard";
 import {
   AlertDialogAction,
   AlertDialogCancel,
@@ -79,10 +80,12 @@ export function TeamPage() {
           <h1 className="text-xl font-semibold">{t("team.title")}</h1>
           <p className="text-sm text-muted-foreground">{t("team.subtitle")}</p>
         </div>
-        <Button onClick={() => setCreateOpen(true)}>
-          <Plus className="me-1.5 h-4 w-4" />
-          {t("team.addStaff")}
-        </Button>
+        <PermissionGuard permissions="platform.users.manage">
+          <Button onClick={() => setCreateOpen(true)}>
+            <Plus className="me-1.5 h-4 w-4" />
+            {t("team.addStaff")}
+          </Button>
+        </PermissionGuard>
       </div>
 
       <Card>
@@ -139,45 +142,47 @@ export function TeamPage() {
                         {user.id === currentUserId ? (
                           <span className="text-xs text-muted-foreground">{t("team.you")}</span>
                         ) : (
-                          <div className="flex items-center justify-end gap-1">
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              title={t("team.editPermissions")}
-                              disabled={loading.save}
-                              onClick={() => setEditing(user)}
-                            >
-                              <Settings2 className="h-4 w-4" />
-                            </Button>
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              title={t("team.resetPassword")}
-                              disabled={loading.save}
-                              onClick={() => setResetting(user)}
-                            >
-                              <KeyRound className="h-4 w-4" />
-                            </Button>
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              title={user.enabled ? t("team.disable") : t("team.enable")}
-                              disabled={loading.save}
-                              onClick={() => void setUserEnabled(user.id, !user.enabled)}
-                            >
-                              <Power className="h-4 w-4" />
-                            </Button>
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              title={t("team.delete")}
-                              className="text-destructive hover:text-destructive"
-                              disabled={loading.save}
-                              onClick={() => setDeleting(user)}
-                            >
-                              <Trash2 className="h-4 w-4" />
-                            </Button>
-                          </div>
+                          <PermissionGuard permissions="platform.users.manage">
+                            <div className="flex items-center justify-end gap-1">
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                title={t("team.editPermissions")}
+                                disabled={loading.save}
+                                onClick={() => setEditing(user)}
+                              >
+                                <Settings2 className="h-4 w-4" />
+                              </Button>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                title={t("team.resetPassword")}
+                                disabled={loading.save}
+                                onClick={() => setResetting(user)}
+                              >
+                                <KeyRound className="h-4 w-4" />
+                              </Button>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                title={user.enabled ? t("team.disable") : t("team.enable")}
+                                disabled={loading.save}
+                                onClick={() => void setUserEnabled(user.id, !user.enabled)}
+                              >
+                                <Power className="h-4 w-4" />
+                              </Button>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                title={t("team.delete")}
+                                className="text-destructive hover:text-destructive"
+                                disabled={loading.save}
+                                onClick={() => setDeleting(user)}
+                              >
+                                <Trash2 className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          </PermissionGuard>
                         )}
                       </TableCell>
                     </TableRow>

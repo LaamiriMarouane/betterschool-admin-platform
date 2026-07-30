@@ -39,7 +39,9 @@
     "openNavigation": "Ouvrir la navigation",
     "toggleSidebar": "Basculer la barre latérale",
     "accountMenu": "Menu du compte",
-    "language": "Langue"
+    "language": "Langue",
+    "supportTickets": "Tickets support",
+    "featureRequests": "Demandes de fonctionnalités"
   },
   "auth": {
     "signInTitle": "Connexion",
@@ -194,9 +196,9 @@
       "schools": "Dossiers scolaires et inscriptions",
       "billing": "Abonnements, forfaits et Paddle",
       "contact": "Messages du formulaire de contact",
-      "support": "Tickets et contact propriétaire",
+      "support": "Tickets support des écoles",
       "team": "Personnel et rôles de la plateforme",
-      "platform": "Tableau de bord, fonctionnalités et config"
+      "platform": "Tableau de bord et triage des demandes"
     },
     "groups": {
       "schools": "Écoles",
@@ -210,16 +212,17 @@
       "schoolsRead": "Voir les écoles",
       "schoolsManage": "Gérer les écoles",
       "statsRead": "Voir le tableau de bord",
-      "supportRead": "Voir le support",
-      "supportManage": "Gérer le support",
+      "supportRead": "Voir les tickets support",
+      "supportManage": "Gérer les tickets support",
       "billingRead": "Voir la facturation",
       "billingManage": "Gérer la facturation",
-      "featuresManage": "Gérer les fonctionnalités",
+      "featuresManage": "Gérer les demandes de fonctionnalités",
       "usersRead": "Voir l'équipe",
       "usersManage": "Gérer l'équipe",
       "contactRead": "Voir les messages de contact",
       "contactManage": "Gérer les messages de contact"
-    }
+    },
+    "grantSubsetHint": "Vous ne pouvez accorder que les permissions que vous détenez déjà."
   },
   "dataTable": {
     "clearSelection": "Effacer la sélection",
@@ -302,6 +305,63 @@
       "READ": "Lu",
       "REPLIED": "Répondu",
       "ARCHIVED": "Archivé"
+    },
+    "ticketStatus": {
+      "OPEN": "Ouvert",
+      "IN_PROGRESS": "En cours",
+      "WAITING_ON_CUSTOMER": "En attente école",
+      "RESOLVED": "Résolu",
+      "CLOSED": "Fermé"
+    },
+    "ticketPriority": {
+      "LOW": "Basse",
+      "MEDIUM": "Moyenne",
+      "HIGH": "Haute",
+      "URGENT": "Urgente"
+    },
+    "ticketCategory": {
+      "BUG_REPORT": "Bug",
+      "FEATURE_INQUIRY": "Fonctionnalité",
+      "BILLING": "Facturation",
+      "ACCOUNT_ACCESS": "Accès compte",
+      "DATA_IMPORT": "Import de données",
+      "TRAINING_REQUEST": "Formation",
+      "OTHER": "Autre"
+    },
+    "ticketActivity": {
+      "CREATED": "Créé",
+      "STATUS_CHANGED": "Statut modifié",
+      "PRIORITY_CHANGED": "Priorité modifiée",
+      "ASSIGNED": "Assigné",
+      "UNASSIGNED": "Désassigné",
+      "REPLY_ADDED": "Réponse ajoutée",
+      "ATTACHMENT_ADDED": "Pièce jointe",
+      "SATISFACTION_RATED": "Satisfaction notée",
+      "REOPENED": "Rouvert"
+    },
+    "featureStatus": {
+      "NEW": "Nouveau",
+      "UNDER_REVIEW": "En revue",
+      "PLANNED": "Planifié",
+      "IN_PROGRESS": "En cours",
+      "RELEASED": "Publié",
+      "DECLINED": "Refusé"
+    },
+    "featureCategory": {
+      "ACADEMICS": "Scolarité",
+      "SCHEDULING": "Emploi du temps",
+      "FINANCE": "Finance",
+      "HR": "RH",
+      "COMMUNICATION": "Communication",
+      "GRADING": "Notation",
+      "TRANSPORT": "Transport",
+      "ATTENDANCE": "Présence",
+      "ENROLLMENT": "Inscription",
+      "REPORTS": "Rapports",
+      "MOBILE_APP": "Application mobile",
+      "INTEGRATIONS": "Intégrations",
+      "UI_UX": "UI / UX",
+      "OTHER": "Autre"
     }
   },
   "schools": {
@@ -458,6 +518,93 @@
     "profile": {
       "title": "Profil",
       "subtitle": "Vos paramètres de compte et de sécurité."
+    }
+  },
+  "supportTickets": {
+    "title": "Tickets support",
+    "subtitle": "File de tickets inter-écoles pour les agents plateforme.",
+    "searchPlaceholder": "Rechercher n°, sujet, école…",
+    "empty": "Aucun ticket ne correspond à ces filtres.",
+    "allStatuses": "Tous les statuts",
+    "allPriorities": "Toutes les priorités",
+    "allCategories": "Toutes les catégories",
+    "assigneeAll": "Tous les assignés",
+    "assigneeMine": "Assignés à moi",
+    "assigneeUnassigned": "Non assignés",
+    "stats": {
+      "open": "Ouverts",
+      "inProgress": "En cours",
+      "waiting": "En attente école",
+      "unassigned": "Non assignés"
+    },
+    "replySent": "Réponse envoyée",
+    "statusUpdated": "Statut mis à jour",
+    "assigned": "Ticket assigné",
+    "priorityUpdated": "Priorité mise à jour",
+    "assignToMe": "M'assigner",
+    "replyPlaceholder": "Écrire une réponse à l'école…",
+    "sendReply": "Envoyer",
+    "activity": "Activité",
+    "noSelection": "Sélectionnez un ticket pour voir le fil.",
+    "school": "École",
+    "submittedBy": "Soumis par",
+    "plan": "Forfait",
+    "assignee": "Assigné à",
+    "category": "Catégorie",
+    "status": "Statut",
+    "priority": "Priorité",
+    "resolutionNote": "Note de résolution",
+    "resolutionNotePlaceholder": "Note facultative lors de la résolution…",
+    "pageOf": "Page {{page}} sur {{pages}}",
+    "prevPage": "Précédent",
+    "nextPage": "Suivant",
+    "unassignedLabel": "Non assigné"
+  },
+  "featureRequests": {
+    "title": "Demandes de fonctionnalités",
+    "subtitle": "Trier les votes et éléments de feuille de route des écoles.",
+    "searchPlaceholder": "Rechercher titre ou description…",
+    "empty": "Aucune demande ne correspond à ces filtres.",
+    "allStatuses": "Tous les statuts",
+    "allCategories": "Toutes les catégories",
+    "create": "Créer une demande",
+    "createTitle": "Demande officielle",
+    "createDesc": "Publier une demande rédigée par la plateforme, sur laquelle les écoles peuvent voter.",
+    "titleLabel": "Titre",
+    "descriptionLabel": "Description",
+    "categoryLabel": "Catégorie",
+    "created": "Demande créée",
+    "statusUpdated": "Statut mis à jour",
+    "responseSaved": "Réponse plateforme enregistrée",
+    "pinned": "Épinglé",
+    "unpinned": "Désépinglé",
+    "commentAdded": "Commentaire ajouté",
+    "deleted": "Demande supprimée",
+    "deleteTitle": "Supprimer la demande ?",
+    "deleteDesc": "Cela supprime définitivement la demande, ses votes et commentaires.",
+    "delete": "Supprimer",
+    "pin": "Épingler",
+    "unpin": "Désépingler",
+    "platformResponse": "Réponse plateforme",
+    "platformResponsePlaceholder": "Réponse officielle visible par les écoles…",
+    "saveResponse": "Enregistrer la réponse",
+    "statusNote": "Note de statut",
+    "statusNotePlaceholder": "Note facultative pour ce changement…",
+    "comments": "Commentaires",
+    "commentPlaceholder": "Écrire un commentaire plateforme…",
+    "addComment": "Ajouter un commentaire",
+    "votes": "Votes",
+    "noSelection": "Sélectionnez une demande pour la trier.",
+    "submittedBy": "Soumis par",
+    "pageOf": "Page {{page}} sur {{pages}}",
+    "prevPage": "Précédent",
+    "nextPage": "Suivant",
+    "stats": {
+      "new": "Nouvelles",
+      "underReview": "En revue",
+      "planned": "Planifiées",
+      "inProgress": "En cours",
+      "released": "Publiées"
     }
   }
 }

@@ -39,7 +39,9 @@
     "openNavigation": "Open navigation",
     "toggleSidebar": "Toggle sidebar",
     "accountMenu": "Account menu",
-    "language": "Language"
+    "language": "Language",
+    "supportTickets": "Support tickets",
+    "featureRequests": "Feature requests"
   },
   "auth": {
     "signInTitle": "Sign in",
@@ -194,9 +196,9 @@
       "schools": "School records & enrollment",
       "billing": "Subscriptions, plans & Paddle",
       "contact": "Public contact-form messages",
-      "support": "Tickets & owner contact",
+      "support": "School support tickets",
       "team": "Platform staff & roles",
-      "platform": "Dashboard, features & config"
+      "platform": "Dashboard & feature-request triage"
     },
     "groups": {
       "schools": "Schools",
@@ -210,16 +212,17 @@
       "schoolsRead": "View schools",
       "schoolsManage": "Manage schools",
       "statsRead": "View dashboard",
-      "supportRead": "View support",
-      "supportManage": "Manage support",
+      "supportRead": "View support tickets",
+      "supportManage": "Manage support tickets",
       "billingRead": "View billing",
       "billingManage": "Manage billing",
-      "featuresManage": "Manage features",
+      "featuresManage": "Manage feature requests",
       "usersRead": "View team",
       "usersManage": "Manage team",
       "contactRead": "View contact messages",
       "contactManage": "Manage contact messages"
-    }
+    },
+    "grantSubsetHint": "You can only grant permissions you already hold."
   },
   "dataTable": {
     "clearSelection": "Clear selection",
@@ -302,6 +305,63 @@
       "READ": "Read",
       "REPLIED": "Replied",
       "ARCHIVED": "Archived"
+    },
+    "ticketStatus": {
+      "OPEN": "Open",
+      "IN_PROGRESS": "In progress",
+      "WAITING_ON_CUSTOMER": "Waiting on school",
+      "RESOLVED": "Resolved",
+      "CLOSED": "Closed"
+    },
+    "ticketPriority": {
+      "LOW": "Low",
+      "MEDIUM": "Medium",
+      "HIGH": "High",
+      "URGENT": "Urgent"
+    },
+    "ticketCategory": {
+      "BUG_REPORT": "Bug report",
+      "FEATURE_INQUIRY": "Feature inquiry",
+      "BILLING": "Billing",
+      "ACCOUNT_ACCESS": "Account access",
+      "DATA_IMPORT": "Data import",
+      "TRAINING_REQUEST": "Training",
+      "OTHER": "Other"
+    },
+    "ticketActivity": {
+      "CREATED": "Created",
+      "STATUS_CHANGED": "Status changed",
+      "PRIORITY_CHANGED": "Priority changed",
+      "ASSIGNED": "Assigned",
+      "UNASSIGNED": "Unassigned",
+      "REPLY_ADDED": "Reply added",
+      "ATTACHMENT_ADDED": "Attachment added",
+      "SATISFACTION_RATED": "Satisfaction rated",
+      "REOPENED": "Reopened"
+    },
+    "featureStatus": {
+      "NEW": "New",
+      "UNDER_REVIEW": "Under review",
+      "PLANNED": "Planned",
+      "IN_PROGRESS": "In progress",
+      "RELEASED": "Released",
+      "DECLINED": "Declined"
+    },
+    "featureCategory": {
+      "ACADEMICS": "Academics",
+      "SCHEDULING": "Scheduling",
+      "FINANCE": "Finance",
+      "HR": "HR",
+      "COMMUNICATION": "Communication",
+      "GRADING": "Grading",
+      "TRANSPORT": "Transport",
+      "ATTENDANCE": "Attendance",
+      "ENROLLMENT": "Enrollment",
+      "REPORTS": "Reports",
+      "MOBILE_APP": "Mobile app",
+      "INTEGRATIONS": "Integrations",
+      "UI_UX": "UI / UX",
+      "OTHER": "Other"
     }
   },
   "schools": {
@@ -458,6 +518,93 @@
     "profile": {
       "title": "Profile",
       "subtitle": "Your account and security settings."
+    }
+  },
+  "supportTickets": {
+    "title": "Support tickets",
+    "subtitle": "Cross-school ticket queue for platform agents.",
+    "searchPlaceholder": "Search ticket #, subject, school…",
+    "empty": "No tickets match these filters.",
+    "allStatuses": "All statuses",
+    "allPriorities": "All priorities",
+    "allCategories": "All categories",
+    "assigneeAll": "All assignees",
+    "assigneeMine": "Assigned to me",
+    "assigneeUnassigned": "Unassigned",
+    "stats": {
+      "open": "Open",
+      "inProgress": "In progress",
+      "waiting": "Waiting on school",
+      "unassigned": "Unassigned"
+    },
+    "replySent": "Reply sent",
+    "statusUpdated": "Status updated",
+    "assigned": "Ticket assigned",
+    "priorityUpdated": "Priority updated",
+    "assignToMe": "Assign to me",
+    "replyPlaceholder": "Write a reply to the school…",
+    "sendReply": "Send reply",
+    "activity": "Activity",
+    "noSelection": "Select a ticket to view the thread.",
+    "school": "School",
+    "submittedBy": "Submitted by",
+    "plan": "Plan",
+    "assignee": "Assignee",
+    "category": "Category",
+    "status": "Status",
+    "priority": "Priority",
+    "resolutionNote": "Resolution note",
+    "resolutionNotePlaceholder": "Optional note when resolving…",
+    "pageOf": "Page {{page}} of {{pages}}",
+    "prevPage": "Previous",
+    "nextPage": "Next",
+    "unassignedLabel": "Unassigned"
+  },
+  "featureRequests": {
+    "title": "Feature requests",
+    "subtitle": "Triage school feature votes and roadmap items.",
+    "searchPlaceholder": "Search title or description…",
+    "empty": "No feature requests match these filters.",
+    "allStatuses": "All statuses",
+    "allCategories": "All categories",
+    "create": "Create request",
+    "createTitle": "Official feature request",
+    "createDesc": "Publish a platform-authored request schools can vote on.",
+    "titleLabel": "Title",
+    "descriptionLabel": "Description",
+    "categoryLabel": "Category",
+    "created": "Feature request created",
+    "statusUpdated": "Status updated",
+    "responseSaved": "Platform response saved",
+    "pinned": "Pinned",
+    "unpinned": "Unpinned",
+    "commentAdded": "Comment added",
+    "deleted": "Feature request deleted",
+    "deleteTitle": "Delete feature request?",
+    "deleteDesc": "This permanently removes the request and its votes/comments.",
+    "delete": "Delete",
+    "pin": "Pin",
+    "unpin": "Unpin",
+    "platformResponse": "Platform response",
+    "platformResponsePlaceholder": "Official response shown to schools…",
+    "saveResponse": "Save response",
+    "statusNote": "Status note",
+    "statusNotePlaceholder": "Optional note for this status change…",
+    "comments": "Comments",
+    "commentPlaceholder": "Write a platform comment…",
+    "addComment": "Add comment",
+    "votes": "Votes",
+    "noSelection": "Select a request to triage it.",
+    "submittedBy": "Submitted by",
+    "pageOf": "Page {{page}} of {{pages}}",
+    "prevPage": "Previous",
+    "nextPage": "Next",
+    "stats": {
+      "new": "New",
+      "underReview": "Under review",
+      "planned": "Planned",
+      "inProgress": "In progress",
+      "released": "Released"
     }
   }
 }

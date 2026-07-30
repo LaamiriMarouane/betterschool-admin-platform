@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FLOOR_PERMISSIONS, PRESET_PERMISSIONS } from "@/constants/permissions.constants";
+import { useAuthStore } from "@/store/auth/auth.store";
 import {
   useTeamActions,
   useTeamLoading,
@@ -40,6 +41,13 @@ export function StaffDialog({
   const { createUser, updatePermissions } = useTeamActions();
   const loading = useTeamLoading();
   const catalog = useTeamPermissionCatalog();
+  const myPermissions = useAuthStore((state) => state.permissions);
+
+  /** Only keys the caller holds — matches backend grant-subset rule. */
+  const grantableCatalog = useMemo(
+    () => catalog.filter((key) => myPermissions.includes(key)),
+    [catalog, myPermissions],
+  );
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -48,15 +56,25 @@ export function StaffDialog({
 
   useEffect(() => {
     if (!open) return;
+    const grantable = new Set(
+      catalog.filter((key) => myPermissions.includes(key)),
+    );
     if (mode === "edit" && user) {
-      setPermissionKeys([...new Set([...user.permissionKeys, ...FLOOR_PERMISSIONS])]);
+      setPermissionKeys([
+        ...new Set([
+          ...user.permissionKeys.filter((key) => grantable.has(key)),
+          ...FLOOR_PERMISSIONS.filter((key) => grantable.has(key)),
+        ]),
+      ]);
     } else {
       setFirstName("");
       setLastName("");
       setEmail("");
-      setPermissionKeys([...PRESET_PERMISSIONS.SUPPORT]);
+      setPermissionKeys(
+        PRESET_PERMISSIONS.SUPPORT.filter((key) => grantable.has(key)),
+      );
     }
-  }, [open, mode, user]);
+  }, [open, mode, user, catalog, myPermissions]);
 
   const canSubmit =
     mode === "edit"
@@ -64,8 +82,8 @@ export function StaffDialog({
       : Boolean(firstName.trim() && lastName.trim() && email.trim());
 
   const grantedCount = useMemo(
-    () => permissionKeys.filter((key) => catalog.includes(key)).length,
-    [permissionKeys, catalog],
+    () => permissionKeys.filter((key) => grantableCatalog.includes(key)).length,
+    [permissionKeys, grantableCatalog],
   );
 
   const submit = async () => {
@@ -98,10 +116,10 @@ export function StaffDialog({
       }
       footer={
         <div className="flex items-center justify-between gap-3">
-          {catalog.length > 0 ? (
+          {grantableCatalog.length > 0 ? (
             <span className="text-xs text-muted-foreground">
               <span className="font-semibold text-foreground">{grantedCount}</span>{" "}
-              {t("permissions.grantedCount", { total: catalog.length })}
+              {t("permissions.grantedCount", { total: grantableCatalog.length })}
             </span>
           ) : (
             <span />
@@ -164,9 +182,10 @@ export function StaffDialog({
         <PermissionPicker
           value={permissionKeys}
           onChange={setPermissionKeys}
-          catalog={catalog}
+          catalog={grantableCatalog}
           disabled={loading.save}
         />
+        <p className="text-xs text-muted-foreground">{t("permissions.grantSubsetHint")}</p>
       </div>
     </ResponsiveDialog>
   );

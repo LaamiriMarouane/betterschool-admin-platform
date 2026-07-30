@@ -8,6 +8,8 @@ import {
   Receipt,
   Users,
   Inbox,
+  LifeBuoy,
+  Lightbulb,
   type LucideIcon,
 } from "lucide-react";
 
@@ -31,6 +33,8 @@ const NAV_ITEMS: NavItem[] = [
   { to: "/subscriptions", labelKey: "nav.subscriptions", icon: Receipt, permission: "platform.billing.read" },
   { to: "/team", labelKey: "nav.team", icon: Users, permission: "platform.users.read" },
   { to: "/contact-messages", labelKey: "nav.contact", icon: Inbox, permission: "platform.contact.read" },
+  { to: "/support-tickets", labelKey: "nav.supportTickets", icon: LifeBuoy, permission: "platform.support.read" },
+  { to: "/feature-requests", labelKey: "nav.featureRequests", icon: Lightbulb, permission: "platform.features.manage" },
 ];
 
 interface AppSidebarProps {

@@ -39,7 +39,9 @@
     "openNavigation": "فتح التنقل",
     "toggleSidebar": "تبديل الشريط الجانبي",
     "accountMenu": "قائمة الحساب",
-    "language": "اللغة"
+    "language": "اللغة",
+    "supportTickets": "تذاكر الدعم",
+    "featureRequests": "طلبات الميزات"
   },
   "auth": {
     "signInTitle": "تسجيل الدخول",
@@ -194,9 +196,9 @@
       "schools": "سجلات المدارس والتسجيل",
       "billing": "الاشتراكات والخطط وPaddle",
       "contact": "رسائل نموذج التواصل العام",
-      "support": "التذاكر والتواصل مع المالك",
+      "support": "تذاكر دعم المدارس",
       "team": "موظفو وأدوار المنصة",
-      "platform": "لوحة التحكم والميزات والإعدادات"
+      "platform": "لوحة التحكم وفرز طلبات الميزات"
     },
     "groups": {
       "schools": "المدارس",
@@ -210,16 +212,17 @@
       "schoolsRead": "عرض المدارس",
       "schoolsManage": "إدارة المدارس",
       "statsRead": "عرض لوحة التحكم",
-      "supportRead": "عرض الدعم",
-      "supportManage": "إدارة الدعم",
+      "supportRead": "عرض تذاكر الدعم",
+      "supportManage": "إدارة تذاكر الدعم",
       "billingRead": "عرض الفوترة",
       "billingManage": "إدارة الفوترة",
-      "featuresManage": "إدارة الميزات",
+      "featuresManage": "إدارة طلبات الميزات",
       "usersRead": "عرض الفريق",
       "usersManage": "إدارة الفريق",
       "contactRead": "عرض رسائل التواصل",
       "contactManage": "إدارة رسائل التواصل"
-    }
+    },
+    "grantSubsetHint": "يمكنك منح الصلاحيات التي تملكها فقط."
   },
   "dataTable": {
     "clearSelection": "مسح التحديد",
@@ -302,6 +305,63 @@
       "READ": "مقروءة",
       "REPLIED": "تم الرد",
       "ARCHIVED": "مؤرشفة"
+    },
+    "ticketStatus": {
+      "OPEN": "مفتوحة",
+      "IN_PROGRESS": "قيد المعالجة",
+      "WAITING_ON_CUSTOMER": "بانتظار المدرسة",
+      "RESOLVED": "محلولة",
+      "CLOSED": "مغلقة"
+    },
+    "ticketPriority": {
+      "LOW": "منخفضة",
+      "MEDIUM": "متوسطة",
+      "HIGH": "عالية",
+      "URGENT": "عاجلة"
+    },
+    "ticketCategory": {
+      "BUG_REPORT": "بلاغ خطأ",
+      "FEATURE_INQUIRY": "استفسار ميزة",
+      "BILLING": "الفوترة",
+      "ACCOUNT_ACCESS": "الوصول للحساب",
+      "DATA_IMPORT": "استيراد البيانات",
+      "TRAINING_REQUEST": "تدريب",
+      "OTHER": "أخرى"
+    },
+    "ticketActivity": {
+      "CREATED": "تم الإنشاء",
+      "STATUS_CHANGED": "تغيّرت الحالة",
+      "PRIORITY_CHANGED": "تغيّرت الأولوية",
+      "ASSIGNED": "تم الإسناد",
+      "UNASSIGNED": "أُلغي الإسناد",
+      "REPLY_ADDED": "أُضيف رد",
+      "ATTACHMENT_ADDED": "أُضيف مرفق",
+      "SATISFACTION_RATED": "تم تقييم الرضا",
+      "REOPENED": "أُعيد الفتح"
+    },
+    "featureStatus": {
+      "NEW": "جديد",
+      "UNDER_REVIEW": "قيد المراجعة",
+      "PLANNED": "مخطط",
+      "IN_PROGRESS": "قيد التنفيذ",
+      "RELEASED": "مُصدَر",
+      "DECLINED": "مرفوض"
+    },
+    "featureCategory": {
+      "ACADEMICS": "أكاديمي",
+      "SCHEDULING": "الجدولة",
+      "FINANCE": "المالية",
+      "HR": "الموارد البشرية",
+      "COMMUNICATION": "التواصل",
+      "GRADING": "الدرجات",
+      "TRANSPORT": "النقل",
+      "ATTENDANCE": "الحضور",
+      "ENROLLMENT": "التسجيل",
+      "REPORTS": "التقارير",
+      "MOBILE_APP": "تطبيق الجوال",
+      "INTEGRATIONS": "التكاملات",
+      "UI_UX": "واجهة المستخدم",
+      "OTHER": "أخرى"
     }
   },
   "schools": {
@@ -458,6 +518,93 @@
     "profile": {
       "title": "الملف الشخصي",
       "subtitle": "إعدادات حسابك والأمان."
+    }
+  },
+  "supportTickets": {
+    "title": "تذاكر الدعم",
+    "subtitle": "قائمة تذاكر عبر المدارس لوكلاء المنصة.",
+    "searchPlaceholder": "بحث برقم التذكرة أو الموضوع أو المدرسة…",
+    "empty": "لا توجد تذاكر تطابق هذه عوامل التصفية.",
+    "allStatuses": "كل الحالات",
+    "allPriorities": "كل الأولويات",
+    "allCategories": "كل الفئات",
+    "assigneeAll": "كل المُسند إليهم",
+    "assigneeMine": "مُسندة إليّ",
+    "assigneeUnassigned": "غير مُسندة",
+    "stats": {
+      "open": "مفتوحة",
+      "inProgress": "قيد المعالجة",
+      "waiting": "بانتظار المدرسة",
+      "unassigned": "غير مُسندة"
+    },
+    "replySent": "تم إرسال الرد",
+    "statusUpdated": "تم تحديث الحالة",
+    "assigned": "تم إسناد التذكرة",
+    "priorityUpdated": "تم تحديث الأولوية",
+    "assignToMe": "أسند إليّ",
+    "replyPlaceholder": "اكتب ردًا للمدرسة…",
+    "sendReply": "إرسال الرد",
+    "activity": "النشاط",
+    "noSelection": "اختر تذكرة لعرض المحادثة.",
+    "school": "المدرسة",
+    "submittedBy": "مُقدَّم من",
+    "plan": "الباقة",
+    "assignee": "المُسند إليه",
+    "category": "الفئة",
+    "status": "الحالة",
+    "priority": "الأولوية",
+    "resolutionNote": "ملاحظة الحل",
+    "resolutionNotePlaceholder": "ملاحظة اختيارية عند الحل…",
+    "pageOf": "صفحة {{page}} من {{pages}}",
+    "prevPage": "السابق",
+    "nextPage": "التالي",
+    "unassignedLabel": "غير مُسند"
+  },
+  "featureRequests": {
+    "title": "طلبات الميزات",
+    "subtitle": "فرز أصوات المدارس وعناصر خارطة الطريق.",
+    "searchPlaceholder": "بحث في العنوان أو الوصف…",
+    "empty": "لا توجد طلبات تطابق هذه عوامل التصفية.",
+    "allStatuses": "كل الحالات",
+    "allCategories": "كل الفئات",
+    "create": "إنشاء طلب",
+    "createTitle": "طلب ميزة رسمي",
+    "createDesc": "نشر طلب من المنصة يمكن للمدارس التصويت عليه.",
+    "titleLabel": "العنوان",
+    "descriptionLabel": "الوصف",
+    "categoryLabel": "الفئة",
+    "created": "تم إنشاء طلب الميزة",
+    "statusUpdated": "تم تحديث الحالة",
+    "responseSaved": "تم حفظ رد المنصة",
+    "pinned": "تم التثبيت",
+    "unpinned": "تم إلغاء التثبيت",
+    "commentAdded": "تمت إضافة التعليق",
+    "deleted": "تم حذف طلب الميزة",
+    "deleteTitle": "حذف طلب الميزة؟",
+    "deleteDesc": "سيؤدي هذا إلى حذف الطلب وأصواته وتعليقاته نهائيًا.",
+    "delete": "حذف",
+    "pin": "تثبيت",
+    "unpin": "إلغاء التثبيت",
+    "platformResponse": "رد المنصة",
+    "platformResponsePlaceholder": "رد رسمي يظهر للمدارس…",
+    "saveResponse": "حفظ الرد",
+    "statusNote": "ملاحظة الحالة",
+    "statusNotePlaceholder": "ملاحظة اختيارية لتغيير الحالة…",
+    "comments": "التعليقات",
+    "commentPlaceholder": "اكتب تعليقًا من المنصة…",
+    "addComment": "إضافة تعليق",
+    "votes": "أصوات",
+    "noSelection": "اختر طلبًا لفرزه.",
+    "submittedBy": "مُقدَّم من",
+    "pageOf": "صفحة {{page}} من {{pages}}",
+    "prevPage": "السابق",
+    "nextPage": "التالي",
+    "stats": {
+      "new": "جديدة",
+      "underReview": "قيد المراجعة",
+      "planned": "مخططة",
+      "inProgress": "قيد التنفيذ",
+      "released": "مُصدَرة"
     }
   }
 }
