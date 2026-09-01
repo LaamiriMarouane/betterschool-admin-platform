@@ -145,7 +145,7 @@ const SearchableSelect = React.forwardRef<
           <Command
             filter={
               strictSubstring
-                ? (value, search) => {
+                ? (value: string, search: string) => {
                     if (!search) return 1;
                     return value.toLowerCase().includes(search.toLowerCase())
                       ? 1

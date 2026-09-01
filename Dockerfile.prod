@@ -1,10 +1,9 @@
 # syntax=docker/dockerfile:1
 # From this directory:
 #   docker build -f Dockerfile.prod \
-#     --build-arg VITE_API_BASE_URL=https://api.example.com/api/v1 \
+#     --build-arg VITE_API_BASE_URL=https://api.hikmaedu.com/api/v1 \
 #     -t betterschool-admin:prod .
 # Name must match VITE_API_BASE_URL in src/env.d.ts / src/lib/http/http.config.ts.
-# Default (/api/v1) works same-origin: nginx in this image proxies /api/ → backend.
 
 FROM node:20-bookworm-slim AS build
 
@@ -14,7 +13,7 @@ COPY package.json package-lock.json ./
 RUN --mount=type=cache,target=/root/.npm \
     npm ci
 
-ARG VITE_API_BASE_URL=/api/v1
+ARG VITE_API_BASE_URL=https://api.hikmaedu.com/api/v1
 ENV VITE_API_BASE_URL=${VITE_API_BASE_URL}
 
 COPY . .

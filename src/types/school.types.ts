@@ -5,6 +5,7 @@ import type {
   PlatformSubscriptionDTO,
 } from "./subscription.types";
 import type { PlatformStorageUsageDTO } from "./storage.types";
+import type { PlatformSchoolUsageDTO } from "./school-detail.types";
 import type { AttachmentShortDTO } from "./attachment.types";
 
 /**
@@ -80,6 +81,7 @@ export interface PlatformSchoolDetailDTO {
   enrollmentCount: number;
   enrollmentLimit: number | null;
   enrollmentStatus: EnrollmentLimitStatus;
+  usage: PlatformSchoolUsageDTO | null;
   createdAt: string; // ISO datetime
   lastModifiedDate: string | null;
   createdBy: string | null;

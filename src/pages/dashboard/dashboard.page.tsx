@@ -3,9 +3,10 @@ import { useTranslation } from "react-i18next";
 import { AlertTriangle, Clock, CircleCheck, School } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { CurrencyDisplay } from "@/components/currency-display";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { formatBytes, formatMoney } from "@/lib/format";
+import { formatBytes } from "@/lib/format";
 import {
   useDashboardActions,
   useDashboardData,
@@ -57,9 +58,6 @@ export function DashboardPage() {
 function DashboardContent({ data }: { data: PlatformDashboardDTO }) {
   const { t } = useTranslation();
 
-  const mrrUsd = formatMoney(data.monthlyRecurringRevenue, "USD") ?? "—";
-  const mrrMad = formatMoney(data.monthlyRecurringRevenueMAD, "MAD");
-
   return (
     <div className="space-y-4">
       {/* Headline KPIs */}
@@ -94,11 +92,23 @@ function DashboardContent({ data }: { data: PlatformDashboardDTO }) {
       <div className="grid gap-4 sm:grid-cols-3">
         <StatCard
           label={t("dashboard.mrr.label")}
-          value={mrrUsd}
+          value={
+            <CurrencyDisplay
+              amount={data.monthlyRecurringRevenue}
+              currencyCode="USD"
+              className="text-2xl font-bold font-sans"
+            />
+          }
           hint={
-            mrrMad
-              ? `≈ ${mrrMad} · ${t("dashboard.mrr.exclCustom")}`
-              : t("dashboard.mrr.exclCustom")
+            <>
+              <span className="text-muted-foreground">≈ </span>
+              <CurrencyDisplay
+                amount={data.monthlyRecurringRevenueMAD}
+                currencyCode="MAD"
+                className="text-xs text-muted-foreground"
+              />
+              <span className="text-muted-foreground"> · {t("dashboard.mrr.exclCustom")}</span>
+            </>
           }
         />
         <StatCard

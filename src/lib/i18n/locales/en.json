@@ -151,7 +151,7 @@
   "customContract": {
     "action": "Edit custom contract",
     "title": "Custom contract",
-    "description": "Override this school's enrollment cap and price for a negotiated deal. Billing stays in Paddle via the custom price ID.",
+    "description": "Override caps and price for a negotiated deal. Checkout uses the custom Paddle price ID.",
     "enabled": "Custom contract",
     "enabledOption": "Enabled",
     "disabled": "Disabled",
@@ -161,6 +161,9 @@
     "capCustom": "Specific number",
     "capUnlimited": "Unlimited",
     "capPlaceholder": "e.g. 650",
+    "schoolsCap": "Campus / schools cap",
+    "schoolsCapPlaceholder": "e.g. 2",
+    "schoolsCapHint": "How many campuses this organization may run under one subscription.",
     "priceMad": "Custom price (MAD)",
     "pricePlaceholder": "e.g. 2400",
     "priceHint": "Recorded for reference. Paddle is the source of truth for what is charged.",
@@ -170,7 +173,7 @@
   "extendTrial": {
     "action": "Extend trial",
     "title": "Extend trial",
-    "description": "Push out the trial end date so this school isn't auto-purged during a sales conversation.",
+    "description": "Extends the trial end and clears the scheduled purge.",
     "currentEnd": "Current trial end",
     "days": "Extend by (days)",
     "daysHint": "Between 1 and 365 days. Clears the scheduled purge and warning.",
@@ -220,7 +223,8 @@
       "usersRead": "View team",
       "usersManage": "Manage team",
       "contactRead": "View contact messages",
-      "contactManage": "Manage contact messages"
+      "contactManage": "Manage contact messages",
+      "auditRead": "View school audit logs"
     },
     "grantSubsetHint": "You can only grant permissions you already hold."
   },
@@ -244,6 +248,19 @@
   },
   "dateDisplay": {
     "invalid": "Invalid date"
+  },
+  "currencyDisplay": {
+    "empty": "—"
+  },
+  "Currency": {
+    "USD": {
+      "symbol": "$",
+      "name": "US Dollar"
+    },
+    "MAD": {
+      "symbol": "DH",
+      "name": "Moroccan Dirham"
+    }
   },
   "password": {
     "show": "Show password",
@@ -391,7 +408,11 @@
     "tabs": {
       "overview": "Overview",
       "subscription": "Subscription",
-      "storage": "Storage"
+      "storage": "Storage",
+      "modules": "Modules",
+      "billing": "Billing",
+      "support": "Support",
+      "audit": "Audit log"
     },
     "profile": "Profile",
     "email": "Email",
@@ -436,7 +457,9 @@
       "graceDeadline": "Grace deadline",
       "price": "Price",
       "maxEnrollments": "Max enrollments",
+      "maxSchools": "Max campuses",
       "planCap": "Plan cap",
+      "planSchoolsCap": "Plan campus cap",
       "renews": "Renews",
       "scheduledChange": "Scheduled change",
       "paddleSubscriptionId": "Subscription ID",
@@ -459,6 +482,79 @@
       "enrollmentExceededDesc": "{{count}} students on a {{limit}} cap. New enrollments are blocked until the plan is upgraded.",
       "pastDue": "Payment past due.",
       "pastDueDesc": "The subscription will be suspended after the grace period ends."
+    },
+    "usage": {
+      "admins": "Admins",
+      "teachers": "Teachers",
+      "students": "Students",
+      "parents": "Parents",
+      "storageUsed": "Storage used",
+      "storageHint": "Active attachments only — aggregated for ops."
+    },
+    "modules": {
+      "title": "Enabled modules",
+      "readOnlyHint": "Read-only — the school admin toggles modules in their portal.",
+      "items": {
+        "STAFF_MANAGEMENT": "Staff management",
+        "LEAVE_MANAGEMENT": "Leave management",
+        "BEHAVIOUR": "Behaviour",
+        "EXPENSES": "Expenses",
+        "TRANSPORT": "Transport",
+        "EQUIPMENT": "Equipment",
+        "ANNOUNCEMENT": "Announcements",
+        "CHAT": "Chat",
+        "RECLAMATION": "Reclamations"
+      }
+    },
+    "billing": {
+      "title": "Billing history",
+      "hint": "Invoices from Paddle for this school's billing customer.",
+      "empty": "No invoices yet — the school may not have a Paddle customer id.",
+      "download": "PDF",
+      "loadMore": "Load more",
+      "prev": "Previous",
+      "next": "Next",
+      "pageOf": "Page {{page}} of {{total}} · {{count}} invoices",
+      "columns": {
+        "invoice": "Invoice",
+        "date": "Date",
+        "amount": "Amount",
+        "status": "Status",
+        "action": "PDF"
+      },
+      "status": {
+        "completed": "Completed",
+        "paid": "Paid",
+        "billed": "Billed",
+        "past_due": "Past due",
+        "failed": "Failed"
+      }
+    },
+    "support": {
+      "title": "Support tickets",
+      "summary": "{{count}} tickets total for this school",
+      "viewAll": "Open queue",
+      "empty": "No support tickets from this school."
+    },
+    "audit": {
+      "title": "Activity log",
+      "hint": "Last 30 days summary · read-only for troubleshooting.",
+      "empty": "No audit entries recorded yet.",
+      "stats30d": "Entries (30d)",
+      "topAction": "Top action",
+      "topCategory": "Top category",
+      "topUser": "Top user",
+      "pageOf": "Page {{page}} of {{total}}",
+      "pageOfShort": "of {{total}}",
+      "prev": "Previous",
+      "next": "Next",
+      "columns": {
+        "when": "When",
+        "action": "Action",
+        "user": "User",
+        "description": "Description",
+        "entity": "Entity"
+      }
     }
   },
   "storage": {

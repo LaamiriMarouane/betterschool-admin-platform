@@ -21,6 +21,7 @@ import { useVirtualizer } from "@tanstack/react-virtual";
 import * as React from "react";
 import { X } from "lucide-react";
 
+import { EmptyState } from "@/components/empty-state";
 import {
   Table,
   TableBody,
@@ -84,6 +85,8 @@ type DataTableProps<T> = {
   urlPagination?: DataTableUrlPaginationConfig;
   /** Optional full-row click handler (e.g. open a detail view). */
   onRowClick?: (row: T) => void;
+  /** Embedded in a card/tab — compact height, no toolbar chrome, lighter shadow. */
+  embedded?: boolean;
 };
 
 export function DataTable<T>({
@@ -107,6 +110,7 @@ export function DataTable<T>({
   initialColumnVisibility,
   urlPagination,
   onRowClick,
+  embedded = false,
 }: DataTableProps<T>) {
   // TanStack Table returns fresh function refs each render, so React Compiler
   // can't optimize this component — opt it out (it renders correctly regardless).
@@ -219,8 +223,19 @@ export function DataTable<T>({
       ? t("dataTable.rowCount", { value: filteredTotalRowCount })
       : t("dataTable.selected", { value: selectedRowCount });
 
+  const showToolbar =
+    !embedded &&
+    (onSearchChange != null ||
+      (actions != null && actions.length > 0) ||
+      (additionalActions != null && additionalActions.length > 0));
+
   return (
-    <div className="flex w-full min-w-0 max-w-full min-h-[600px] flex-col rounded-md pb-4">
+    <div
+      className={cn(
+        "flex w-full min-w-0 max-w-full flex-col rounded-md pb-4",
+        embedded ? "min-h-0" : "min-h-[600px]",
+      )}
+    >
       {hasSelection && (
         <div className="my-2 p-2 bg-muted/50 border border-border rounded-lg">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-2">
@@ -249,6 +264,7 @@ export function DataTable<T>({
         </div>
       )}
 
+      {showToolbar && (
       <div
         className={cn(
           "flex w-full min-w-0 max-w-full flex-col items-center justify-between gap-2 py-2 md:flex-row",
@@ -287,7 +303,8 @@ export function DataTable<T>({
           )}
         </div>
       </div>
-      <div className="min-w-0 max-w-full shadow-md">
+      )}
+      <div className={cn("min-w-0 max-w-full", !embedded && "shadow-md")}>
         <div
           className={cn(
             "scrollbar-reveal-on-hover flex min-w-0 max-w-full flex-grow flex-col overflow-hidden rounded-md border",
@@ -329,8 +346,11 @@ export function DataTable<T>({
 
               {/* Body Table */}
               <div
-                className="overflow-y-auto overflow-x-hidden custom-scrollbar scrollbar-thumb-on-hover min-h-[380px]"
-                style={{ maxHeight: "calc(100vh - 260px)" }}
+                className={cn(
+                  "overflow-y-auto overflow-x-hidden custom-scrollbar scrollbar-thumb-on-hover",
+                  embedded ? "min-h-0 max-h-[420px]" : "min-h-[380px]",
+                )}
+                style={embedded ? undefined : { maxHeight: "calc(100vh - 260px)" }}
                 ref={tableContainerRef}
                 onWheel={(e) => {
                   if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
@@ -386,19 +406,12 @@ export function DataTable<T>({
                     </TableBody>
                   </Table>
                 ) : !virtualRows.length ? (
-                  <div className="flex flex-col items-center justify-center py-12 px-4 min-h-[320px] text-center text-muted-foreground">
-                    {emptyState?.icon && (
-                      <div className="mb-3 text-muted-foreground [&>svg]:w-10 [&>svg]:h-10">
-                        {emptyState.icon}
-                      </div>
-                    )}
-                    <p className="text-sm font-medium">
-                      {emptyState?.message ?? t("common.noResults")}
-                    </p>
-                    {emptyState?.action && (
-                      <div className="mt-4">{emptyState.action}</div>
-                    )}
-                  </div>
+                  <EmptyState
+                    icon={emptyState?.icon}
+                    message={emptyState?.message ?? t("common.noResults")}
+                    action={emptyState?.action}
+                    className="min-h-[320px]"
+                  />
                 ) : (
                   <Table
                     style={{

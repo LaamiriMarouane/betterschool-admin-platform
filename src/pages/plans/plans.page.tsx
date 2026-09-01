@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
+import { CurrencyDisplay } from "@/components/currency-display";
 import {
   Card,
   CardContent,
@@ -16,11 +17,6 @@ import type { LocalizedText } from "@/types/common.types";
 function localize(value: LocalizedText | null | undefined, lang: string): string | null {
   if (!value) return null;
   return value[lang] ?? value.en ?? Object.values(value)[0] ?? null;
-}
-
-function formatPrice(amount: number | null): string | null {
-  if (amount == null) return null;
-  return `$${amount.toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
 }
 
 export function PlansPage() {
@@ -63,8 +59,6 @@ export function PlansPage() {
 function PlanCard({ plan, lang }: { plan: PlatformPlanDTO; lang: string }) {
   const { t } = useTranslation();
   const name = localize(plan.name, lang) ?? t(`enums.planTier.${plan.tier}`);
-  const monthly = formatPrice(plan.monthlyPrice);
-  const yearly = formatPrice(plan.yearlyPrice);
 
   return (
     <Card className={plan.active ? undefined : "opacity-70"}>
@@ -80,14 +74,40 @@ function PlanCard({ plan, lang }: { plan: PlatformPlanDTO; lang: string }) {
         </div>
       </CardHeader>
       <CardContent className="space-y-3 text-sm">
-        <div className="flex items-baseline gap-2">
-          <span className="text-xl font-semibold tabular-nums">{monthly ?? "—"}</span>
-          {monthly && <span className="text-xs text-muted-foreground">{t("plans.perMonth")}</span>}
+        <div className="space-y-1">
+          <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+            <CurrencyDisplay
+              amount={plan.monthlyPrice}
+              currencyCode="USD"
+              className="text-xl font-semibold font-sans"
+            />
+            {plan.monthlyPrice != null && (
+              <span className="text-xs text-muted-foreground">{t("plans.perMonth")}</span>
+            )}
+          </div>
+          {plan.monthlyPriceMAD != null && (
+            <CurrencyDisplay
+              amount={plan.monthlyPriceMAD}
+              currencyCode="MAD"
+              className="text-xs text-muted-foreground"
+            />
+          )}
         </div>
         <dl className="space-y-1.5 text-muted-foreground">
-          <div className="flex justify-between">
+          <div className="flex items-center justify-between gap-3">
             <dt>{t("plans.yearly")}</dt>
-            <dd className="text-foreground tabular-nums">{yearly ?? "—"}</dd>
+            <dd className="text-end">
+              <CurrencyDisplay amount={plan.yearlyPrice} currencyCode="USD" className="text-foreground" />
+              {plan.yearlyPriceMAD != null && (
+                <div>
+                  <CurrencyDisplay
+                    amount={plan.yearlyPriceMAD}
+                    currencyCode="MAD"
+                    className="text-xs text-muted-foreground"
+                  />
+                </div>
+              )}
+            </dd>
           </div>
           <div className="flex justify-between">
             <dt>{t("plans.maxEnrollments")}</dt>

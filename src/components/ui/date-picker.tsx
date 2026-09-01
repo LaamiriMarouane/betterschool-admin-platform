@@ -424,12 +424,12 @@ export function DatePicker(props: DatePickerProps) {
         data-date-picker-popover
       >
         <Calendar
+          {...calendarProps}
           mode="range"
           selected={value}
           onSelect={handleRangeSelect}
           fromDate={calendarProps.fromDate || defaultFromDate}
           toDate={calendarProps.toDate || defaultToDate}
-          {...calendarProps}
           fromYear={rangeResolvedFromYear}
           toYear={rangeResolvedToYear}
         />

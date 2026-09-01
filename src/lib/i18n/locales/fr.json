@@ -151,7 +151,7 @@
   "customContract": {
     "action": "Modifier le contrat personnalisé",
     "title": "Contrat personnalisé",
-    "description": "Remplacez le plafond d'inscriptions et le prix de cette école pour un accord négocié. La facturation reste dans Paddle via l'ID de prix personnalisé.",
+    "description": "Remplace plafonds et prix pour un accord négocié. Le paiement utilise l'ID de prix Paddle personnalisé.",
     "enabled": "Contrat personnalisé",
     "enabledOption": "Activé",
     "disabled": "Désactivé",
@@ -161,6 +161,9 @@
     "capCustom": "Nombre précis",
     "capUnlimited": "Illimité",
     "capPlaceholder": "ex. 650",
+    "schoolsCap": "Plafond de campus",
+    "schoolsCapPlaceholder": "ex. 2",
+    "schoolsCapHint": "Nombre de campus que cette organisation peut gérer sous un seul abonnement.",
     "priceMad": "Prix personnalisé (MAD)",
     "pricePlaceholder": "ex. 2400",
     "priceHint": "Enregistré à titre indicatif. Paddle fait foi pour le montant facturé.",
@@ -170,7 +173,7 @@
   "extendTrial": {
     "action": "Prolonger l'essai",
     "title": "Prolonger l'essai",
-    "description": "Reportez la fin de l'essai pour que cette école ne soit pas purgée pendant une discussion commerciale.",
+    "description": "Prolonge la fin d'essai et annule la purge programmée.",
     "currentEnd": "Fin d'essai actuelle",
     "days": "Prolonger de (jours)",
     "daysHint": "Entre 1 et 365 jours. Annule la purge et l'avertissement programmés.",
@@ -220,7 +223,8 @@
       "usersRead": "Voir l'équipe",
       "usersManage": "Gérer l'équipe",
       "contactRead": "Voir les messages de contact",
-      "contactManage": "Gérer les messages de contact"
+      "contactManage": "Gérer les messages de contact",
+      "auditRead": "Consulter les journaux d'audit des écoles"
     },
     "grantSubsetHint": "Vous ne pouvez accorder que les permissions que vous détenez déjà."
   },
@@ -244,6 +248,19 @@
   },
   "dateDisplay": {
     "invalid": "Date invalide"
+  },
+  "currencyDisplay": {
+    "empty": "—"
+  },
+  "Currency": {
+    "USD": {
+      "symbol": "$",
+      "name": "Dollar américain"
+    },
+    "MAD": {
+      "symbol": "DH",
+      "name": "Dirham marocain"
+    }
   },
   "password": {
     "show": "Afficher le mot de passe",
@@ -391,7 +408,11 @@
     "tabs": {
       "overview": "Aperçu",
       "subscription": "Abonnement",
-      "storage": "Stockage"
+      "storage": "Stockage",
+      "modules": "Modules",
+      "billing": "Facturation",
+      "support": "Support",
+      "audit": "Journal d'audit"
     },
     "profile": "Profil",
     "email": "E-mail",
@@ -436,7 +457,9 @@
       "graceDeadline": "Délai de grâce",
       "price": "Prix",
       "maxEnrollments": "Inscriptions max",
+      "maxSchools": "Campus max",
       "planCap": "Plafond du plan",
+      "planSchoolsCap": "Plafond campus du plan",
       "renews": "Renouvellement",
       "scheduledChange": "Changement planifié",
       "paddleSubscriptionId": "ID abonnement",
@@ -459,6 +482,79 @@
       "enrollmentExceededDesc": "{{count}} élèves pour un plafond de {{limit}}. Les nouvelles inscriptions sont bloquées jusqu'à la mise à niveau du forfait.",
       "pastDue": "Paiement en retard.",
       "pastDueDesc": "L'abonnement sera suspendu à la fin de la période de grâce."
+    },
+    "usage": {
+      "admins": "Administrateurs",
+      "teachers": "Enseignants",
+      "students": "Élèves",
+      "parents": "Parents",
+      "storageUsed": "Stockage utilisé",
+      "storageHint": "Pièces jointes actives uniquement — agrégé pour les opérations."
+    },
+    "modules": {
+      "title": "Modules activés",
+      "readOnlyHint": "Lecture seule — l'administrateur de l'école active les modules dans son portail.",
+      "items": {
+        "STAFF_MANAGEMENT": "Gestion du personnel",
+        "LEAVE_MANAGEMENT": "Gestion des congés",
+        "BEHAVIOUR": "Comportement",
+        "EXPENSES": "Dépenses",
+        "TRANSPORT": "Transport",
+        "EQUIPMENT": "Équipement",
+        "ANNOUNCEMENT": "Annonces",
+        "CHAT": "Messagerie",
+        "RECLAMATION": "Réclamations"
+      }
+    },
+    "billing": {
+      "title": "Historique de facturation",
+      "hint": "Factures Paddle pour le client de facturation de cette école.",
+      "empty": "Aucune facture — l'école peut ne pas avoir d'identifiant client Paddle.",
+      "download": "PDF",
+      "loadMore": "Charger plus",
+      "prev": "Précédent",
+      "next": "Suivant",
+      "pageOf": "Page {{page}} sur {{total}} · {{count}} factures",
+      "columns": {
+        "invoice": "Facture",
+        "date": "Date",
+        "amount": "Montant",
+        "status": "Statut",
+        "action": "PDF"
+      },
+      "status": {
+        "completed": "Terminé",
+        "paid": "Payé",
+        "billed": "Facturé",
+        "past_due": "En retard",
+        "failed": "Échoué"
+      }
+    },
+    "support": {
+      "title": "Tickets de support",
+      "summary": "{{count}} tickets au total pour cette école",
+      "viewAll": "Ouvrir la file",
+      "empty": "Aucun ticket de support de cette école."
+    },
+    "audit": {
+      "title": "Journal d'activité",
+      "hint": "Résumé des 30 derniers jours · lecture seule pour le dépannage.",
+      "empty": "Aucune entrée d'audit enregistrée.",
+      "stats30d": "Entrées (30 j)",
+      "topAction": "Action principale",
+      "topCategory": "Catégorie principale",
+      "topUser": "Utilisateur principal",
+      "pageOf": "Page {{page}} sur {{total}}",
+      "pageOfShort": "sur {{total}}",
+      "prev": "Précédent",
+      "next": "Suivant",
+      "columns": {
+        "when": "Date",
+        "action": "Action",
+        "user": "Utilisateur",
+        "description": "Description",
+        "entity": "Entité"
+      }
     }
   },
   "storage": {

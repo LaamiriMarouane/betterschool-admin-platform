@@ -27,6 +27,7 @@ export interface PlatformSchoolsQuery {
 export interface CustomContractRequest {
   customContract: boolean;
   customMaxEnrollments: number | null; // null = use plan, <= 0 = unlimited
+  customMaxSchools: number | null; // null = use plan, <= 0 = unlimited
   customPriceMAD: number | null;
   customPaddlePriceId: string | null;
 }

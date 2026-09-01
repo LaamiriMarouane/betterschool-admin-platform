@@ -32,6 +32,7 @@ export interface PlatformSubscriptionDTO {
   planDescription: LocalizedText | null;
   /** Plan capacity + pricing, embedded so the Plan card can render without a second fetch. */
   maxEnrollments: number | null;
+  maxSchools: number | null;
   monthlyPrice: number | null;
   yearlyPrice: number | null;
   monthlyPriceMAD: number | null;
@@ -47,10 +48,12 @@ export interface PlatformSubscriptionDTO {
   customContract: boolean;
   /** Negotiated custom-contract overrides — only meaningful when customContract is true. */
   customMaxEnrollments: number | null; // null = use plan, <= 0 = unlimited
+  customMaxSchools: number | null; // null = use plan, <= 0 = unlimited
   customPriceMAD: number | null;
   customPaddlePriceId: string | null;
   /** The cap actually enforced now (custom cap if set, else plan max; null = unlimited). */
   effectiveMaxEnrollments: number | null;
+  effectiveMaxSchools: number | null;
   scheduledChangeAction: ScheduledChangeAction | null;
   scheduledChangeEffectiveAt: string | null;
 }

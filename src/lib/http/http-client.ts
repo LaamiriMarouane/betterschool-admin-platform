@@ -1,4 +1,5 @@
 import { HTTP_CONFIG, LOGIN_PATH, STORAGE_KEYS } from "./http.config";
+import { extractFilenameFromContentDisposition, triggerBlobDownload } from "@/lib/download-blob";
 import { tokenStorage } from "./token-storage";
 import {
   ApiError,
@@ -162,6 +163,69 @@ async function request<T>(
   return (text ? JSON.parse(text) : undefined) as T;
 }
 
+async function download(
+  path: string,
+  fallbackFilename: string,
+  options: RequestOptions = {},
+): Promise<void> {
+  const { timeoutMs = HTTP_CONFIG.TIMEOUT_MS } = options;
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  if (options.signal) {
+    if (options.signal.aborted) controller.abort();
+    else options.signal.addEventListener("abort", () => controller.abort(), { once: true });
+  }
+
+  let response: Response;
+  try {
+    response = await fetch(buildUrl(path, options.params), {
+      method: "GET",
+      headers: buildHeaders(undefined, options),
+      signal: controller.signal,
+    });
+  } catch (err) {
+    const aborted = err instanceof DOMException && err.name === "AbortError";
+    throw new ApiError({
+      message: aborted ? "Request timed out" : "Network error — please check your connection.",
+      status: 0,
+      code: aborted ? "TIMEOUT" : "NETWORK_ERROR",
+    });
+  } finally {
+    clearTimeout(timeout);
+  }
+
+  if (response.status === 401) {
+    onUnauthorized();
+    throw await parseError(response);
+  }
+
+  if (!response.ok) {
+    const apiError = await parseError(response);
+    if (response.status === 403) {
+      toast({
+        variant: "destructive",
+        title: i18n.t("errors.accessDenied"),
+        description: apiError.body?.message || i18n.t("errors.accessDeniedDescription"),
+      });
+    } else if (response.status === 429) {
+      toast({
+        variant: "destructive",
+        title: i18n.t("errors.rateLimited"),
+        description: apiError.body?.message || i18n.t("errors.rateLimitedDescription"),
+      });
+    }
+    throw apiError;
+  }
+
+  const blob = await response.blob();
+  const filename = extractFilenameFromContentDisposition(
+    response.headers.get("content-disposition"),
+    fallbackFilename,
+  );
+  triggerBlobDownload(blob, filename);
+}
+
 /**
  * Reusable HTTP methods to call from `*.service.ts` files.
  *
@@ -186,4 +250,8 @@ export const http = {
   /** DELETE supports a body for bulk operations (e.g. `DELETE /schools` with `[ids]`). */
   delete: <T>(path: string, body?: unknown, options?: RequestOptions): Promise<T> =>
     request<T>("DELETE", path, body, options),
+
+  /** Authenticated GET that saves the response as a file (no new tab). */
+  download: (path: string, fallbackFilename: string, options?: RequestOptions): Promise<void> =>
+    download(path, fallbackFilename, options),
 };

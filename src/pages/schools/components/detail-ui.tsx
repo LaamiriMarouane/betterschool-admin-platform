@@ -18,8 +18,8 @@ export function DetailCard({
 }) {
   return (
     <Card className={className}>
-      <CardContent className="p-[18px]">
-        <div className="mb-1 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">
+      <CardContent className="p-[20px]">
+        <div className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">
           {icon}
           <span>{title}</span>
         </div>

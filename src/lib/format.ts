@@ -10,16 +10,6 @@ export function formatBytes(bytes: number | null | undefined): string {
   return `${value.toFixed(exponent === 0 ? 0 : 1)} ${units[exponent]}`;
 }
 
-/** Money: USD is symbol-prefixed ($79), other currencies are code-suffixed (799 MAD). */
-export function formatMoney(
-  amount: number | null | undefined,
-  currency: "USD" | "MAD",
-): string | null {
-  if (amount == null) return null;
-  const number = new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(amount);
-  return currency === "USD" ? `$${number}` : `${number} ${currency}`;
-}
-
 /** Coarse relative-time vs now: "today", "in 13d", "13d ago". */
 export function formatRelativeToNow(iso: string | null | undefined): string | null {
   if (!iso) return null;

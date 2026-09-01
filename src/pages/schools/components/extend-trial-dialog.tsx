@@ -49,7 +49,6 @@ export function ExtendTrialDialog({
       open={open}
       onOpenChange={onOpenChange}
       title={t("extendTrial.title")}
-      description={t("extendTrial.description")}
       footer={
         <div className="flex justify-end gap-2">
           <Button variant="outline" onClick={() => onOpenChange(false)} disabled={loading.save}>
@@ -67,6 +66,9 @@ export function ExtendTrialDialog({
       }
     >
       <div className="space-y-4 px-4 pb-2 sm:w-[26rem] sm:px-0">
+        <p className="text-sm leading-relaxed text-muted-foreground">
+          {t("extendTrial.description")}
+        </p>
         {subscription.trialEndsAt && (
           <div className="rounded-lg border border-border bg-muted/40 px-3 py-2 text-sm">
             <span className="text-muted-foreground">{t("extendTrial.currentEnd")}: </span>

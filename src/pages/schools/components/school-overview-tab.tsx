@@ -6,6 +6,7 @@ import { TextDisplay } from "@/components/text-display";
 import type { PlatformSchoolDetailDTO } from "@/types/school.types";
 
 import { Chip, DetailCard, Field, InitialAvatar } from "./detail-ui";
+import { SchoolUsageSummary } from "./school-usage-summary";
 
 export function SchoolOverviewTab({ detail }: { detail: PlatformSchoolDetailDTO }) {
   const { t } = useTranslation();
@@ -13,7 +14,15 @@ export function SchoolOverviewTab({ detail }: { detail: PlatformSchoolDetailDTO 
   const hasSocial = Boolean(detail.instagram || detail.whatsapp || detail.facebook);
 
   return (
-    <div className="grid items-start gap-5 lg:grid-cols-[1fr_320px]">
+    <div className="space-y-5">
+      <SchoolUsageSummary
+        usage={detail.usage}
+        enrollmentCount={detail.enrollmentCount}
+        enrollmentLimit={detail.enrollmentLimit}
+        enrollmentStatus={detail.enrollmentStatus}
+      />
+
+      <div className="grid items-start gap-5 lg:grid-cols-[1fr_320px]">
       <div className="flex flex-col gap-5">
         <DetailCard title={t("schoolDetail.contact")} icon={<Mail className="h-3.5 w-3.5" />}>
           <Field label={t("schoolDetail.email")} value={<TextDisplay value={detail.email} copyable />} />
@@ -72,6 +81,7 @@ export function SchoolOverviewTab({ detail }: { detail: PlatformSchoolDetailDTO 
             value={<DateDisplay date={detail.lastModifiedDate} showIcon={false} showTime />}
           />
         </DetailCard>
+      </div>
       </div>
     </div>
   );

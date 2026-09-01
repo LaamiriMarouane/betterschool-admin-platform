@@ -151,7 +151,7 @@
   "customContract": {
     "action": "تعديل العقد المخصص",
     "title": "عقد مخصص",
-    "description": "تجاوز حد التسجيلات والسعر لهذه المدرسة لاتفاق متفاوض عليه. تبقى الفوترة في Paddle عبر معرّف السعر المخصص.",
+    "description": "تجاوز الحدود والسعر لاتفاق متفاوض عليه. الدفع عبر معرّف السعر المخصص في Paddle.",
     "enabled": "عقد مخصص",
     "enabledOption": "مُفعّل",
     "disabled": "مُعطّل",
@@ -161,6 +161,9 @@
     "capCustom": "عدد محدد",
     "capUnlimited": "غير محدود",
     "capPlaceholder": "مثال: 650",
+    "schoolsCap": "حد الفروع / المدارس",
+    "schoolsCapPlaceholder": "مثال: 2",
+    "schoolsCapHint": "عدد الفروع التي يمكن لهذه المؤسسة تشغيلها ضمن اشتراك واحد.",
     "priceMad": "السعر المخصص (درهم)",
     "pricePlaceholder": "مثال: 2400",
     "priceHint": "يُسجّل للمرجع. Paddle هو المصدر الموثوق للمبلغ المحصّل.",
@@ -170,7 +173,7 @@
   "extendTrial": {
     "action": "تمديد الفترة التجريبية",
     "title": "تمديد الفترة التجريبية",
-    "description": "أجّل تاريخ انتهاء الفترة التجريبية حتى لا تُحذف هذه المدرسة أثناء محادثة مبيعات.",
+    "description": "يمدّد نهاية التجربة ويلغي الحذف المجدول.",
     "currentEnd": "نهاية الفترة التجريبية الحالية",
     "days": "التمديد بـ (أيام)",
     "daysHint": "بين 1 و365 يومًا. يلغي الحذف والتحذير المجدولين.",
@@ -220,7 +223,8 @@
       "usersRead": "عرض الفريق",
       "usersManage": "إدارة الفريق",
       "contactRead": "عرض رسائل التواصل",
-      "contactManage": "إدارة رسائل التواصل"
+      "contactManage": "إدارة رسائل التواصل",
+      "auditRead": "عرض سجلات تدقيق المدارس"
     },
     "grantSubsetHint": "يمكنك منح الصلاحيات التي تملكها فقط."
   },
@@ -244,6 +248,19 @@
   },
   "dateDisplay": {
     "invalid": "تاريخ غير صالح"
+  },
+  "currencyDisplay": {
+    "empty": "—"
+  },
+  "Currency": {
+    "USD": {
+      "symbol": "$",
+      "name": "الدولار الأمريكي"
+    },
+    "MAD": {
+      "symbol": "د.م.",
+      "name": "الدرهم المغربي"
+    }
   },
   "password": {
     "show": "إظهار كلمة المرور",
@@ -391,7 +408,11 @@
     "tabs": {
       "overview": "نظرة عامة",
       "subscription": "الاشتراك",
-      "storage": "التخزين"
+      "storage": "التخزين",
+      "modules": "الوحدات",
+      "billing": "الفوترة",
+      "support": "الدعم",
+      "audit": "سجل التدقيق"
     },
     "profile": "الملف",
     "email": "البريد الإلكتروني",
@@ -436,7 +457,9 @@
       "graceDeadline": "مهلة السماح",
       "price": "السعر",
       "maxEnrollments": "الحد الأقصى للتسجيلات",
+      "maxSchools": "الحد الأقصى للفروع",
       "planCap": "حد الخطة",
+      "planSchoolsCap": "حد فروع الخطة",
       "renews": "يتجدد",
       "scheduledChange": "تغيير مجدول",
       "paddleSubscriptionId": "معرّف الاشتراك",
@@ -459,6 +482,79 @@
       "enrollmentExceededDesc": "{{count}} طالب على حد {{limit}}. التسجيلات الجديدة محظورة حتى ترقية الباقة.",
       "pastDue": "الدفع متأخر.",
       "pastDueDesc": "سيتم تعليق الاشتراك بعد انتهاء فترة السماح."
+    },
+    "usage": {
+      "admins": "المسؤولون",
+      "teachers": "المعلمون",
+      "students": "الطلاب",
+      "parents": "أولياء الأمور",
+      "storageUsed": "التخزين المستخدم",
+      "storageHint": "المرفقات النشطة فقط — مجمّعة للعمليات."
+    },
+    "modules": {
+      "title": "الوحدات المفعّلة",
+      "readOnlyHint": "للقراءة فقط — مسؤول المدرسة يفعّل الوحدات من بوابته.",
+      "items": {
+        "STAFF_MANAGEMENT": "إدارة الموظفين",
+        "LEAVE_MANAGEMENT": "إدارة الإجازات",
+        "BEHAVIOUR": "السلوك",
+        "EXPENSES": "المصروفات",
+        "TRANSPORT": "النقل",
+        "EQUIPMENT": "المعدات",
+        "ANNOUNCEMENT": "الإعلانات",
+        "CHAT": "المحادثة",
+        "RECLAMATION": "الشكاوى"
+      }
+    },
+    "billing": {
+      "title": "سجل الفوترة",
+      "hint": "فواتير Paddle لعميل الفوترة لهذه المدرسة.",
+      "empty": "لا توجد فواتير — قد لا يكون للمدرسة معرّف عميل Paddle.",
+      "download": "PDF",
+      "loadMore": "تحميل المزيد",
+      "prev": "السابق",
+      "next": "التالي",
+      "pageOf": "صفحة {{page}} من {{total}} · {{count}} فاتورة",
+      "columns": {
+        "invoice": "الفاتورة",
+        "date": "التاريخ",
+        "amount": "المبلغ",
+        "status": "الحالة",
+        "action": "PDF"
+      },
+      "status": {
+        "completed": "مكتمل",
+        "paid": "مدفوع",
+        "billed": "مُفوتر",
+        "past_due": "متأخر",
+        "failed": "فشل"
+      }
+    },
+    "support": {
+      "title": "تذاكر الدعم",
+      "summary": "{{count}} تذكرة إجمالاً لهذه المدرسة",
+      "viewAll": "فتح قائمة الانتظار",
+      "empty": "لا توجد تذاكر دعم من هذه المدرسة."
+    },
+    "audit": {
+      "title": "سجل النشاط",
+      "hint": "ملخص آخر 30 يوماً · للقراءة فقط لاستكشاف الأخطاء.",
+      "empty": "لا توجد إدخالات تدقيق مسجّلة بعد.",
+      "stats30d": "الإدخالات (30 ي)",
+      "topAction": "أبرز إجراء",
+      "topCategory": "أبرز فئة",
+      "topUser": "أبرز مستخدم",
+      "pageOf": "صفحة {{page}} من {{total}}",
+      "pageOfShort": "من {{total}}",
+      "prev": "السابق",
+      "next": "التالي",
+      "columns": {
+        "when": "الوقت",
+        "action": "الإجراء",
+        "user": "المستخدم",
+        "description": "الوصف",
+        "entity": "الكيان"
+      }
     }
   },
   "storage": {

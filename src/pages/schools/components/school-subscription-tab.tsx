@@ -2,10 +2,11 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { CalendarClock, CalendarPlus, Clock, CreditCard, GraduationCap, Pencil } from "lucide-react";
 
+import { CurrencyDisplay } from "@/components/currency-display";
 import { DateDisplay } from "@/components/date-display";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { formatMoney, formatRelativeToNow } from "@/lib/format";
+import { formatRelativeToNow } from "@/lib/format";
 import type { PlatformSchoolDetailDTO } from "@/types/school.types";
 
 import { CustomContractDialog } from "./custom-contract-dialog";
@@ -40,8 +41,8 @@ export function SchoolSubscriptionTab({
   const tierLabel = sub.planTier ? t(`enums.planTier.${sub.planTier}`) : null;
 
   const yearly = sub.billingCycle === "YEARLY";
-  const priceUsd = formatMoney(yearly ? sub.yearlyPrice : sub.monthlyPrice, "USD");
-  const priceMad = formatMoney(yearly ? sub.yearlyPriceMAD : sub.monthlyPriceMAD, "MAD");
+  const listPrice = yearly ? sub.yearlyPrice : sub.monthlyPrice;
+  const listPriceMad = yearly ? sub.yearlyPriceMAD : sub.monthlyPriceMAD;
   const renews = formatRelativeToNow(sub.currentPeriodEnd);
 
   const formatCap = (value: number | null) =>
@@ -49,6 +50,8 @@ export function SchoolSubscriptionTab({
 
   const planCapValue = formatCap(sub.maxEnrollments);
   const effectiveCapValue = formatCap(sub.effectiveMaxEnrollments);
+  const planSchoolsCapValue = formatCap(sub.maxSchools);
+  const effectiveSchoolsCapValue = formatCap(sub.effectiveMaxSchools);
   const trialEligible = sub.status === "TRIALING" || sub.status === "EXPIRED";
 
   const capacityNote =
@@ -99,16 +102,25 @@ export function SchoolSubscriptionTab({
                   <span className="flex flex-wrap items-center gap-2">
                     <Badge variant="info">{t("schoolDetail.subscription.customContract")}</Badge>
                     {sub.customPriceMAD != null && (
-                      <span className="font-mono text-xs text-muted-foreground">
-                        {formatMoney(sub.customPriceMAD, "MAD")}
-                      </span>
+                      <CurrencyDisplay
+                        amount={sub.customPriceMAD}
+                        currencyCode="MAD"
+                        className="text-xs text-muted-foreground"
+                      />
                     )}
                   </span>
-                ) : priceUsd ? (
-                  <span>
-                    {priceUsd}
-                    {priceMad && (
-                      <span className="ms-2 font-mono text-xs text-muted-foreground">· {priceMad}</span>
+                ) : listPrice != null ? (
+                  <span className="inline-flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                    <CurrencyDisplay amount={listPrice} currencyCode="USD" />
+                    {listPriceMad != null && (
+                      <>
+                        <span className="text-muted-foreground">·</span>
+                        <CurrencyDisplay
+                          amount={listPriceMad}
+                          currencyCode="MAD"
+                          className="text-xs text-muted-foreground"
+                        />
+                      </>
                     )}
                   </span>
                 ) : null
@@ -119,9 +131,19 @@ export function SchoolSubscriptionTab({
               value={sub.customContract ? effectiveCapValue : planCapValue}
               mono
             />
+            <Field
+              label={t("schoolDetail.subscription.maxSchools")}
+              value={sub.customContract ? effectiveSchoolsCapValue : planSchoolsCapValue}
+              mono
+            />
             {sub.customContract && (
               <>
                 <Field label={t("schoolDetail.subscription.planCap")} value={planCapValue} mono />
+                <Field
+                  label={t("schoolDetail.subscription.planSchoolsCap")}
+                  value={planSchoolsCapValue}
+                  mono
+                />
                 {sub.customPaddlePriceId && (
                   <Field
                     label={t("customContract.paddlePriceId")}

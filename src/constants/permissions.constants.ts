@@ -16,6 +16,7 @@ export const PLATFORM_PERMISSIONS = [
   "platform.users.manage",
   "platform.contact.read",
   "platform.contact.manage",
+  "platform.audit.read",
 ] as const;
 
 export type PlatformPermission = (typeof PLATFORM_PERMISSIONS)[number];
@@ -34,6 +35,7 @@ export const PERMISSION_LABEL_KEY: Record<PlatformPermission, string> = {
   "platform.users.manage": "permissions.labels.usersManage",
   "platform.contact.read": "permissions.labels.contactRead",
   "platform.contact.manage": "permissions.labels.contactManage",
+  "platform.audit.read": "permissions.labels.auditRead",
 };
 
 /** Map a permission's segment (platform.<segment>.<action>) to a display group. */
@@ -80,9 +82,22 @@ export const PRESET_PERMISSIONS: Record<PresetKey, PlatformPermission[]> = {
     "platform.contact.manage",
     "platform.support.read",
     "platform.support.manage",
+    "platform.audit.read",
   ],
-  OPS: ["platform.schools.read", "platform.stats.read", "platform.schools.manage", "platform.features.manage"],
-  BILLING: ["platform.schools.read", "platform.stats.read", "platform.billing.read", "platform.billing.manage"],
+  OPS: [
+    "platform.schools.read",
+    "platform.stats.read",
+    "platform.schools.manage",
+    "platform.features.manage",
+    "platform.audit.read",
+  ],
+  BILLING: [
+    "platform.schools.read",
+    "platform.stats.read",
+    "platform.billing.read",
+    "platform.billing.manage",
+    "platform.audit.read",
+  ],
 };
 
 const keySignature = (keys: readonly string[]) => [...keys].sort().join(",");

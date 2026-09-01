@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { Inbox, MessageSquare } from "lucide-react";
 
+import { EmptyState } from "@/components/empty-state";
 import { DateDisplay } from "@/components/date-display";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import type { SupportTicketListDTO } from "@/types/support-ticket.types";
@@ -44,10 +44,11 @@ export function TicketListPanel({
 
   if (tickets.length === 0) {
     return (
-      <Card className="flex flex-col items-center gap-2 px-4 py-12 text-center">
-        <Inbox className="size-7 text-muted-foreground" />
-        <p className="text-sm text-muted-foreground">{t("supportTickets.empty")}</p>
-      </Card>
+      <EmptyState
+        icon={<Inbox />}
+        message={t("supportTickets.empty")}
+        className="rounded-lg border bg-card"
+      />
     );
   }
 

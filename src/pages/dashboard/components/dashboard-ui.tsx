@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import type { ReactNode } from "react";
 import { PieChart, TrendingUp, type LucideIcon } from "lucide-react";
 
 import { Card } from "@/components/ui/card";
@@ -64,8 +65,8 @@ export function KpiCard({ icon: Icon, value, label, tone }: KpiCardProps) {
 
 interface StatCardProps {
   label: string;
-  value: string;
-  hint?: string | null;
+  value: ReactNode;
+  hint?: ReactNode | null;
 }
 
 export function StatCard({ label, value, hint }: StatCardProps) {

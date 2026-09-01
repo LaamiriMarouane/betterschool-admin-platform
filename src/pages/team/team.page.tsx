@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { KeyRound, Plus, Power, Settings2, Trash2, Users } from "lucide-react";
 
+import { EmptyState } from "@/components/empty-state";
 import { DateDisplay } from "@/components/date-display";
 import { PermissionGuard } from "@/components/permission-guard";
 import {
@@ -97,10 +98,7 @@ export function TeamPage() {
               <Skeleton className="h-10 w-full" />
             </div>
           ) : users.length === 0 ? (
-            <div className="flex flex-col items-center gap-2 py-16 text-center">
-              <Users className="h-8 w-8 text-muted-foreground" />
-              <p className="text-sm text-muted-foreground">{t("team.empty")}</p>
-            </div>
+            <EmptyState icon={<Users />} message={t("team.empty")} />
           ) : (
             <Table>
               <TableHeader>
