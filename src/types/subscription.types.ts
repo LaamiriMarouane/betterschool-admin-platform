@@ -56,4 +56,11 @@ export interface PlatformSubscriptionDTO {
   effectiveMaxSchools: number | null;
   scheduledChangeAction: ScheduledChangeAction | null;
   scheduledChangeEffectiveAt: string | null;
+  scheduledPlanId: string | null;
+  scheduledPlanTier: PlanTier | null;
+  scheduledBillingCycle: BillingCycle | null;
+  billingReviewRequired: boolean;
+  paddleSubscriptionId: string | null;
+  lastReconcileDrift: boolean;
+  lastReconciledAt: string | null;
 }

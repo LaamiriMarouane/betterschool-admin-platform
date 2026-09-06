@@ -179,6 +179,10 @@
     "daysHint": "Between 1 and 365 days. Clears the scheduled purge and warning.",
     "confirm": "Extend trial"
   },
+  "pullFromPaddle": {
+    "action": "Pull from Paddle",
+    "success": "Subscription synced from Paddle."
+  },
   "permissions": {
     "presetLabel": "Preset",
     "custom": "Custom",
@@ -464,7 +468,10 @@
       "scheduledChange": "Scheduled change",
       "paddleSubscriptionId": "Subscription ID",
       "paddleCustomerId": "Customer ID",
-      "paddleProductId": "Product ID"
+      "paddleProductId": "Product ID",
+      "billingReviewRequired": "This account is in billing review after a refund or dispute. Pull from Paddle or wait for a newer snapshot — do not force ACTIVE.",
+      "reconcileDrift": "Local entitlement still disagrees with Paddle after a pull. Review in Paddle before changing access.",
+      "lastReconciledAt": "Last Paddle pull"
     },
     "storage": {
       "total": "Total storage",

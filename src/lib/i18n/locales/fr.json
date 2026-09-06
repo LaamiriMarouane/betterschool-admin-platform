@@ -179,6 +179,10 @@
     "daysHint": "Entre 1 et 365 jours. Annule la purge et l'avertissement programmés.",
     "confirm": "Prolonger l'essai"
   },
+  "pullFromPaddle": {
+    "action": "Synchroniser depuis Paddle",
+    "success": "Abonnement synchronisé depuis Paddle."
+  },
   "permissions": {
     "presetLabel": "Préréglage",
     "custom": "Personnalisé",
@@ -464,7 +468,10 @@
       "scheduledChange": "Changement planifié",
       "paddleSubscriptionId": "ID abonnement",
       "paddleCustomerId": "ID client",
-      "paddleProductId": "ID produit"
+      "paddleProductId": "ID produit",
+      "billingReviewRequired": "Ce compte est en revue de facturation après un remboursement ou un litige. Synchronisez depuis Paddle ou attendez un instantané plus récent — ne forcez pas ACTIVE.",
+      "reconcileDrift": "L'entitlement local ne correspond toujours pas à Paddle après une synchronisation. Vérifiez dans Paddle avant de modifier l'accès.",
+      "lastReconciledAt": "Dernière synchro Paddle"
     },
     "storage": {
       "total": "Stockage total",

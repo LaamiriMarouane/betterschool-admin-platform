@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
+import i18n from "i18next";
 
 import {
   schoolsService,
@@ -7,6 +8,7 @@ import {
   type PlatformSchoolsQuery,
   type TrialExtendRequest,
 } from "@/services/schools/schools.service";
+import { toast } from "@/components/ui/use-toast";
 import { getErrorMessage, type StoreError } from "@/lib/api-error";
 import { notifyApiError } from "@/lib/notify";
 import type {
@@ -59,6 +61,7 @@ interface SchoolsActions {
   fetchSchool: (schoolId: string) => Promise<void>;
   setCustomContract: (schoolId: string, request: CustomContractRequest) => Promise<boolean>;
   extendTrial: (schoolId: string, request: TrialExtendRequest) => Promise<boolean>;
+  pullFromPaddle: (schoolId: string) => Promise<boolean>;
   clearDetail: () => void;
   clearErrors: () => void;
   resetStore: () => void;
@@ -205,6 +208,25 @@ export const useSchoolsStore = create<SchoolsStore>()(
                 : state.detail,
               loading: { ...state.loading, save: false },
             }));
+            return true;
+          } catch (error) {
+            set((state) => ({ loading: { ...state.loading, save: false } }));
+            notifyApiError(error);
+            return false;
+          }
+        },
+
+        pullFromPaddle: async (schoolId) => {
+          set((state) => ({ loading: { ...state.loading, save: true } }));
+          try {
+            const subscription = await schoolsService.pullFromPaddle(schoolId);
+            set((state) => ({
+              detail: state.detail
+                ? applySubscriptionToDetail(state.detail, subscription)
+                : state.detail,
+              loading: { ...state.loading, save: false },
+            }));
+            toast({ title: i18n.t("pullFromPaddle.success") });
             return true;
           } catch (error) {
             set((state) => ({ loading: { ...state.loading, save: false } }));

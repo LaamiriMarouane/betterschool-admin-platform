@@ -52,6 +52,7 @@ export interface SubscriptionInvoiceItemDTO {
   currencyCode: string | null;
   invoiceNumber: string | null;
   downloadable: boolean;
+  billingCycle?: "MONTHLY" | "YEARLY" | null;
 }
 
 export interface SubscriptionInvoiceListResponseDTO {

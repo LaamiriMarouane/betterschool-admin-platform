@@ -179,6 +179,10 @@
     "daysHint": "بين 1 و365 يومًا. يلغي الحذف والتحذير المجدولين.",
     "confirm": "تمديد الفترة التجريبية"
   },
+  "pullFromPaddle": {
+    "action": "جلب من Paddle",
+    "success": "تمت مزامنة الاشتراك من Paddle."
+  },
   "permissions": {
     "presetLabel": "إعداد مسبق",
     "custom": "مخصص",
@@ -464,7 +468,10 @@
       "scheduledChange": "تغيير مجدول",
       "paddleSubscriptionId": "معرّف الاشتراك",
       "paddleCustomerId": "معرّف العميل",
-      "paddleProductId": "معرّف المنتج"
+      "paddleProductId": "معرّف المنتج",
+      "billingReviewRequired": "هذا الحساب قيد مراجعة الفوترة بعد استرداد أو نزاع. اجلب من Paddle أو انتظر لقطة أحدث — لا تفرض الحالة ACTIVE.",
+      "reconcileDrift": "ما زال الاستحقاق المحلي يختلف عن Paddle بعد الجلب. راجع في Paddle قبل تغيير الوصول.",
+      "lastReconciledAt": "آخر جلب من Paddle"
     },
     "storage": {
       "total": "إجمالي التخزين",

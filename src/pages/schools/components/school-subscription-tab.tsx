@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { CalendarClock, CalendarPlus, Clock, CreditCard, GraduationCap, Pencil } from "lucide-react";
+import { AlertTriangle, CalendarClock, CalendarPlus, Clock, CreditCard, GraduationCap, Pencil, RefreshCw } from "lucide-react";
 
 import { CurrencyDisplay } from "@/components/currency-display";
 import { DateDisplay } from "@/components/date-display";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { formatRelativeToNow } from "@/lib/format";
+import { useSchoolsActions, useSchoolsLoading } from "@/store/schools/schools.store";
 import type { PlatformSchoolDetailDTO } from "@/types/school.types";
 
 import { CustomContractDialog } from "./custom-contract-dialog";
@@ -23,6 +24,8 @@ export function SchoolSubscriptionTab({
 }) {
   const { t } = useTranslation();
   const sub = detail.subscription;
+  const { pullFromPaddle } = useSchoolsActions();
+  const { save: saving } = useSchoolsLoading();
   const [customOpen, setCustomOpen] = useState(false);
   const [trialOpen, setTrialOpen] = useState(false);
 
@@ -70,6 +73,15 @@ export function SchoolSubscriptionTab({
             {t("extendTrial.action")}
           </Button>
         )}
+        <Button
+          variant="outline"
+          size="sm"
+          disabled={saving || !sub.paddleSubscriptionId}
+          onClick={() => void pullFromPaddle(detail.id)}
+        >
+          <RefreshCw className="size-4" />
+          {t("pullFromPaddle.action")}
+        </Button>
         <Button variant="outline" size="sm" onClick={() => setCustomOpen(true)}>
           <Pencil className="size-4" />
           {t("customContract.action")}
@@ -200,6 +212,19 @@ export function SchoolSubscriptionTab({
               }
             />
           )}
+          {sub.paddleSubscriptionId && (
+            <Field
+              label={t("schoolDetail.subscription.paddleSubscriptionId")}
+              value={sub.paddleSubscriptionId}
+              mono
+            />
+          )}
+          {sub.lastReconciledAt && (
+            <Field
+              label={t("schoolDetail.subscription.lastReconciledAt")}
+              value={<DateDisplay date={sub.lastReconciledAt} showIcon={false} showTime />}
+            />
+          )}
         </DetailCard>
       </div>
 
@@ -218,6 +243,17 @@ export function SchoolSubscriptionTab({
                 />
               </>
             )}
+          </DetailAlert>
+        )}
+
+        {sub.billingReviewRequired && (
+          <DetailAlert variant="danger" icon={<AlertTriangle className="h-4 w-4" />}>
+            {t("schoolDetail.subscription.billingReviewRequired")}
+          </DetailAlert>
+        )}
+        {sub.lastReconcileDrift && (
+          <DetailAlert variant="warning" icon={<AlertTriangle className="h-4 w-4" />}>
+            {t("schoolDetail.subscription.reconcileDrift")}
           </DetailAlert>
         )}
 

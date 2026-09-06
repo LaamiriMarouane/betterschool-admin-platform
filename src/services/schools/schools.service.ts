@@ -75,4 +75,7 @@ export const schoolsService = {
     request: TrialExtendRequest,
   ): Promise<PlatformSubscriptionDTO> =>
     http.post<PlatformSubscriptionDTO>(`${BASE}/${schoolId}/subscription/trial/extend`, request),
+
+  pullFromPaddle: (schoolId: string): Promise<PlatformSubscriptionDTO> =>
+    http.post<PlatformSubscriptionDTO>(`${BASE}/${schoolId}/subscription/pull`),
 };
