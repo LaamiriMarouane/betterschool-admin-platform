@@ -41,7 +41,8 @@
     "accountMenu": "Account menu",
     "language": "Language",
     "supportTickets": "Support tickets",
-    "featureRequests": "Feature requests"
+    "featureRequests": "Feature requests",
+    "legal": "Legal"
   },
   "auth": {
     "signInTitle": "Sign in",
@@ -213,7 +214,8 @@
       "contact": "Contact us",
       "support": "Support",
       "team": "Team",
-      "platform": "Platform"
+      "platform": "Platform",
+      "legal": "Legal documents"
     },
     "labels": {
       "schoolsRead": "View schools",
@@ -228,7 +230,10 @@
       "usersManage": "Manage team",
       "contactRead": "View contact messages",
       "contactManage": "Manage contact messages",
-      "auditRead": "View school audit logs"
+      "auditRead": "View school audit logs",
+      "legalRead": "View legal documents",
+      "legalManage": "Edit legal drafts",
+      "legalPublish": "Publish legal documents"
     },
     "grantSubsetHint": "You can only grant permissions you already hold."
   },
@@ -708,6 +713,165 @@
       "planned": "Planned",
       "inProgress": "In progress",
       "released": "Released"
+    }
+  },
+  "legal": {
+    "subtitle": "Terms, privacy and refund policy shown to customers. Published versions are frozen; changes are new versions.",
+    "ownerAccepts": "Owner accepts",
+    "displayOnly": "Display only",
+    "notPublished": "Not published yet",
+    "lastEdited": "Edited",
+    "history": "History ({{count}})",
+    "historySubtitle": "Every published, scheduled and withdrawn version.",
+    "noVersions": "No versions yet.",
+    "continueDraft": "Continue draft",
+    "newVersion": "New version",
+    "newDocument": "Write first version",
+    "effective": "Effective",
+    "effectiveImmediately": "As soon as published",
+    "draftTitle": "Draft (will be {{label}})",
+    "versionTitle": "Version {{label}}",
+    "draftFromThis": "New draft from this version",
+    "deleteDraft": "Delete draft",
+    "deleteDraftTitle": "Delete this draft?",
+    "deleteDraftDescription": "The draft was never public. This cannot be undone.",
+    "hash": "Content hash",
+    "frozenValues": "Values frozen at publish",
+    "type": {
+      "TERMS": "Terms of Service",
+      "PRIVACY": "Privacy Policy",
+      "REFUND": "Refund Policy"
+    },
+    "state": {
+      "DRAFT": "Draft",
+      "UPCOMING": "Scheduled",
+      "CURRENT": "In force",
+      "SUPERSEDED": "Superseded",
+      "WITHDRAWN": "Withdrawn"
+    },
+    "kind": {
+      "EDITORIAL": "Editorial",
+      "MATERIAL": "Material"
+    },
+    "kindHint": {
+      "choose": "Material = changes rights, obligations, prices, data processors or who the customer contracts with.",
+      "EDITORIAL": "Takes effect without asking owners to accept again.",
+      "MATERIAL": "Owners are notified and must accept again once it takes effect."
+    },
+    "locales": {
+      "en": "English",
+      "fr": "French",
+      "ar": "Arabic"
+    },
+    "columns": {
+      "version": "Version",
+      "state": "Status",
+      "kind": "Change",
+      "effective": "Effective",
+      "published": "Published"
+    },
+    "mode": {
+      "edit": "Edit",
+      "preview": "Preview",
+      "changes": "Changes",
+      "read": "Read"
+    },
+    "fields": {
+      "changeKind": "Type of change",
+      "changeKindPlaceholder": "Choose…",
+      "effectiveAt": "Takes effect",
+      "onDate": "On a date",
+      "noticeHint": "A material change needs at least {{days}} days of notice.",
+      "authoritativeLocale": "Prevailing language",
+      "authoritativeHint": "Wins if the translations disagree.",
+      "changeSummary": "What changed ({{language}})",
+      "changeSummaryPlaceholder": "One short line per change",
+      "changeSummaryHint": "Plain text. Shown to owners in the email and on the accept screen.",
+      "changeSummaryTitle": "What changed"
+    },
+    "drift": {
+      "title": "Server configuration changed since {{label}}: {{keys}}.",
+      "material": "This changes who customers contract with or the governing law: publish a material version.",
+      "editorial": "Publish an editorial version to show the new values."
+    },
+    "diff": {
+      "noPrevious": "No earlier version to compare with.",
+      "noChanges": "No text changes.",
+      "comparedTo": "Compared with {{label}}"
+    },
+    "editor": {
+      "paragraph": "Paragraph",
+      "heading2": "Section heading",
+      "heading3": "Subsection heading",
+      "bold": "Bold",
+      "italic": "Italic",
+      "underline": "Underline",
+      "link": "Link",
+      "linkHint": "https:// or mailto: links only.",
+      "removeLink": "Remove link",
+      "apply": "Apply",
+      "bulletList": "Bulleted list",
+      "orderedList": "Numbered list",
+      "quote": "Quote",
+      "rule": "Divider",
+      "table": "Insert table",
+      "deleteTable": "Delete table",
+      "undo": "Undo",
+      "redo": "Redo",
+      "insertValue": "Insert value",
+      "searchValues": "Search values…",
+      "notConfigured": "Not configured on the server",
+      "valuesFrozenHint": "Values are copied into the text when you publish. Later config changes need a new version.",
+      "unsaved": "Unsaved changes",
+      "previewStale": "Preview shows the last saved draft.",
+      "missingValues": "These values are not configured and will block publishing: {{keys}}"
+    },
+    "variables": {
+      "appName": "App name",
+      "companyLegalName": "Company legal name",
+      "companyRegistration": "Company registration (RC / ICE)",
+      "companyAddress": "Company address",
+      "governingLaw": "Governing law",
+      "supportEmail": "Support email",
+      "privacyEmail": "Privacy email",
+      "marketingUrl": "Website URL",
+      "webAppUrl": "Web app URL",
+      "termsUrl": "Terms page URL",
+      "privacyUrl": "Privacy page URL",
+      "refundUrl": "Refund policy URL"
+    },
+    "publish": {
+      "open": "Publish {{label}}",
+      "title": "Publish {{type}} {{label}}",
+      "description": "Publishing freezes this text for every customer. It can never be edited afterwards.",
+      "confirm": "Publish",
+      "checkSaved": "All changes saved",
+      "checkKind": "Type of change chosen",
+      "checkFirstMaterial": "First version is published as material",
+      "checkText": "{{language}} text written",
+      "checkSummary": "{{language}} summary of changes written",
+      "checkValues": "All inserted values are configured",
+      "checkValuesMissing": "Not configured: {{keys}}",
+      "firstHint": "First version of this document: it takes effect immediately.",
+      "materialHint": "Owners will be emailed and must accept again once it takes effect ({{days}} days of notice).",
+      "editorialHint": "No one is asked to accept again.",
+      "urgentReason": "Reason for the shorter notice",
+      "urgentHint": "Required when a material change takes effect within {{days}} days (e.g. required by law).",
+      "typeLabel": "Type {{label}} to confirm"
+    },
+    "withdraw": {
+      "open": "Withdraw",
+      "title": "Withdraw {{label}}?",
+      "description": "The version will never take effect. Its number is not reused, and the current version stays in force.",
+      "reason": "Reason",
+      "confirm": "Withdraw version"
+    },
+    "toast": {
+      "draftCreated": "Draft created",
+      "draftSaved": "Draft saved",
+      "draftDeleted": "Draft deleted",
+      "published": "Version {{label}} published",
+      "withdrawn": "Version {{label}} withdrawn"
     }
   }
 }

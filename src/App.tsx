@@ -16,6 +16,9 @@ import { TeamPage } from "@/pages/team/team.page";
 import { ContactPage } from "@/pages/contact/contact.page";
 import { SupportTicketsPage } from "@/pages/support/support-tickets.page";
 import { FeatureRequestsPage } from "@/pages/features/feature-requests.page";
+import { LegalDocumentsPage } from "@/pages/legal/legal-documents.page";
+import { LegalHistoryPage } from "@/pages/legal/legal-history.page";
+import { LegalVersionPage } from "@/pages/legal/legal-version.page";
 
 function Placeholder({ titleKey }: { titleKey: string }) {
   const { t } = useTranslation();
@@ -90,6 +93,30 @@ function App() {
             element={
               <RequirePermission permission="platform.support.read">
                 <SupportTicketsPage />
+              </RequirePermission>
+            }
+          />
+          <Route
+            path="legal"
+            element={
+              <RequirePermission permission="platform.legal.read">
+                <LegalDocumentsPage />
+              </RequirePermission>
+            }
+          />
+          <Route
+            path="legal/versions/:versionId"
+            element={
+              <RequirePermission permission="platform.legal.read">
+                <LegalVersionPage />
+              </RequirePermission>
+            }
+          />
+          <Route
+            path="legal/:type"
+            element={
+              <RequirePermission permission="platform.legal.read">
+                <LegalHistoryPage />
               </RequirePermission>
             }
           />

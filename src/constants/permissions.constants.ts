@@ -17,6 +17,9 @@ export const PLATFORM_PERMISSIONS = [
   "platform.contact.read",
   "platform.contact.manage",
   "platform.audit.read",
+  "platform.legal.read",
+  "platform.legal.manage",
+  "platform.legal.publish",
 ] as const;
 
 export type PlatformPermission = (typeof PLATFORM_PERMISSIONS)[number];
@@ -36,6 +39,9 @@ export const PERMISSION_LABEL_KEY: Record<PlatformPermission, string> = {
   "platform.contact.read": "permissions.labels.contactRead",
   "platform.contact.manage": "permissions.labels.contactManage",
   "platform.audit.read": "permissions.labels.auditRead",
+  "platform.legal.read": "permissions.labels.legalRead",
+  "platform.legal.manage": "permissions.labels.legalManage",
+  "platform.legal.publish": "permissions.labels.legalPublish",
 };
 
 /** Map a permission's segment (platform.<segment>.<action>) to a display group. */
@@ -47,10 +53,11 @@ const SEGMENT_TO_GROUP: Record<string, string> = {
   users: "team",
   stats: "platform",
   features: "platform",
+  legal: "legal",
 };
 
 /** Preferred render order for groups; unknown groups fall to the end. */
-export const GROUP_ORDER = ["schools", "billing", "contact", "support", "team", "platform"];
+export const GROUP_ORDER = ["schools", "billing", "contact", "support", "team", "legal", "platform"];
 
 /** Display group for a permission key — derived, so new backend keys still slot in. */
 export function permissionGroupKey(key: string): string {

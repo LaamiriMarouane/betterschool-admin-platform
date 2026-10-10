@@ -2,6 +2,7 @@ import { useAccountStore } from "@/store/account/account.store";
 import { useContactStore } from "@/store/contact/contact.store";
 import { useDashboardStore } from "@/store/dashboard/dashboard.store";
 import { useFeatureRequestStore } from "@/store/features/feature-request.store";
+import { useLegalStore } from "@/store/legal/legal.store";
 import { usePlansStore } from "@/store/plans/plans.store";
 import { useSchoolDetailTabsStore } from "@/store/schools/school-detail.store";
 import { useSchoolsStore } from "@/store/schools/schools.store";
@@ -17,6 +18,7 @@ export function resetAllStores(): void {
   useSchoolsStore.getState().actions.resetStore();
   useSchoolDetailTabsStore.getState().actions.reset();
   usePlansStore.getState().actions.resetStore();
+  useLegalStore.getState().actions.resetStore();
   useTeamStore.getState().actions.resetStore();
   useContactStore.getState().actions.resetStore();
   useSupportTicketStore.getState().actions.resetStore();

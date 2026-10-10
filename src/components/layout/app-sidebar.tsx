@@ -10,6 +10,7 @@ import {
   Inbox,
   LifeBuoy,
   Lightbulb,
+  Scale,
   type LucideIcon,
 } from "lucide-react";
 
@@ -35,6 +36,7 @@ const NAV_ITEMS: NavItem[] = [
   { to: "/contact-messages", labelKey: "nav.contact", icon: Inbox, permission: "platform.contact.read" },
   { to: "/support-tickets", labelKey: "nav.supportTickets", icon: LifeBuoy, permission: "platform.support.read" },
   { to: "/feature-requests", labelKey: "nav.featureRequests", icon: Lightbulb, permission: "platform.features.manage" },
+  { to: "/legal", labelKey: "nav.legal", icon: Scale, permission: "platform.legal.read" },
 ];
 
 interface AppSidebarProps {

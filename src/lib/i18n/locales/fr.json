@@ -41,7 +41,8 @@
     "accountMenu": "Menu du compte",
     "language": "Langue",
     "supportTickets": "Tickets support",
-    "featureRequests": "Demandes de fonctionnalités"
+    "featureRequests": "Demandes de fonctionnalités",
+    "legal": "Juridique"
   },
   "auth": {
     "signInTitle": "Connexion",
@@ -213,7 +214,8 @@
       "contact": "Contact",
       "support": "Support",
       "team": "Équipe",
-      "platform": "Plateforme"
+      "platform": "Plateforme",
+      "legal": "Documents juridiques"
     },
     "labels": {
       "schoolsRead": "Voir les écoles",
@@ -228,7 +230,10 @@
       "usersManage": "Gérer l'équipe",
       "contactRead": "Voir les messages de contact",
       "contactManage": "Gérer les messages de contact",
-      "auditRead": "Consulter les journaux d'audit des écoles"
+      "auditRead": "Consulter les journaux d'audit des écoles",
+      "legalRead": "Voir les documents juridiques",
+      "legalManage": "Modifier les brouillons juridiques",
+      "legalPublish": "Publier les documents juridiques"
     },
     "grantSubsetHint": "Vous ne pouvez accorder que les permissions que vous détenez déjà."
   },
@@ -708,6 +713,165 @@
       "planned": "Planifiées",
       "inProgress": "En cours",
       "released": "Publiées"
+    }
+  },
+  "legal": {
+    "subtitle": "Conditions, confidentialité et politique de remboursement présentées aux clients. Les versions publiées sont figées ; toute modification crée une nouvelle version.",
+    "ownerAccepts": "Acceptée par le propriétaire",
+    "displayOnly": "Affichage seul",
+    "notPublished": "Pas encore publiée",
+    "lastEdited": "Modifié",
+    "history": "Historique ({{count}})",
+    "historySubtitle": "Toutes les versions publiées, programmées et retirées.",
+    "noVersions": "Aucune version pour l'instant.",
+    "continueDraft": "Reprendre le brouillon",
+    "newVersion": "Nouvelle version",
+    "newDocument": "Rédiger la première version",
+    "effective": "En vigueur",
+    "effectiveImmediately": "Dès la publication",
+    "draftTitle": "Brouillon (deviendra {{label}})",
+    "versionTitle": "Version {{label}}",
+    "draftFromThis": "Nouveau brouillon à partir de cette version",
+    "deleteDraft": "Supprimer le brouillon",
+    "deleteDraftTitle": "Supprimer ce brouillon ?",
+    "deleteDraftDescription": "Le brouillon n'a jamais été public. Action irréversible.",
+    "hash": "Empreinte du contenu",
+    "frozenValues": "Valeurs figées à la publication",
+    "type": {
+      "TERMS": "Conditions d'utilisation",
+      "PRIVACY": "Politique de confidentialité",
+      "REFUND": "Politique de remboursement"
+    },
+    "state": {
+      "DRAFT": "Brouillon",
+      "UPCOMING": "Programmée",
+      "CURRENT": "En vigueur",
+      "SUPERSEDED": "Remplacée",
+      "WITHDRAWN": "Retirée"
+    },
+    "kind": {
+      "EDITORIAL": "Rédactionnel",
+      "MATERIAL": "Substantiel"
+    },
+    "kindHint": {
+      "choose": "Substantiel = modifie des droits, obligations, prix, sous-traitants ou le cocontractant du client.",
+      "EDITORIAL": "Prend effet sans redemander l'acceptation des propriétaires.",
+      "MATERIAL": "Les propriétaires sont prévenus et doivent accepter à nouveau à l'entrée en vigueur."
+    },
+    "locales": {
+      "en": "Anglais",
+      "fr": "Français",
+      "ar": "Arabe"
+    },
+    "columns": {
+      "version": "Version",
+      "state": "Statut",
+      "kind": "Changement",
+      "effective": "En vigueur",
+      "published": "Publiée"
+    },
+    "mode": {
+      "edit": "Modifier",
+      "preview": "Aperçu",
+      "changes": "Modifications",
+      "read": "Lire"
+    },
+    "fields": {
+      "changeKind": "Type de changement",
+      "changeKindPlaceholder": "Choisir…",
+      "effectiveAt": "Prend effet",
+      "onDate": "À une date",
+      "noticeHint": "Un changement substantiel exige un préavis d'au moins {{days}} jours.",
+      "authoritativeLocale": "Langue qui prévaut",
+      "authoritativeHint": "Fait foi si les traductions divergent.",
+      "changeSummary": "Ce qui change ({{language}})",
+      "changeSummaryPlaceholder": "Une ligne courte par changement",
+      "changeSummaryHint": "Texte brut. Affiché aux propriétaires dans l'e-mail et sur l'écran d'acceptation.",
+      "changeSummaryTitle": "Ce qui change"
+    },
+    "drift": {
+      "title": "La configuration du serveur a changé depuis {{label}} : {{keys}}.",
+      "material": "Cela change le cocontractant ou le droit applicable : publiez une version substantielle.",
+      "editorial": "Publiez une version rédactionnelle pour afficher les nouvelles valeurs."
+    },
+    "diff": {
+      "noPrevious": "Aucune version antérieure à comparer.",
+      "noChanges": "Aucune modification du texte.",
+      "comparedTo": "Comparé à {{label}}"
+    },
+    "editor": {
+      "paragraph": "Paragraphe",
+      "heading2": "Titre de section",
+      "heading3": "Titre de sous-section",
+      "bold": "Gras",
+      "italic": "Italique",
+      "underline": "Souligné",
+      "link": "Lien",
+      "linkHint": "Liens https:// ou mailto: uniquement.",
+      "removeLink": "Retirer le lien",
+      "apply": "Appliquer",
+      "bulletList": "Liste à puces",
+      "orderedList": "Liste numérotée",
+      "quote": "Citation",
+      "rule": "Séparateur",
+      "table": "Insérer un tableau",
+      "deleteTable": "Supprimer le tableau",
+      "undo": "Annuler",
+      "redo": "Rétablir",
+      "insertValue": "Insérer une valeur",
+      "searchValues": "Rechercher une valeur…",
+      "notConfigured": "Non configurée sur le serveur",
+      "valuesFrozenHint": "Les valeurs sont copiées dans le texte à la publication. Un changement ultérieur nécessite une nouvelle version.",
+      "unsaved": "Modifications non enregistrées",
+      "previewStale": "L'aperçu montre le dernier brouillon enregistré.",
+      "missingValues": "Ces valeurs ne sont pas configurées et bloqueront la publication : {{keys}}"
+    },
+    "variables": {
+      "appName": "Nom de l'application",
+      "companyLegalName": "Raison sociale",
+      "companyRegistration": "Immatriculation (RC / ICE)",
+      "companyAddress": "Adresse de la société",
+      "governingLaw": "Droit applicable",
+      "supportEmail": "E-mail du support",
+      "privacyEmail": "E-mail confidentialité",
+      "marketingUrl": "URL du site",
+      "webAppUrl": "URL de l'application web",
+      "termsUrl": "URL des conditions",
+      "privacyUrl": "URL de la confidentialité",
+      "refundUrl": "URL du remboursement"
+    },
+    "publish": {
+      "open": "Publier {{label}}",
+      "title": "Publier {{type}} {{label}}",
+      "description": "La publication fige ce texte pour tous les clients. Il ne pourra plus jamais être modifié.",
+      "confirm": "Publier",
+      "checkSaved": "Toutes les modifications sont enregistrées",
+      "checkKind": "Type de changement choisi",
+      "checkFirstMaterial": "La première version est publiée comme substantielle",
+      "checkText": "Texte en {{language}} rédigé",
+      "checkSummary": "Résumé des changements en {{language}} rédigé",
+      "checkValues": "Toutes les valeurs insérées sont configurées",
+      "checkValuesMissing": "Non configurées : {{keys}}",
+      "firstHint": "Première version de ce document : elle prend effet immédiatement.",
+      "materialHint": "Les propriétaires recevront un e-mail et devront accepter à nouveau à l'entrée en vigueur ({{days}} jours de préavis).",
+      "editorialHint": "Personne ne devra accepter à nouveau.",
+      "urgentReason": "Motif du préavis réduit",
+      "urgentHint": "Obligatoire si un changement substantiel prend effet en moins de {{days}} jours (ex. obligation légale).",
+      "typeLabel": "Saisissez {{label}} pour confirmer"
+    },
+    "withdraw": {
+      "open": "Retirer",
+      "title": "Retirer {{label}} ?",
+      "description": "Cette version n'entrera jamais en vigueur. Son numéro n'est pas réutilisé et la version actuelle reste en vigueur.",
+      "reason": "Motif",
+      "confirm": "Retirer la version"
+    },
+    "toast": {
+      "draftCreated": "Brouillon créé",
+      "draftSaved": "Brouillon enregistré",
+      "draftDeleted": "Brouillon supprimé",
+      "published": "Version {{label}} publiée",
+      "withdrawn": "Version {{label}} retirée"
     }
   }
 }

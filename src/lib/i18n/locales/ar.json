@@ -41,7 +41,8 @@
     "accountMenu": "قائمة الحساب",
     "language": "اللغة",
     "supportTickets": "تذاكر الدعم",
-    "featureRequests": "طلبات الميزات"
+    "featureRequests": "طلبات الميزات",
+    "legal": "الوثائق القانونية"
   },
   "auth": {
     "signInTitle": "تسجيل الدخول",
@@ -213,7 +214,8 @@
       "contact": "التواصل",
       "support": "الدعم",
       "team": "الفريق",
-      "platform": "المنصة"
+      "platform": "المنصة",
+      "legal": "الوثائق القانونية"
     },
     "labels": {
       "schoolsRead": "عرض المدارس",
@@ -228,7 +230,10 @@
       "usersManage": "إدارة الفريق",
       "contactRead": "عرض رسائل التواصل",
       "contactManage": "إدارة رسائل التواصل",
-      "auditRead": "عرض سجلات تدقيق المدارس"
+      "auditRead": "عرض سجلات تدقيق المدارس",
+      "legalRead": "عرض الوثائق القانونية",
+      "legalManage": "تعديل المسودات القانونية",
+      "legalPublish": "نشر الوثائق القانونية"
     },
     "grantSubsetHint": "يمكنك منح الصلاحيات التي تملكها فقط."
   },
@@ -708,6 +713,165 @@
       "planned": "مخططة",
       "inProgress": "قيد التنفيذ",
       "released": "مُصدَرة"
+    }
+  },
+  "legal": {
+    "subtitle": "الشروط والخصوصية وسياسة الاسترداد المعروضة على العملاء. النسخ المنشورة مجمّدة؛ أي تعديل يُنشئ نسخة جديدة.",
+    "ownerAccepts": "يقبلها المالك",
+    "displayOnly": "للعرض فقط",
+    "notPublished": "لم تُنشر بعد",
+    "lastEdited": "عُدّلت",
+    "history": "السجل ({{count}})",
+    "historySubtitle": "كل النسخ المنشورة والمجدولة والمسحوبة.",
+    "noVersions": "لا توجد نسخ بعد.",
+    "continueDraft": "متابعة المسودة",
+    "newVersion": "نسخة جديدة",
+    "newDocument": "كتابة النسخة الأولى",
+    "effective": "سارية من",
+    "effectiveImmediately": "فور النشر",
+    "draftTitle": "مسودة (ستصبح {{label}})",
+    "versionTitle": "النسخة {{label}}",
+    "draftFromThis": "مسودة جديدة من هذه النسخة",
+    "deleteDraft": "حذف المسودة",
+    "deleteDraftTitle": "حذف هذه المسودة؟",
+    "deleteDraftDescription": "لم تكن المسودة عامة أبداً. لا يمكن التراجع عن ذلك.",
+    "hash": "بصمة المحتوى",
+    "frozenValues": "القيم المجمّدة عند النشر",
+    "type": {
+      "TERMS": "شروط الخدمة",
+      "PRIVACY": "سياسة الخصوصية",
+      "REFUND": "سياسة الاسترداد"
+    },
+    "state": {
+      "DRAFT": "مسودة",
+      "UPCOMING": "مجدولة",
+      "CURRENT": "سارية",
+      "SUPERSEDED": "مستبدلة",
+      "WITHDRAWN": "مسحوبة"
+    },
+    "kind": {
+      "EDITORIAL": "تحريري",
+      "MATERIAL": "جوهري"
+    },
+    "kindHint": {
+      "choose": "جوهري = يغيّر الحقوق أو الالتزامات أو الأسعار أو المعالجين أو الطرف المتعاقد مع العميل.",
+      "EDITORIAL": "يسري دون مطالبة المالكين بالقبول مجدداً.",
+      "MATERIAL": "يُبلَّغ المالكون ويجب عليهم القبول مجدداً عند سريانه."
+    },
+    "locales": {
+      "en": "الإنجليزية",
+      "fr": "الفرنسية",
+      "ar": "العربية"
+    },
+    "columns": {
+      "version": "النسخة",
+      "state": "الحالة",
+      "kind": "التغيير",
+      "effective": "سارية من",
+      "published": "تاريخ النشر"
+    },
+    "mode": {
+      "edit": "تعديل",
+      "preview": "معاينة",
+      "changes": "التغييرات",
+      "read": "قراءة"
+    },
+    "fields": {
+      "changeKind": "نوع التغيير",
+      "changeKindPlaceholder": "اختر…",
+      "effectiveAt": "يسري",
+      "onDate": "في تاريخ محدد",
+      "noticeHint": "يتطلب التغيير الجوهري إشعاراً مسبقاً لا يقل عن {{days}} يوماً.",
+      "authoritativeLocale": "اللغة المرجعية",
+      "authoritativeHint": "تُعتمد إذا اختلفت الترجمات.",
+      "changeSummary": "ما الذي تغيّر ({{language}})",
+      "changeSummaryPlaceholder": "سطر قصير لكل تغيير",
+      "changeSummaryHint": "نص عادي. يُعرض على المالكين في البريد وعلى شاشة القبول.",
+      "changeSummaryTitle": "ما الذي تغيّر"
+    },
+    "drift": {
+      "title": "تغيّرت إعدادات الخادم منذ {{label}}: {{keys}}.",
+      "material": "هذا يغيّر الطرف المتعاقد أو القانون الواجب التطبيق: انشر نسخة جوهرية.",
+      "editorial": "انشر نسخة تحريرية لعرض القيم الجديدة."
+    },
+    "diff": {
+      "noPrevious": "لا توجد نسخة سابقة للمقارنة.",
+      "noChanges": "لا تغييرات في النص.",
+      "comparedTo": "مقارنة بـ {{label}}"
+    },
+    "editor": {
+      "paragraph": "فقرة",
+      "heading2": "عنوان قسم",
+      "heading3": "عنوان قسم فرعي",
+      "bold": "عريض",
+      "italic": "مائل",
+      "underline": "تسطير",
+      "link": "رابط",
+      "linkHint": "روابط https:// أو mailto: فقط.",
+      "removeLink": "إزالة الرابط",
+      "apply": "تطبيق",
+      "bulletList": "قائمة نقطية",
+      "orderedList": "قائمة مرقمة",
+      "quote": "اقتباس",
+      "rule": "فاصل",
+      "table": "إدراج جدول",
+      "deleteTable": "حذف الجدول",
+      "undo": "تراجع",
+      "redo": "إعادة",
+      "insertValue": "إدراج قيمة",
+      "searchValues": "ابحث عن قيمة…",
+      "notConfigured": "غير مُعدّة على الخادم",
+      "valuesFrozenHint": "تُنسخ القيم في النص عند النشر. أي تغيير لاحق في الإعدادات يتطلب نسخة جديدة.",
+      "unsaved": "تغييرات غير محفوظة",
+      "previewStale": "تعرض المعاينة آخر مسودة محفوظة.",
+      "missingValues": "هذه القيم غير مُعدّة وستمنع النشر: {{keys}}"
+    },
+    "variables": {
+      "appName": "اسم التطبيق",
+      "companyLegalName": "الاسم القانوني للشركة",
+      "companyRegistration": "رقم التسجيل (RC / ICE)",
+      "companyAddress": "عنوان الشركة",
+      "governingLaw": "القانون الواجب التطبيق",
+      "supportEmail": "بريد الدعم",
+      "privacyEmail": "بريد الخصوصية",
+      "marketingUrl": "رابط الموقع",
+      "webAppUrl": "رابط تطبيق الويب",
+      "termsUrl": "رابط صفحة الشروط",
+      "privacyUrl": "رابط صفحة الخصوصية",
+      "refundUrl": "رابط سياسة الاسترداد"
+    },
+    "publish": {
+      "open": "نشر {{label}}",
+      "title": "نشر {{type}} {{label}}",
+      "description": "النشر يجمّد هذا النص لجميع العملاء. لا يمكن تعديله بعد ذلك أبداً.",
+      "confirm": "نشر",
+      "checkSaved": "تم حفظ كل التغييرات",
+      "checkKind": "تم اختيار نوع التغيير",
+      "checkFirstMaterial": "النسخة الأولى منشورة كتغيير جوهري",
+      "checkText": "تمت كتابة النص باللغة {{language}}",
+      "checkSummary": "تمت كتابة ملخص التغييرات باللغة {{language}}",
+      "checkValues": "كل القيم المُدرجة مُعدّة",
+      "checkValuesMissing": "غير مُعدّة: {{keys}}",
+      "firstHint": "النسخة الأولى من هذه الوثيقة: تسري فوراً.",
+      "materialHint": "سيتلقى المالكون بريداً ويجب عليهم القبول مجدداً عند سريانها (إشعار مسبق {{days}} يوماً).",
+      "editorialHint": "لن يُطلب من أحد القبول مجدداً.",
+      "urgentReason": "سبب تقصير مدة الإشعار",
+      "urgentHint": "مطلوب إذا سرى تغيير جوهري خلال أقل من {{days}} يوماً (مثلاً بموجب القانون).",
+      "typeLabel": "اكتب {{label}} للتأكيد"
+    },
+    "withdraw": {
+      "open": "سحب",
+      "title": "سحب {{label}}؟",
+      "description": "لن تسري هذه النسخة أبداً. لا يُعاد استخدام رقمها، وتبقى النسخة الحالية سارية.",
+      "reason": "السبب",
+      "confirm": "سحب النسخة"
+    },
+    "toast": {
+      "draftCreated": "تم إنشاء المسودة",
+      "draftSaved": "تم حفظ المسودة",
+      "draftDeleted": "تم حذف المسودة",
+      "published": "تم نشر النسخة {{label}}",
+      "withdrawn": "تم سحب النسخة {{label}}"
     }
   }
 }
